@@ -2,7 +2,7 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 import { Button, IconButton, Typography } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 
-function CardProduct(props) {
+function CardProduct({ img, name, harga, items }) {
   const navigate = useNavigate();
 
   const detailProduct = () => {
@@ -10,9 +10,9 @@ function CardProduct(props) {
   };
   return (
     <div className="flex flex-col">
-      <div className="relative">
+      <div className="relative w-full">
         <img
-          src={props.img}
+          src={img}
           alt="product-img"
           className="rounded-lg w-full relative z-10"
           height={300}
@@ -59,33 +59,32 @@ function CardProduct(props) {
         </div>
       </div>
       <div className="py-2">
-        <div className="flex flex-col justify-start items-start lg:items-center lg:flex-row lg:justify-between">
-          <Typography
-            variant="small"
-            className="font-['Helvetica'] font-semibold"
-          >
-            Elegant basic shirt black
-          </Typography>
-          <Typography
-            variant="small"
-            className="font-['Helvetica'] font-normal text-right text-[13px] text-black"
-          >
-            Rp 185.000
+        <div className="flex flex-col justify-center items-center lg:items-center lg:flex-row">
+          <Typography variant="small" className="font-['Helvetica'] font-bold">
+            {name}
           </Typography>
         </div>
-        <Typography
-          variant="small"
-          className="font-['Helvetica'] text-black text-[13px] font-medium"
-        >
-          XLS S M
-        </Typography>
-        <Typography
-          variant="small"
-          className="font-['Helvetica'] text-[#7D7D7D] font-medium text-[13px]"
-        >
-          10.3080 sold out
-        </Typography>
+        <div className="flex justify-center items-center">
+          <Typography
+            variant="small"
+            className="font-['Helvetica'] text-black text-[13px] font-medium flex "
+          >
+            S, M, L, XL, XXL
+          </Typography>
+        </div>
+        <div className="flex justify-center items-center">
+          <Typography
+            variant="small"
+            className="font-['Helvetica'] text-[#7D7D7D] font-medium text-[13px] flex "
+          >
+            {items}
+          </Typography>
+        </div>
       </div>
+
+      <Typography className="font-['Helvetica'] font-normal text-center text-[13px] text-black mt-3">
+        <Button variant="outlined">{harga}</Button>
+      </Typography>
     </div>
   );
 }

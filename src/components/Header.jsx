@@ -6,6 +6,7 @@ import {
   IconButton,
   Button,
   Chip,
+  Badge,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
@@ -26,11 +27,10 @@ function HeaderLogo() {
     </>
   );
 }
-
 function HeaderMenu() {
   return (
     <>
-      <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+      <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 ">
         <Typography
           as="li"
           variant="small"
@@ -80,6 +80,7 @@ function HeaderMenu() {
             href="#"
             className="flex items-center hover:text-blue-500 transition-colors"
           >
+            <MagnifyingGlassIcon className="w-4 h4 mr-2" />
             Search
           </a>
         </Typography>
@@ -88,7 +89,15 @@ function HeaderMenu() {
   );
 }
 
-function HeaderProfileMenu() {
+function HeaderProfileMenu({ openLoginDialog, openDrawerShoppingCart }) {
+  function handleOpenDialog() {
+    return openLoginDialog(true);
+  }
+
+  function handleOpenDrawerShoppingCart() {
+    return openDrawerShoppingCart(true);
+  }
+
   return (
     <>
       <div className="flex items-center gap-4">
@@ -96,6 +105,7 @@ function HeaderProfileMenu() {
           variant="text"
           className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent"
           ripple={false}
+          onClick={handleOpenDialog}
         >
           <UserIcon className="h-6 w-6" />
         </IconButton>
@@ -106,26 +116,27 @@ function HeaderProfileMenu() {
         >
           <HeartIcon className="h-6 w-6" />
         </IconButton>
-        <Button
-          size="sm"
-          variant="text"
-          ripple={false}
-          className="px-0 py-0 flex gap-1 items-center rounded-full hover:bg-transparent active:bg-transparent"
+
+        <Badge
+          content="3"
+          className="bg-black text-white p-0 min-w-[20px] min-h-[20px]"
         >
-          <ShoppingBagIcon className="h-6 w-6" />
-          <Chip
-            value={3}
-            variant="filled"
+          <Button
             size="sm"
-            className="h-auto w-auto px-1 rounded-full py-0 font-light flex items-center justify-center"
-          />
-        </Button>
+            variant="text"
+            ripple={false}
+            className="px-0 py-0 flex gap-1 items-center rounded-full hover:bg-transparent active:bg-transparent"
+            onClick={handleOpenDrawerShoppingCart}
+          >
+            <ShoppingBagIcon className="h-6 w-6" />
+          </Button>
+        </Badge>
       </div>
     </>
   );
 }
 
-function Header() {
+function Header({ openLoginDialog, openDrawerShoppingCart }) {
   const [openNav, setOpenNav] = useState(false);
 
   const handleWindowResize = () =>
@@ -164,7 +175,10 @@ function Header() {
           <div className="hidden lg:block">
             <HeaderMenu />
           </div>
-          <HeaderProfileMenu />
+          <HeaderProfileMenu
+            openLoginDialog={openLoginDialog}
+            openDrawerShoppingCart={openDrawerShoppingCart}
+          />
         </div>
         <Collapse open={openNav}>
           <HeaderMenu />

@@ -1,6 +1,7 @@
 import DetailImages from "./Detailimg";
 import DetailDesc from "./DetailDesc";
 import DetailCard from "./DetailCard";
+import DetailLink from "./DetailLink";
 
 function DetailPage() {
   return (
@@ -8,6 +9,7 @@ function DetailPage() {
       <div className="grid lg:grid-cols-2">
         <DetailImages />
         <DetailDesc />
+        <DetailLink />
       </div>
       <div class="flex flex-col max-w-full h-[500px] mt-28">
         <DetailCard />
@@ -16,12 +18,3 @@ function DetailPage() {
   );
 }
 export default DetailPage;
-
-{
-  /* <div className="text-center mt-1">
-  <Typography className="text-lg font-bold">
-    Versa Tees Oversized Black
-  </Typography>
-  <Typography></Typography>
-</div>; */
-}

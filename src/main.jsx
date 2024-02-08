@@ -5,6 +5,11 @@ import "./index.css";
 import { Router, RouterProvider } from "react-router-dom";
 import { router } from "./routes.jsx";
 import { ThemeProvider } from "@material-tailwind/react";
+import store from "./store.js";
+import { Provider as ReduxProvider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+let persistor = persistStore(store);
 
 const customTheme = {
   drawer: {
@@ -42,7 +47,11 @@ const customTheme = {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider value={customTheme}>
-      <RouterProvider router={router}></RouterProvider>
+      <ReduxProvider store={store}>
+        <PersistGate persistor={persistor}>
+          <RouterProvider router={router}></RouterProvider>
+        </PersistGate>
+      </ReduxProvider>
     </ThemeProvider>
   </React.StrictMode>
 );

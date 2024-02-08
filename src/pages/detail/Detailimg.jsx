@@ -15,7 +15,7 @@ function DetailImages() {
               <img
                 src={product1}
                 alt="product1"
-                className="h-[528px] w-[450px] flex justify-center items-center"
+                className="h-[500px] w-[450px] flex justify-center items-center"
               />
             </CardHeader>
             <CardBody className="p-1 mt-8">

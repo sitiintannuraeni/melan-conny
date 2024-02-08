@@ -1,7 +1,10 @@
 import { HeartIcon, ShareIcon } from "@heroicons/react/24/outline";
 import { Button, Typography } from "@material-tailwind/react";
+import { openDialogShareLink } from "../../slice/menuSlice";
+import { useDispatch } from "react-redux";
 
 function DetailDesc() {
+  const dispatch = useDispatch();
   return (
     <>
       <div className="px-3 mt-16">
@@ -74,7 +77,11 @@ function DetailDesc() {
             </Button>
           </div>
           <div>
-            <Button variant="outlined" size="md">
+            <Button
+              variant="outlined"
+              size="md"
+              onclick={() => dispatch(openDialogShareLink())}
+            >
               <ShareIcon className="h-5 w-5 flex-auto" />
             </Button>
           </div>
@@ -82,9 +89,7 @@ function DetailDesc() {
         <div>
           <div className="grid grid-cols-1">
             <div className="text-lg font-medium mt-7">Details</div>
-            <div className="w-[70px] border-b-[4px] border-black mt-2">
-              {/* <div className="w-[500px] border-b-[1px] border-black " /> */}
-            </div>
+            <div className="w-[70px] border-b-[4px] border-black mt-2"></div>
           </div>
           <Typography className="mt-4 font-semibold text-sm">
             ELGANT BASIC SHIRT CLEAN LOOK

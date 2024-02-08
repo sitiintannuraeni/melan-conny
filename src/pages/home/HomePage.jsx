@@ -9,16 +9,27 @@ import product7 from "../../assets/product-7.png";
 import product8 from "../../assets/product-8.png";
 import CardProduct from "../../components/CardProduct";
 import banner from "../../assets/banner.png";
+import { useEffect, useState } from "react";
 
 function ListProducts() {
+  const [products, setProducts] = useState([]);
+
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:8000/api/product")
+  //     .then((response) => response.json())
+  //     .then((response) => {
+  //       setProducts(response.data);
+  //     });
+  // }, []);
+
   return (
-    <div className="p-4">
+    <div className="">
       <div className="grid justify-items-center items-center mb-12">
         <Typography variant="h4" className="font-['Helvetica']">
           TOP SELLING
         </Typography>
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 pl-[25px]">
         <CardProduct
           img={product1}
           name="Elgant Basic Shirt Clean Look Black"
@@ -38,31 +49,31 @@ function ListProducts() {
           items="1,297 items sold"
         />
         <CardProduct
-          img={product4}
+          img={product6}
           name="Elgant Short Sleeve Shirt Sky Blue"
           harga="Rp 185.000"
           items="391 items sold"
         />
         <CardProduct
-          img={product5}
+          img={product4}
           name="Versa Tees Oversized Black"
           harga="Rp 129.000"
           items="3,345 items sold"
         />
         <CardProduct
-          img={product6}
+          img={product7}
           name="Versa Tees Oversized Black"
           harga="Rp 119.000"
           items="4,3949 items sold"
         />
         <CardProduct
-          img={product7}
+          img={product8}
           name="Elgant Basic Shirt White"
           harga="Rp 185.000"
           items="5,502 items sold"
         />
         <CardProduct
-          img={product8}
+          img={product5}
           name="Elgant Short Sleeve Shirt White"
           harga="Rp 170.000"
           items="1,849 items sold"
@@ -70,6 +81,22 @@ function ListProducts() {
       </div>
     </div>
   );
+  {
+    /* <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        {products.map((product, index) => {
+          return (
+            <CardProduct
+              key={index}
+              id={product.id}
+              img={product.images[0].url}
+              name={product.product_name}
+              harga={product.price}
+              items={`${product.total_sold} items sold`}
+            />
+          );
+        })}
+      </div> */
+  }
 }
 
 function HomePage() {

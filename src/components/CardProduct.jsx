@@ -1,12 +1,13 @@
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { Button, IconButton, Typography } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
+import NumberFormatCurrency from "../utils";
 
-function CardProduct({ img, name, harga, items }) {
+function CardProduct({ id, img, name, harga, items }) {
   const navigate = useNavigate();
 
-  const detailProduct = () => {
-    navigate("/detail");
+  const detailProduct = (id) => {
+    navigate(`/detail/${id}`);
   };
   return (
     <div className="flex flex-col">
@@ -14,10 +15,9 @@ function CardProduct({ img, name, harga, items }) {
         <img
           src={img}
           alt="product-img"
-          className="rounded-lg w-full relative z-10"
-          height={300}
+          className="rounded-lg relative z-10 w-[330px] h-[400px] lg:h-[340px]"
         />
-        <div className="absolute z-20 top-2 right-2 bg-transparent">
+        <div className="absolute z-20 top-3 right-[10px] bg-transparent">
           <IconButton
             variant="text"
             size="sm"
@@ -26,9 +26,9 @@ function CardProduct({ img, name, harga, items }) {
             <HeartIcon className="h-4 w-4" />
           </IconButton>
         </div>
-        <div className="absolute z-20 bottom-2 right-2">
+        <div className="absolute z-20 bottom-2 right-[10px]">
           <Button
-            onClick={detailProduct}
+            onClick={() => detailProduct(id)}
             variant="outlined"
             size="lg"
             className="px-3 lg:flex hidden bg-black !bg-opacity-20 border-white border-[1px] text-white gap-2 justify-center items-center"
@@ -59,7 +59,7 @@ function CardProduct({ img, name, harga, items }) {
         </div>
       </div>
       <div className="py-2">
-        <div className="flex flex-col justify-center items-center lg:items-center lg:flex-row">
+        <div className="flex flex-col justify-center items-center pr-[25px] lg:items-center text-center lg:flex-row pl-[30px]">
           <Typography variant="small" className="font-['Helvetica'] font-bold">
             {name}
           </Typography>
@@ -67,7 +67,7 @@ function CardProduct({ img, name, harga, items }) {
         <div className="flex justify-center items-center">
           <Typography
             variant="small"
-            className="font-['Helvetica'] text-black text-[13px] font-medium flex "
+            className="font-['Helvetica'] text-black text-[13px] font-medium flex justify-center items-center"
           >
             S, M, L, XL, XXL
           </Typography>
@@ -75,7 +75,7 @@ function CardProduct({ img, name, harga, items }) {
         <div className="flex justify-center items-center">
           <Typography
             variant="small"
-            className="font-['Helvetica'] text-[#7D7D7D] font-medium text-[13px] flex "
+            className="font-['Helvetica'] text-[#7D7D7D] font-medium text-[13px] flex"
           >
             {items}
           </Typography>

@@ -41,10 +41,10 @@ function DetailImages() {
                   className="object-cover"
                 />
               </div>
-              <div class="flex justify-end">
-                <div class="flex flex-row-reverse mt-4">
-                  <div class="w-[217px]">
-                    <div class="border-black border-b-[5px]"></div>
+              <div className="flex justify-end">
+                <div className="flex flex-row-reverse mt-4">
+                  <div className="w-[217px]">
+                    <div className="border-black border-b-[5px]"></div>
                   </div>
                 </div>
               </div>

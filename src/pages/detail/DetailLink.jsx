@@ -20,12 +20,12 @@ function DetailLink() {
   return (
     <>
       <Dialog
-        size="xs"
-        open={true}
+        size="sm"
+        open={dialogShareLink}
         handler={() => dispatch(closeDialogShareLink())}
         className="p-4"
       >
-        <div className="flex justify-between">
+        <div className="flex justify-between mb-4">
           <Typography className="mt-2 font-medium text-black text-lg">
             Share to
           </Typography>
@@ -36,32 +36,32 @@ function DetailLink() {
             <XMarkIcon className="w-7 h-6" />
           </IconButton>
         </div>
-        <div class="grid grid-cols-4 font-mono text-black text-sm text-center font-bold">
-          <div class="p-4 rounded-lg shadow-lg bg-blue-500">
+        <div className="grid grid-cols-4 gap-3 font-mono text-black text-sm text-center font-bold">
+          <div className="p-2 rounded-lg shadow-lg bg-blue-500">
             <div className="flex justify-center">
               <img src={ImageB} alt="imageA" className="w-[50px]" />
             </div>
             <Typography className="mt-2">Twitter</Typography>
           </div>
-          <div class="p-4 rounded-lg shadow-lg bg-green-500">
+          <div className="p-2 rounded-lg shadow-lg bg-green-500">
             <div className="flex justify-center">
               <img src={ImageC} alt="imageC" className="w-[47px]" />
             </div>
             <Typography className="mt-2">Whatsapp</Typography>
           </div>
-          <div class="p-4 rounded-lg shadow-lg bg-purple-500">
+          <div className="p-2 rounded-lg shadow-lg bg-purple-500">
             <div className="flex justify-center">
               <img src={ImageA} alt="imageB" className="w-[50px]" />
             </div>
             <Typography className="mt-2">Facebook</Typography>
           </div>
-          <div class="p-4 rounded-lg shadow-lg bg-yellow-500">
+          <div className="p-2 rounded-lg shadow-lg bg-yellow-500">
             <div className="flex justify-center items-center">
               <img src={ImageLine} alt="imageD" className="w-[43px]" />
             </div>
             <Typography className="mt-2">Line</Typography>
           </div>
-          <div class="p-4 rounded-lg shadow-lg bg-blue-500">
+          <div className="p-2 rounded-lg shadow-lg bg-blue-500">
             <div className="flex justify-center items-center">
               <img src={ImageE} alt="imageD" className="w-[55px]" />
             </div>

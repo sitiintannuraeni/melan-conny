@@ -71,7 +71,7 @@ function DetailDesc() {
               className="flex items-center gap-2 w-[265px]"
             >
               <HeartIcon className="h-5 w-5" />
-              <Typography floated={false} variant="small" className="font-bold">
+              <Typography variant="small" className="font-bold">
                 ADD TO WISHLIST
               </Typography>
             </Button>
@@ -80,7 +80,7 @@ function DetailDesc() {
             <Button
               variant="outlined"
               size="md"
-              onclick={() => dispatch(openDialogShareLink())}
+              onClick={() => dispatch(openDialogShareLink())}
             >
               <ShareIcon className="h-5 w-5 flex-auto" />
             </Button>

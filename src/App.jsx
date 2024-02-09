@@ -2,18 +2,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Checkbox,
-  Dialog,
-  IconButton,
-  Input,
-  Typography,
-} from "@material-tailwind/react";
-import { EyeIcon, EyeSlashIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import DrawerShoppingCart from "./components/DrawerShoppingCard";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -22,7 +10,8 @@ import Search from "./components/Search";
 import DrawerShopping from "./components/DrawerShopping";
 import CheckOut from "./components/CheckOut";
 import AsGuest from "./components/AsGuest";
-import DetailLink from "./pages/detail/DetailLink";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -63,6 +52,8 @@ function App() {
 
       <DrawerMenFashionStore />
       <Search />
+      
+      <ToastContainer autoClose={1500} />
     </>
   );
 }

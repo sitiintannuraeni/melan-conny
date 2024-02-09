@@ -11,7 +11,7 @@ function DetailPage() {
         <DetailDesc />
         <DetailLink />
       </div>
-      <div class="flex flex-col max-w-full h-[500px] mt-28">
+      <div className="flex flex-col max-w-full h-[500px] mt-28">
         <DetailCard />
       </div>
     </>

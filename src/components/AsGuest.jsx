@@ -26,38 +26,41 @@ function AsGuest() {
         size="xs"
         open={dialogAsGuest}
         handler={() => dispatch(closeDialogAsGuest())}
-        className="p-4"
       >
-        <div className="flex justify-between">
+        <div className="p-4 flex justify-between w-[100%]">
           <Typography className="mt-2 font-medium text-black text-lg">
             As Guest
           </Typography>
-          <IconButton
-            variant="text"
-            onClick={() => dispatch(closeDialogAsGuest())}
+          <a
+            href="#"
+            className="flex items-center hover:text-blue-500 text-black transition-colors"
+            onClick={(e) => {
+              e.preventDefault();
+              dispatch(closeDialogAsGuest());
+            }}
           >
-            <XMarkIcon className="w-7 h-6" />
-          </IconButton>
+            <XMarkIcon className="w-6 h-6" />
+          </a>
         </div>
-        <Typography className="mt-5">
-          <div className="mb-7 text-md text-[black]">
+        <Typography className="p-4">
+          <div className="text-md text-[black]">
             Phone*
-            <div className="flex items-center justify-center">
-              <div className="w-[40px]">+62</div>
+            <div className="flex justify-start items-start space-x-3 mt-3">
+              <Typography className="p-3">+62</Typography>
               <input
-                type="number"
-                className="w-[380px] h-[40px] text-[#857F7F] text-xs outline-none border-none bg-transparent"
+                className="outline-none text-xs mt-[17px] w-[100%]"
                 placeholder="Enter Your Phone..."
+                type="number"
               />
             </div>
-            <div className="flex justify-end">
-              <div className="w-[100%] border-b-[1px] border-[#000000] " />
-            </div>
-          </div>
-          <div className="mt-3">
-            <Button className="w-full bg-[#B0B0B0]">SEND</Button>
           </div>
         </Typography>
+        <div className="flex justify-end w-full">
+          <div className="w-[100%] border-b-[1px] border-[#B0B0B0] " />
+        </div>
+        <div className="mt-3 p-4">
+          <Button className="w-full bg-[#B0B0B0]">SEND</Button>
+        </div>
       </Dialog>
     </>
   );

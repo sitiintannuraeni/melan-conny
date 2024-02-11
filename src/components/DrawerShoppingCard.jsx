@@ -38,7 +38,7 @@ function DrawerShoppingCart() {
         <div className="mb-6 flex items-center space-x-3">
           <a
             href="#"
-            className="flex items-center hover:text-blue-500 transition-colors"
+            className="flex items-center hover:text-blue-500 text-black transition-colors"
             onClick={(e) => {
               e.preventDefault();
               dispatch(closeDrawerShoppingCart());
@@ -58,7 +58,6 @@ function DrawerShoppingCart() {
           <Checkbox />
           <Typography className="mt-2">ALL ITEMS</Typography>
         </div>
-
         <div className="h-[400px] overflow-y-auto">
           <div className="flex flex-col-3 mt-4 gap-2">
             <div className="">
@@ -261,21 +260,25 @@ function DrawerShoppingCart() {
             </div>
           </div>
           <div className="border-b-[1px] border-black mt-5" />
-          <div className="flex flex-col">
+          <div className="flex flex-col text-[#000000]">
             <div className="flex justify-between">
               <Typography className="mt-3">TOTAL</Typography>
               <Typography className="mt-3">Rp. 189.000</Typography>
             </div>
             <div className="flex justify-between">
-              <Typography className="mt-6">SHIPPING</Typography>
-              <Typography className="mt-6 text-xs">
-                Takes and shipping fe will be <br />
-                cal culated at checkout
-              </Typography>
+              <Typography className="mt-2">SHOPPING</Typography>
+              <div className="">
+                <Typography className="mt-2 text-xs pl-[36px]">
+                  Takes and shopping fe will be cal culated at
+                </Typography>
+                <Typography className="float-right text-xs">
+                  checkout
+                </Typography>
+              </div>
             </div>
             <div className="border-b-[1px] border-black mt-7" />
-            <div className="flex justify-between mt-5">
-              <Typography className="mt-2 text-lg font-bold">
+            <div className="flex justify-between mt-5 w-full">
+              <Typography className="mt-2 text-lg font-bold underline">
                 View Bag
               </Typography>
               <Button
@@ -295,4 +298,5 @@ function DrawerShoppingCart() {
     </>
   );
 }
+
 export default DrawerShoppingCart;

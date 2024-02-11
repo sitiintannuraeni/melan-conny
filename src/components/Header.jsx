@@ -27,13 +27,12 @@ import {
 
 function HeaderLogo() {
   const dispatch = useDispatch();
-
   return (
     <>
-      <div className="flex justify-start space-x-8">
+      <div className="flex justify-start space-x-8 px-3">
         <IconButton
           variant="text"
-          className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent mt-[15px]"
+          className="h-6 w-6 rounded-full mt-[15px] hover:bg-transparent active:bg-transparent"
           ripple={false}
           onClick={() => dispatch(openDrawerMenFashionStore())}
         >
@@ -58,10 +57,7 @@ function HeaderMenu() {
           color="blue-gray"
           className="p-1 font-medium"
         >
-          <Link
-            to={"/"}
-            className="flex items-center hover:text-blue-500 transition-colors"
-          >
+          <Link to={"/"} className="flex items-center transition-colors">
             Home
           </Link>
         </Typography>

@@ -10,5 +10,5 @@ export default function NumberFormatCurrency({ value, sepComma = false }) {
     });
   let result = sepComma ? formatterCurrency : formatterCurrency.split(",")[0];
 
-  return "IDR " + result;
+  return "Rp. " + result;
 }

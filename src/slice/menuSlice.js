@@ -11,6 +11,7 @@ const initialState = {
   dialogAsGuest: false,
   dialogShareLink: false,
   dialogDetailCardHome: false,
+  idDetailDialogCardHome: 0,
 };
 
 export const menuSlice = createSlice({
@@ -71,8 +72,9 @@ export const menuSlice = createSlice({
     closeDialogShareLink: (state) => {
       state.dialogShareLink = false;
     },
-    openDialogDetailCardHome: (state) => {
+    openDialogDetailCardHome: (state, action) => {
       state.dialogDetailCardHome = true;
+      state.idDetailDialogCardHome = action.payload;
     },
     closeDialogDetailCardHome: (state) => {
       state.dialogDetailCardHome = false;

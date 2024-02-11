@@ -69,7 +69,7 @@ function Register() {
               <div className="float-right">
                 <a
                   href="#"
-                  className="flex items-center hover:text-blue-500 transition-colors"
+                  className="flex items-center hover:text-blue-500 text-black transition-colors"
                   onClick={(e) => {
                     e.preventDefault();
                     dispatch(closeDialogRegister());
@@ -85,7 +85,7 @@ function Register() {
                 <div className="flex items-center justify-center">
                   <input
                     type="text"
-                    className="w-[400px] h-[40px] text-[#857F7F] text-xs outline-none border-none bg-transparent"
+                    className="w-[400px] h-[40px] text-xs outline-none border-none bg-transparent"
                     placeholder="Enter Your Name..."
                   />
                 </div>
@@ -100,7 +100,7 @@ function Register() {
                 <div className="flex items-center justify-center">
                   <input
                     type="email"
-                    className="w-[400px] h-[40px] text-[#857F7F] text-xs outline-none border-none bg-transparent"
+                    className="w-[400px] h-[40px] text-xs outline-none border-none bg-transparent"
                     placeholder="Enter Your Email..."
                   />
                 </div>
@@ -116,7 +116,7 @@ function Register() {
                   <div className="w-[40px]">+62</div>
                   <input
                     type="number"
-                    className="w-[380px] h-[40px] text-[#857F7F] text-xs outline-none border-none bg-transparent"
+                    className="w-[380px] h-[40px] text-xs outline-none border-none bg-transparent"
                     placeholder="Enter Your Phone Number..."
                   />
                 </div>
@@ -144,7 +144,7 @@ function Register() {
                 <div className="flex items-center justify-center">
                   <input
                     type={passwordType}
-                    className="w-[400px] h-[40px] text-[#857F7F] text-xs outline-none border-none bg-transparent"
+                    className="w-[400px] h-[40px] text-xs outline-none border-none bg-transparent"
                     placeholder="Enter Your Password..."
                   />
                 </div>
@@ -194,7 +194,7 @@ function Register() {
                 <div className="flex items-center justify-center">
                   <input
                     type={confirmPasswordType}
-                    className="w-[400px] h-[40px] text-[#857F7F] text-xs outline-none border-none bg-transparent"
+                    className="w-[400px] h-[40px] text-xs outline-none border-none bg-transparent"
                     placeholder="Confirm Your Password..."
                   />
                 </div>
@@ -209,7 +209,7 @@ function Register() {
                 <div className="flex items-center justify-center">
                   <input
                     type="date"
-                    className="w-[400px] h-[40px] text-[#857F7F] text-xs outline-none border-none bg-transparent"
+                    className="w-[400px] h-[40px] text-xs outline-none border-none bg-transparent"
                     placeholder="Enter Your Name..."
                   />
                 </div>

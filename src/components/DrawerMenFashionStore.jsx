@@ -2,8 +2,6 @@ import React from "react";
 import {
   Drawer,
   Typography,
-  IconButton,
-  Input,
   List,
   ListItem,
 } from "@material-tailwind/react";
@@ -32,15 +30,18 @@ function DrawerMenFashionStore() {
         onClose={() => dispatch(closeDrawerMenFashionStore())}
         className="p-4"
       >
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex items-center justify-between mt-5">
           <div className="mb-6 flex items-center space-x-3">
-            <IconButton
-              variant="text"
-              color="blue-gray"
-              onClick={() => dispatch(closeDrawerMenFashionStore())}
+            <a
+              href="#"
+              className="flex items-center hover:text-blue-500 text-black transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(closeDrawerMenFashionStore());
+              }}
             >
-              <XMarkIcon className="text-black h-6" />
-            </IconButton>
+              <XMarkIcon className="w-6 h-6" />
+            </a>
             <Typography color="blue-gray" className="text-md font-semibold">
               MEN'S FASHION STORE
             </Typography>
@@ -106,26 +107,20 @@ function DrawerMenFashionStore() {
             <ListItem className="rounded-none">
               <Typography className="w-full font-semibold">ABOUT US</Typography>
             </ListItem>
-            <ListItem>
-              <div className="flex justify-start items-start space-x-4">
-                <IconButton
-                  variant="text"
-                  className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent"
-                  ripple={false}
-                >
-                  <UserIcon className="h-6 w-6" />
-                </IconButton>
-                <Typography
-                  className="font-semibold"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(openDialogLogin());
-                    dispatch(closeDrawerMenFashionStore());
-                  }}
-                >
+            <ListItem
+              className="rounded-none hover:text-blue-500 transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(openDialogLogin());
+                dispatch(closeDrawerMenFashionStore());
+              }}
+            >
+              <Typography className="p-1 font-semibold text-md">
+                <a href="#" className="flex items-start">
+                  <UserIcon className="w-5 h-5 mr-2" />
                   LOG IN
-                </Typography>
-              </div>
+                </a>
+              </Typography>
             </ListItem>
           </List>
         </div>

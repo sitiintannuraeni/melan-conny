@@ -2,17 +2,14 @@ import React from "react";
 import {
   Button,
   Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
   Typography,
-  IconButton,
 } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   closeDialogCheckOut,
   openDialogAsGuest,
   openDialogLogin,
+  openDialogRegister,
 } from "../slice/menuSlice";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -28,18 +25,22 @@ function CheckOut() {
         handler={() => dispatch(closeDialogCheckOut())}
         className="p-4"
       >
-        <div className="flex justify-between">
+        <div className="flex justify-between px-3">
           <Typography className="mt-2 font-bold text-black text-lg">
             Checkout
           </Typography>
-          <IconButton
-            variant="text"
-            onClick={() => dispatch(closeDialogCheckOut())}
+          <a
+            href="#"
+            className="flex items-center hover:text-blue-500 text-black transition-colors"
+            onClick={(e) => {
+              e.preventDefault();
+              dispatch(closeDialogCheckOut());
+            }}
           >
-            <XMarkIcon className="w-7 h-6" />
-          </IconButton>
+            <XMarkIcon className="w-6 h-6" />
+          </a>
         </div>
-        <div className="mt-7">
+        <div className="mt-7 px-5">
           <Typography className="flex justify-center items-center text-black">
             Alredy have an account?
           </Typography>
@@ -59,9 +60,20 @@ function CheckOut() {
           <Typography className="flex justify-center items-center mt-4 text-black">
             New to MFS
           </Typography>
-          <Typography className="flex justify-center items-center mt-4 text-black">
-            Register
-          </Typography>
+          <div className="flex justify-center items-center mt-4">
+            <Button
+              variant="text"
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(openDialogRegister());
+                dispatch(closeDialogCheckOut());
+              }}
+            >
+              <Typography className="text-black text-center">
+                Register
+              </Typography>
+            </Button>
+          </div>
           <div className="mt-4 flex justify-center items-center">
             <Button
               variant="outlined"
@@ -70,6 +82,8 @@ function CheckOut() {
                 dispatch(openDialogAsGuest());
                 dispatch(closeDialogCheckOut());
               }}
+              className="w-full"
+              size="lg"
             >
               CONTINUE AS GUEST
             </Button>

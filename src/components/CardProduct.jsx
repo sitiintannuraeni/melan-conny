@@ -1,9 +1,12 @@
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { Button, IconButton, Typography } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
+import { openDialogDetailCardHome } from "../slice/menuSlice";
+import { useDispatch } from "react-redux";
 import NumberFormatCurrency from "../utils";
 
 function CardProduct({ id, img, name, harga, items }) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const detailProduct = (id) => {
@@ -15,7 +18,8 @@ function CardProduct({ id, img, name, harga, items }) {
         <img
           src={img}
           alt="product-img"
-          className="rounded-lg relative z-10 w-[330px] h-[400px] lg:h-[340px]"
+          className="rounded-lg cursor-pointer relative z-10 w-full h-[400px] lg:h-[320px] object-cover"
+          onClick={() => detailProduct(id)}
         />
         <div className="absolute z-20 top-3 right-[10px] bg-transparent">
           <IconButton
@@ -28,10 +32,10 @@ function CardProduct({ id, img, name, harga, items }) {
         </div>
         <div className="absolute z-20 bottom-2 right-[10px]">
           <Button
-            onClick={() => detailProduct(id)}
             variant="outlined"
             size="lg"
             className="px-3 lg:flex hidden bg-black !bg-opacity-20 border-white border-[1px] text-white gap-2 justify-center items-center"
+            onClick={() => dispatch(openDialogDetailCardHome(id))}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +87,9 @@ function CardProduct({ id, img, name, harga, items }) {
       </div>
 
       <Typography className="font-['Helvetica'] font-normal text-center text-[13px] text-black mt-3">
-        <Button variant="outlined">{harga}</Button>
+        <Button variant="outlined" className="normal-case">
+          <NumberFormatCurrency value={harga} />
+        </Button>
       </Typography>
     </div>
   );

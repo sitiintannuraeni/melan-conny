@@ -28,7 +28,7 @@ function DrawerShopping() {
         <div className="mb-6 flex items-center space-x-3">
           <a
             href="#"
-            className="flex items-center hover:text-blue-500 transition-colors"
+            className="flex items-center hover:text-blue-500 text-black transition-colors"
             onClick={(e) => {
               e.preventDefault();
               dispatch(closeDrawerShopping());

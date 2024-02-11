@@ -10,8 +10,9 @@ import Search from "./components/Search";
 import DrawerShopping from "./components/DrawerShopping";
 import CheckOut from "./components/CheckOut";
 import AsGuest from "./components/AsGuest";
-import {ToastContainer} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import SearchV2 from "./components/SearchV2";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -52,7 +53,8 @@ function App() {
 
       <DrawerMenFashionStore />
       <Search />
-      
+      <SearchV2 />
+
       <ToastContainer autoClose={1500} />
     </>
   );

@@ -39,7 +39,7 @@ function Login() {
               <div className="float-right">
                 <a
                   href="#"
-                  className="flex items-center hover:text-blue-500 transition-colors"
+                  className="flex items-center hover:text-blue-500 text-black transition-colors"
                   onClick={(e) => {
                     e.preventDefault();
                     dispatch(closeDialogLogin());
@@ -81,7 +81,7 @@ function Login() {
               <div className="flex items-center justify-center">
                 <input
                   type={passwordType}
-                  className="w-[400px] h-[40px] text-[#857F7F] text-sm outline-none border-none bg-transparent"
+                  className="w-[400px] h-[40px] text-sm outline-none border-none bg-transparent"
                   placeholder="Enter Your Password..."
                 />
               </div>

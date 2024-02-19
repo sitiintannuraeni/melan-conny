@@ -6,21 +6,24 @@ export const apiProduct = apiCore.injectEndpoints({
     getProducts: builder.query({
       query: () => "/api/products",
       transformResponse: (response) => response.data,
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.map(({ id }) => ({ type: "Products", id })),
-              { type: "Products", id: "LIST" },
-            ]
-          : [{ type: "Products", id: "LIST" }],
     }),
     getProductById: builder.query({
       query: (id) => ({ url: `/api/product/${id}` }),
       transformResponse: (response) => response.data,
-      providesTags: (result, error, id) => [{ type: "Products", id }],
+    }),
+
+    searchProduct: builder.query({
+      query: (inputSearch) => ({
+        url: `/api/products/search?search=${inputSearch}`,
+      }),
+      transformResponse: (response) => response.data,
     }),
   }),
   overrideExisting: true,
 });
 
-export const { useGetProductsQuery, useGetProductByIdQuery } = apiProduct;
+export const {
+  useGetProductsQuery,
+  useGetProductByIdQuery,
+  useSearchProductQuery,
+} = apiProduct;

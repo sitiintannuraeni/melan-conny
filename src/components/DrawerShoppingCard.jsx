@@ -63,196 +63,236 @@ function DrawerShoppingCart() {
             <div className="">
               <div className="flex justify-start">
                 <Checkbox defaultChecked ripple={false} />
-                <img src={DrawerOne} alt="drawer1" className="h-[120px]" />
+                <img
+                  src={DrawerOne}
+                  alt="drawer1"
+                  className="h-[85px] object-cover mt-1"
+                />
               </div>
               <div className="flex justify-start mt-[50px]">
                 <Checkbox ripple={false} />
-                <img src={DrawerTwo} alt="drawer2" className="h-[120px]" />
+                <img
+                  src={DrawerTwo}
+                  alt="drawer2"
+                  className="h-[85px] object-cover mt-[17px]"
+                />
               </div>
-              <div className="flex justify-start mt-[42px]">
+              <div className="flex justify-start mt-[53px]">
                 <Checkbox />
-                <img src={DrawerThree} alt="product3" className="h-[120px]" />
+                <img
+                  src={DrawerThree}
+                  alt="product3"
+                  className="h-[85px] object-cover"
+                />
               </div>
-              <div className="flex justify-start mt-[70px]">
+              <div className="flex justify-start mt-[98px]">
                 <Checkbox />
-                <img src={DrawerFour} alt="drawer4" className="h-[120px]" />
+                <img
+                  src={DrawerFour}
+                  alt="drawer4"
+                  className="h-[85px] object-cover"
+                />
               </div>
-              <div className="flex justify-start mt-[74px]">
+              <div className="flex justify-start mt-[98px]">
                 <Checkbox />
-                <img src={DrawerFive} alt="drawer5" className="h-[120px]" />
+                <img
+                  src={DrawerFive}
+                  alt="drawer5"
+                  className="h-[85px] object-cover"
+                />
               </div>
-              <div className="flex justify-start mt-[78px]">
+              <div className="flex justify-start mt-[100px]">
                 <Checkbox />
-                <img src={DrawerSix} alt="drawer6" className="h-[120px]" />
+                <img
+                  src={DrawerSix}
+                  alt="drawer6"
+                  className="h-[85px] object-cover"
+                />
               </div>
             </div>
             <div className="gap-1">
               <div>
-                <Typography className="text-md">
-                  Helmut Mockneck Knit <br />
-                  Black <br /> Rp 189.000
+                <Typography className="text-sm">
+                  Helmut Mockneck Knit
                 </Typography>
-                <Typography className="mt-3 text-md">XS</Typography>
+                <Typography className="text-sm">Black</Typography>
+                <Typography className="text-sm">Rp. 189.000</Typography>
+                <Typography className="mt-3 text-sm">XS</Typography>
                 <div className="flex justify-start mt-2 space-x-3">
                   <IconButton
                     variant="outlined"
-                    className=" rounded-md h-[30px] w-[30px]"
+                    className=" rounded-md h-[25px] w-[25px]"
                   >
                     <MinusIcon className="text-black h-4 w-5" />
                   </IconButton>
-                  <Typography className="text-xl mt-1">1</Typography>
+                  <Typography className="text-lg mt-1">1</Typography>
                   <IconButton
                     variant="outlined"
-                    className=" rounded-md h-[30px] w-[30px]"
+                    className=" rounded-md h-[25px] w-[25px]"
                   >
                     <PlusIcon className="text-black h-4 w-5" />
                   </IconButton>
                 </div>
               </div>
               <div className="mt-5">
-                <Typography className="text-md mt-5">
+                <Typography className="text-sm mt-5">
                   Elgant Basic Shirt Black
-                  <br /> Rp 189.000
                 </Typography>
-                <Typography className="mt-3 text-md">S</Typography>
+                <Typography className="text-sm">Rp. 189.000</Typography>
+                <Typography className="mt-3 text-sm">S</Typography>
                 <div className="flex justify-start mt-2 space-x-3">
                   <IconButton
                     variant="outlined"
-                    className=" rounded-md h-[30px] w-[30px]"
+                    className=" rounded-md h-[25px] w-[25px]"
                   >
                     <MinusIcon className="text-black h-4 w-5" />
                   </IconButton>
-                  <Typography className="text-xl mt-1">1</Typography>
+                  <Typography className="text-lg mt-1">1</Typography>
                   <IconButton
                     variant="outlined"
-                    className=" rounded-md h-[30px] w-[30px]"
+                    className=" rounded-md h-[25px] w-[25px]"
                   >
                     <PlusIcon className="text-black h-4 w-5" />
                   </IconButton>
                 </div>
               </div>
               <div className="mt-5">
-                <Typography className="text-md mt-[38px]">
-                  Elgant Short Sleeve Shirt <br />
-                  Black
+                <Typography className="text-sm mt-[25px]">
+                  Elgant Short Sleeve Shirt
                 </Typography>
-                <Typography>Rp. 189.000</Typography>
+                <Typography className="text-sm">Black</Typography>
+                <Typography className="text-sm">Rp. 189.000</Typography>
                 <Typography className="mt-3 text-md">M</Typography>
                 <div className="flex justify-start mt-2 space-x-3">
                   <IconButton
                     variant="outlined"
-                    className=" rounded-md h-[30px] w-[30px]"
+                    className=" rounded-md h-[25px] w-[25px]"
                   >
                     <MinusIcon className="text-black h-4 w-5" />
                   </IconButton>
-                  <Typography className="text-xl mt-1">1</Typography>
+                  <Typography className="text-lg mt-1">1</Typography>
                   <IconButton
                     variant="outlined"
-                    className=" rounded-md h-[30px] w-[30px]"
+                    className=" rounded-md h-[25px] w-[25px]"
                   >
                     <PlusIcon className="text-black h-4 w-5" />
                   </IconButton>
                 </div>
               </div>
               <div className="mt-5">
-                <div className="mt-1">
-                  <Typography className="text-md">
+                <div className="mt-7">
+                  <Typography className="text-sm">
                     Elgant Short Sleeve Shirt
                   </Typography>
-                  <Typography>White</Typography>
-                  <Typography>Rp 189.000</Typography>
+                  <Typography className="text-sm">Black</Typography>
+                  <Typography className="text-sm">Rp. 189.000</Typography>
                   <Typography className="mt-3 text-md">S</Typography>
                 </div>
                 <div className="flex justify-start mt-2 space-x-3">
                   <IconButton
                     variant="outlined"
-                    className=" rounded-md h-[30px] w-[30px]"
+                    className=" rounded-md h-[25px] w-[25px]"
                   >
                     <MinusIcon className="text-black h-4 w-5" />
                   </IconButton>
-                  <Typography className="text-xl mt-1">1</Typography>
+                  <Typography className="text-lg mt-1">1</Typography>
                   <IconButton
                     variant="outlined"
-                    className=" rounded-md h-[30px] w-[30px]"
+                    className=" rounded-md h-[25px] w-[25px]"
                   >
                     <PlusIcon className="text-black h-4 w-5" />
                   </IconButton>
                 </div>
               </div>
-              <div className="mt-5">
-                <Typography className="text-md mt-[18px]">
+              <div className="mt-7">
+                <Typography className="text-sm mt-[18px]">
                   Elgant Short Sleeve Shirt
                 </Typography>
-                <Typography>Maroon</Typography>
-                <Typography>Rp 189.000</Typography>
+                <Typography className="text-sm">Black</Typography>
+                <Typography className="text-sm">Rp. 189.000</Typography>
                 <Typography className="mt-3 text-md">S</Typography>
                 <div className="flex justify-start mt-2 space-x-3">
                   <IconButton
                     variant="outlined"
-                    className=" rounded-md h-[30px] w-[30px]"
+                    className=" rounded-md h-[25px] w-[25px]"
                   >
                     <MinusIcon className="text-black h-4 w-5" />
                   </IconButton>
-                  <Typography className="text-xl mt-1">1</Typography>
+                  <Typography className="text-lg mt-1">1</Typography>
                   <IconButton
                     variant="outlined"
-                    className=" rounded-md h-[30px] w-[30px]"
+                    className=" rounded-md h-[25px] w-[25px]"
                   >
                     <PlusIcon className="text-black h-4 w-5" />
                   </IconButton>
                 </div>
               </div>
-              <div className="mt-5">
-                <Typography className="text-md mt-[10px]">
+              <div className="mt-7">
+                <Typography className="text-sm mt-[10px]">
                   Elgant Short Sleeve Shirt
                 </Typography>
-                <Typography>Look Choco</Typography>
-                <Typography>Rp 189.000</Typography>
+                <Typography className="text-sm">Black</Typography>
+                <Typography className="text-sm">Rp. 189.000</Typography>
                 <Typography className="mt-3 text-md">S</Typography>
                 <div className="flex justify-start mt-2 space-x-3">
                   <IconButton
                     variant="outlined"
-                    className=" rounded-md h-[30px] w-[30px]"
+                    className=" rounded-md h-[25px] w-[25px]"
                   >
                     <MinusIcon className="text-black h-4 w-5" />
                   </IconButton>
-                  <Typography className="text-xl mt-1">1</Typography>
+                  <Typography className="text-lg mt-1">1</Typography>
                   <IconButton
                     variant="outlined"
-                    className=" rounded-md h-[30px] w-[30px]"
+                    className=" rounded-md h-[25px] w-[25px]"
                   >
                     <PlusIcon className="text-black h-4 w-5" />
                   </IconButton>
                 </div>
               </div>
             </div>
-            <div className="">
-              <div className="flex justify-end">
-                <IconButton variant="text" color="blue-gray">
-                  <XMarkIcon className="text-black h-3 w-4" />
-                </IconButton>
+            <div className="mt-1">
+              <div className="flex pl-14">
+                <a
+                  href="#"
+                  className="flex items-center hover:text-blue-500 text-black transition-colors"
+                >
+                  <XMarkIcon className="w-3 h-3" />
+                </a>
               </div>
-              <div className="mt-[136px]">
-                <IconButton variant="text" color="blue-gray">
-                  <XMarkIcon className="text-black h-3 w-4" />
-                </IconButton>
+              <div className="mt-[140px] flex pl-14">
+                <a
+                  href="#"
+                  className="flex items-center hover:text-blue-500 text-black transition-colors"
+                >
+                  <XMarkIcon className="w-3 h-3" />
+                </a>
               </div>
-              <div className="mt-[125px]">
-                <IconButton variant="text" color="blue-gray">
-                  <XMarkIcon className="text-black h-3 w-4" />
-                </IconButton>
+              <div className="mt-[126px] flex pl-14">
+                <a
+                  href="#"
+                  className="flex items-center hover:text-blue-500 text-black transition-colors"
+                >
+                  <XMarkIcon className="w-3 h-3" />
+                </a>
               </div>
-              <div className="mt-[150px]">
-                <IconButton variant="text" color="blue-gray">
-                  <XMarkIcon className="text-black h-3 w-4" />
-                </IconButton>
+              <div className="mt-[172px] flex pl-14">
+                <a
+                  href="#"
+                  className="flex items-center hover:text-blue-500 text-black transition-colors"
+                >
+                  <XMarkIcon className="w-3 h-3" />
+                </a>
               </div>
-              <div className="mt-[156px]">
-                <IconButton variant="text" color="blue-gray">
-                  <XMarkIcon className="text-black h-3 w-4" />
-                </IconButton>
+              <div className="mt-[172px] flex pl-14">
+                <a
+                  href="#"
+                  className="flex items-center hover:text-blue-500 text-black transition-colors"
+                >
+                  <XMarkIcon className="w-3 h-3" />
+                </a>
               </div>
-              <div className="mt-[156px]">
+              <div className="mt-[156px] flex pl-10">
                 <IconButton variant="text" color="blue-gray">
                   <XMarkIcon className="text-black h-3 w-4" />
                 </IconButton>

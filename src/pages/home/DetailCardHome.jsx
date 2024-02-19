@@ -1,14 +1,13 @@
 import React from "react";
 import { Button, Dialog, Typography } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
-import { XMarkIcon } from "@heroicons/react/24/outline";
 import { closeDialogDetailCardHome } from "../../slice/menuSlice";
-import DetailPage from "../detail/DetailPage";
-import DetailCard from "../detail/DetailCard";
-import DetailDesc from "../detail/DetailDesc";
-import DetailImages from "../detail/Detailimg";
-import DetailLink from "../detail/DetailLink";
 import { useGetProductByIdQuery } from "../../services/apiProduct";
+import DetailImageHome from "./DetailImageHome";
+import DetailDescHome from "./DetailDescHome";
+import DetailLink from "../detail/DetailLink";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import SkeletonDetailHome from "./SkeletonDetailHome";
 
 function DetailCardHome() {
   const { dialogDetailCardHome, idDetailDialogCardHome: productId } =
@@ -27,7 +26,11 @@ function DetailCardHome() {
 
   if (isLoading || isFetching) {
     console.log("is Loading Product");
-    viewHtml = <></>;
+    viewHtml = (
+      <>
+        <SkeletonDetailHome />
+      </>
+    );
   }
 
   if (isError) {
@@ -41,8 +44,8 @@ function DetailCardHome() {
       <>
         <div className="flex justify-between text-black">
           <div className="grid lg:grid-cols-2">
-            <DetailImages images={product.images} />
-            <DetailDesc
+            <DetailImageHome images={product.images} />
+            <DetailDescHome
               product_name={product.product_name}
               price={product.price}
               total_sold={product.total_sold}

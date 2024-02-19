@@ -7,7 +7,11 @@ import {
   Button,
   Badge,
 } from "@material-tailwind/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  ChevronLeftIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import {
   HeartIcon,
   UserIcon,
@@ -15,7 +19,7 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline/index.js";
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   openDialogLogin,
@@ -26,21 +30,39 @@ import {
 } from "../slice/menuSlice";
 
 function HeaderLogo() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const pathName = location.pathname.split("/")[1];
+  console.log(location.pathname.split("/")[1], "detail");
   const dispatch = useDispatch();
+
   return (
     <>
-      <div className="flex justify-start space-x-8 px-3">
-        <IconButton
-          variant="text"
-          className="h-6 w-6 rounded-full mt-[15px] hover:bg-transparent active:bg-transparent"
-          ripple={false}
-          onClick={() => dispatch(openDrawerMenFashionStore())}
-        >
-          <Bars3Icon className="h-6 w-7" />
-        </IconButton>
-        <Link to={"/"}>
-          <img src={logo} alt="logo" height="60" width="60" />
-        </Link>
+      <div className="flex justify-start items-center h-full space-x-8 px-3">
+        {pathName !== "detail" ? (
+          <>
+            <IconButton
+              variant="text"
+              className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent"
+              ripple={false}
+              onClick={() => dispatch(openDrawerMenFashionStore())}
+            >
+              <Bars3Icon className="h-6 w-7" />
+            </IconButton>
+            <Link to={"/"}>
+              <img src={logo} alt="logo" height="60" width="60" />
+            </Link>
+          </>
+        ) : (
+          <IconButton
+            variant="text"
+            className="h-6 w-6 hover:bg-transparent active:bg-transparent"
+            ripple={false}
+            onClick={() => navigate(-1)}
+          >
+            <ChevronLeftIcon className="h-7 w-7" />
+          </IconButton>
+        )}
       </div>
     </>
   );
@@ -58,7 +80,7 @@ function HeaderMenu() {
           className="p-1 font-medium"
         >
           <Link to={"/"} className="flex items-center transition-colors">
-            Home
+            HOME
           </Link>
         </Typography>
         <Typography
@@ -71,7 +93,7 @@ function HeaderMenu() {
             href="#"
             className="flex items-center hover:text-blue-500 transition-colors"
           >
-            Collaborations
+            COLLABORATIONS
           </a>
         </Typography>
         <Typography
@@ -84,27 +106,30 @@ function HeaderMenu() {
             href="#"
             className="flex items-center hover:text-blue-500 transition-colors"
           >
-            Tracking Order
+            TRACKING ORDER
           </a>
         </Typography>
-        <Typography
-          as="li"
-          variant="small"
-          color="blue-gray"
-          className="p-1 font-medium"
-        >
-          <a
-            href="#"
-            className="flex items-center hover:text-blue-500 transition-colors"
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(openDialogSearch());
-            }}
+        <div className="flex justify-between">
+          <Typography
+            as="li"
+            variant="small"
+            color="blue-gray"
+            className="p-1 font-medium"
           >
-            <MagnifyingGlassIcon className="w-4 h-4 mr-2" />
-            Search
-          </a>
-        </Typography>
+            <a
+              href="#"
+              className="flex items-center transition-colors hover:text-blue-500"
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(openDialogSearch());
+              }}
+            >
+              <MagnifyingGlassIcon className="w-4 h-4 mr-2" />
+              SEARCH
+              <div className="border-b-[0px] border-[#000] border w-[120px] mt-5 ml-4" />
+            </a>
+          </Typography>
+        </div>
       </ul>
     </>
   );
@@ -116,14 +141,6 @@ function HeaderProfileMenu() {
   return (
     <>
       <div className="flex items-center gap-4">
-        <IconButton
-          variant="text"
-          className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent"
-          ripple={false}
-          onClick={() => dispatch(openDialogLogin())}
-        >
-          <UserIcon className="h-6 w-6" />
-        </IconButton>
         <IconButton
           variant="text"
           className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent"
@@ -146,6 +163,14 @@ function HeaderProfileMenu() {
             <ShoppingBagIcon className="h-6 w-6" />
           </Button>
         </Badge>
+        <IconButton
+          variant="text"
+          className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent"
+          ripple={false}
+          onClick={() => dispatch(openDialogLogin())}
+        >
+          <UserIcon className="h-6 w-6" />
+        </IconButton>
       </div>
     </>
   );
@@ -171,7 +196,7 @@ function Header({ openDrawerShoppingCart }) {
         blurred={false}
         shadow={false}
       >
-        <div className="flex items-center justify-between text-blue-gray-900">
+        <div className="flex items-center justify-between text-blue-gray-900 h-full">
           <div className="flex items-center">
             <IconButton
               variant="text"

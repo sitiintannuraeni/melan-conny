@@ -4,6 +4,7 @@ import DetailCard from "./DetailCard";
 import DetailLink from "./DetailLink";
 import { useGetProductByIdQuery } from "../../services/apiProduct";
 import { useParams } from "react-router-dom";
+import SkeletonDetailPage from "./SkeletonDetailPage";
 
 function DetailPage() {
   const { id: productId } = useParams();
@@ -16,9 +17,15 @@ function DetailPage() {
     error,
   } = useGetProductByIdQuery(productId);
 
+  console.log(product, "name");
+
   if (isLoading || isFetching) {
     console.log("is Loading Product");
-    return <></>;
+    return (
+      <>
+        <SkeletonDetailPage />
+      </>
+    );
   }
 
   if (isError) {
@@ -29,22 +36,28 @@ function DetailPage() {
   if (isSuccess) {
     return (
       <>
-        <div className="grid lg:grid-cols-2 mt-16">
-          <DetailImages images={product.images} />
-          <DetailDesc
-            product_name={product.product_name}
-            price={product.price}
-            total_sold={product.total_sold}
-            size={product.size}
-            material={product.material}
-            features={product.features}
-            overview={product.overview}
-            desc={product.desc}
-          />
-          <DetailLink />
-        </div>
-        <div className="flex flex-col max-w-full h-[500px] mt-28">
-          <DetailCard />
+        <div className="px-10">
+          <div className="grid lg:grid-cols-2 py-12">
+            <div className="w-full max-w-md mx-auto">
+              <DetailImages images={product.images} />
+            </div>
+            <div>
+              <DetailDesc
+                product_name={product.product_name}
+                price={product.price}
+                total_sold={product.total_sold}
+                size={product.size}
+                material={product.material}
+                features={product.features}
+                overview={product.overview}
+                desc={product.desc}
+              />
+            </div>
+            <DetailLink />
+          </div>
+          <div className="flex flex-col max-w-full ">
+            <DetailCard />
+          </div>
         </div>
       </>
     );

@@ -54,7 +54,7 @@ function DetailDesc({
             <Button
               size="md"
               variant="outlined"
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 pl-12"
               fullWidth
             >
               <HeartIcon className="h-5 w-5" />
@@ -79,7 +79,7 @@ function DetailDesc({
             <div className="text-lg font-medium mt-7">Details</div>
             <div className="w-[70px] border-b-[4px] border-black mt-2"></div>
           </div>
-          <Typography className="mt-4 font-semibold text-md">
+          <Typography className="mt-4 font-semibold text-md text-[#857F7F]">
             {product_name}
           </Typography>
           <div className="grid grid-cols-2 w-[200px] mt-[30px] text-base tracking-wider">

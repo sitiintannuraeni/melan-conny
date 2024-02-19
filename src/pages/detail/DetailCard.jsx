@@ -10,33 +10,31 @@ function DetailCard() {
 
   return (
     <>
-      <div className="">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 pl-[41px]">
-          <CardProduct
-            img={ProductA}
-            name="Versa Tees Oversized Black"
-            harga="Rp 129.000"
-            items="9,763 items sold"
-          />
-          <CardProduct
-            img={ProductB}
-            name=" Versa Tees Oversized White"
-            harga="Rp 119.000"
-            items="2,854 items sold"
-          />
-          <CardProduct
-            img={ProductC}
-            name="Elgant Basic Shirt White"
-            harga="Rp 185.000"
-            items="1,297 items sold"
-          />
-          <CardProduct
-            img={ProductD}
-            name="Elgant Short Sleeve Shirt White"
-            harga="Rp 170.000"
-            items="391 items sold"
-          />
-        </div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 px-10 pb-10">
+        <CardProduct
+          img={ProductA}
+          name="Versa Tees Oversized Black"
+          price="Rp 129.000"
+          items="9,763 items sold"
+        />
+        <CardProduct
+          img={ProductB}
+          name=" Versa Tees Oversized White"
+          price="Rp 119.000"
+          items="2,854 items sold"
+        />
+        <CardProduct
+          img={ProductC}
+          name="Elgant Basic Shirt White"
+          price="Rp 185.000"
+          items="1,297 items sold"
+        />
+        <CardProduct
+          img={ProductD}
+          name="Elgant Short Sleeve Shirt White"
+          price="Rp 170.000"
+          items="391 items sold"
+        />
       </div>
     </>
   );

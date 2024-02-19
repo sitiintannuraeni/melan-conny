@@ -9,7 +9,11 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { closeDialogLogin, openDialogRegister } from "../slice/menuSlice";
+import {
+  closeDialogLogin,
+  openDialogAsGuest,
+  openDialogRegister,
+} from "../slice/menuSlice";
 
 function Login() {
   const { dialogLogin } = useSelector((state) => state.menu);
@@ -27,12 +31,12 @@ function Login() {
   return (
     <>
       <Dialog
-        size="md"
+        size="xs"
         open={dialogLogin}
         handler={() => dispatch(closeDialogLogin())}
         className="bg-transparent shadow-none"
       >
-        <Card className="mx-auto w-full max-w-[28rem]">
+        <Card className="mx-auto w-full max-w-sm">
           <CardBody className="flex flex-col gap-4">
             <Typography variant="h4" color="blue-gray">
               Login
@@ -95,14 +99,22 @@ function Login() {
               Login
             </Button>
             <div className="py-4 flex items-center justify-center">
-              <div className="border-t-2 border-black flex-grow"></div>
+              <div className="border-b-[1px] border-[#B0B0B0] flex-grow"></div>
               <Typography className="text-center mx-4 text-[black]">
                 OR
               </Typography>
-              <div className="border-t-2 border-black flex-grow"></div>
+              <div className="border-b-[1px] border-[#B0B0B0] flex-grow"></div>
             </div>
 
-            <Button variant="outlined" fullWidth>
+            <Button
+              variant="outlined"
+              fullWidth
+              className="text-sm"
+              onClick={() => {
+                dispatch(openDialogAsGuest());
+                dispatch(closeDialogLogin());
+              }}
+            >
               CONTINUE AS GUEST
             </Button>
 
@@ -117,7 +129,7 @@ function Login() {
               href="#signup"
               variant="small"
               color="blue-gray"
-              className="font-bold text-center mt-3 text-[black]"
+              className="font-bold text-center mt-3 text-[black] underline"
               onClick={(e) => {
                 e.preventDefault();
                 dispatch(openDialogRegister());

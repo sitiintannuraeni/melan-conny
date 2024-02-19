@@ -1,9 +1,16 @@
 import { Alert, Button, Typography } from "@material-tailwind/react";
-import CardProduct from "../../components/CardProduct";
 import banner from "../../assets/banner.png";
+import bannerPants from "../../assets/banner1.png";
 import { useGetProductsQuery } from "../../services/apiProduct.js";
-import { useEffect, useState } from "react";
 import DetailCardHome from "./DetailCardHome.jsx";
+import CardProduct from "../../components/CardProduct.jsx";
+import Product1 from "../../assets/pants.png";
+import Product2 from "../../assets/pants-1.png";
+import Product3 from "../../assets/pants-2.png";
+import Product4 from "../../assets/pants-3.png";
+import Product5 from "../../assets/pants-4.png";
+import Product6 from "../../assets/pants-5.png";
+import SkeletonCardHome from "./SkeletonCardHome.jsx";
 
 function ListProducts() {
   const {
@@ -16,7 +23,11 @@ function ListProducts() {
   } = useGetProductsQuery();
   if (isLoading || isFetching) {
     console.log("is Loading Product");
-    return <></>;
+    return (
+      <>
+        <SkeletonCardHome />
+      </>
+    );
   }
 
   if (isError) {
@@ -27,50 +38,116 @@ function ListProducts() {
   if (isSuccess) {
     return (
       <>
-        <div className="grid justify-items-center items-center mb-12">
-          <Typography variant="h4" className="font-['Helvetica']">
-            TOP SELLING
-          </Typography>
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 px-3">
-          {products.map((product, index) => {
-            return (
-              <CardProduct
-                key={index}
-                id={product.id}
-                img={product.images[0].url}
-                name={product.product_name}
-                harga={product.price}
-                items={`${product.total_sold} items sold`}
-              />
-            );
-          })}
+        <div>
+          <div className="flex justify-between mb-5 lg:mb-12 px-2 lg:px-20 items-center">
+            <Typography className="text-md font-bold lg:font-normal">
+              SHORT AND LONG T-SHIRT
+            </Typography>
+            <Button variant="outlined" size="sm" className="rounded-md">
+              View All
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 px- gap-3 lg:grid-cols-4 lg:gap-4 lg:px-20 pb-10">
+            {products.map((product, index) => {
+              return (
+                <CardProduct
+                  key={index}
+                  id={product.id}
+                  img={product.images[0].url}
+                  name={product.product_name}
+                  price={product.price}
+                  items={`${product.total_sold} items sold`}
+                />
+              );
+            })}
+          </div>
         </div>
       </>
     );
   }
 }
 
+function ListProductsPants() {
+  const {
+    data: products,
+    isLoading,
+    isFetching,
+    isSuccess,
+    isError,
+    error,
+  } = useGetProductsQuery();
+  if (isLoading || isFetching) {
+    console.log("is Loading Product");
+    return (
+      <>
+        <SkeletonCardHome />
+      </>
+    );
+  }
+
+  if (isError) {
+    console.log("is Erorr Product");
+    return <></>;
+  }
+
+  if (isSuccess) {
+    return (
+      <>
+        <div>
+          <div className="flex justify-between mb-12 px-20 items-center">
+            <Typography>STYLEM PANTS</Typography>
+            <Button variant="outlined" size="sm" className="rounded-md">
+              View All
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 px-20 pb-10">
+            {products.map((product, index) => {
+              return (
+                <CardProduct
+                  key={index}
+                  id={product.id}
+                  img={product.images[0].url}
+                  name={product.product_name}
+                  price={product.price}
+                  items={`${product.total_sold} items sold`}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </>
+    );
+  }
+}
 function HomePage() {
   return (
     <>
-      <img
-        src={banner}
-        alt="banner"
-        className="h-full w-full"
-        style={{ objectFit: "cover" }}
-      />
-      <div className="px-3 lg:px-40 py-10 flex items-center justify-center mb-8">
-        <Alert
-          variant="outlined"
-          className="flex justify-start lg:justify-center items-center border-gray-500 font-light"
-        >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
-          doloremque voluptatibus unde eos cum facere.
-        </Alert>
+      <div>
+        <img
+          src={banner}
+          alt="banner"
+          className="h-full w-full"
+          style={{ objectFit: "cover" }}
+        />
+        <div className="px-3 lg:px-40 py-5 flex items-center justify-center mb-8">
+          <div className="border-[8px] b border-black rounded-lg w-[90px]" />
+        </div>
+        <ListProducts />
+        <DetailCardHome />
       </div>
-      <ListProducts />
-      <DetailCardHome />
+      <div>
+        <img
+          src={bannerPants}
+          alt="banner"
+          className="h-full w-full"
+          style={{ objectFit: "cover" }}
+        />
+        <div className="px-3 lg:px-40 py-5 flex items-center justify-center mb-8">
+          <div className="border-[8px] b border-black rounded-lg w-[90px]" />
+        </div>
+        <ListProductsPants />
+        <DetailCardHome />
+      </div>
     </>
   );
 }

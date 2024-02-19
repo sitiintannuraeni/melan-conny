@@ -37,36 +37,40 @@ function DetailLink() {
             <XMarkIcon className="w-6 h-6" />
           </a>
         </div>
-        <div className="px-[80px] grid grid-cols-4 gap-1 font-mono text-black text-sm text-center font-bold">
+        <div className="px-[40px] grid grid-cols-4 gap-1 font-mono text-black text-sm text-center font-bold">
           <div className="p-2 rounded-lg">
             <div className="flex justify-center">
-              <img src={ImageB} alt="imageA" className="w-[48px]" />
+              <img src={ImageB} alt="imageA" className="w-[48px] mt-4" />
             </div>
             <Typography className="mt-2">Twitter</Typography>
           </div>
           <div className="p-2 rounded-lg">
             <div className="flex justify-center">
-              <img src={ImageC} alt="imageC" className="w-[47px]" />
+              <img src={ImageC} alt="imageC" className="w-[47px] mt-4" />
             </div>
             <Typography className="mt-2">Whatsapp</Typography>
           </div>
           <div className="p-2 rounded-lg">
             <div className="flex justify-center">
-              <img src={ImageA} alt="imageB" className="w-[50px]" />
+              <img src={ImageA} alt="imageB" className="w-[50px] mt-4" />
             </div>
             <Typography className="mt-2">Facebook</Typography>
           </div>
           <div className="p-2 rounded-lg">
             <div className="flex justify-center items-center">
-              <img src={ImageLine} alt="imageD" className="w-[41px] mt-1" />
+              <img
+                src={ImageLine}
+                alt="imageD"
+                className="w-[41px] mt-[22px]"
+              />
             </div>
             <Typography className="mt-[10px]">Line</Typography>
           </div>
           <div className="p-2 rounded-lg">
             <div className="flex justify-center items-center">
-              <img src={ImageE} alt="imageD" className="w-[48px]" />
+              <img src={ImageE} alt="imageD" className="w-[48px] mt-4" />
             </div>
-            <Typography className="mt-2">Line</Typography>
+            <Typography className="mt-2">Email</Typography>
           </div>
         </div>
       </Dialog>

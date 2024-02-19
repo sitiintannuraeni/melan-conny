@@ -6,7 +6,6 @@ import DrawerShoppingCart from "./components/DrawerShoppingCard";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import DrawerMenFashionStore from "./components/DrawerMenFashionStore";
-import Search from "./components/Search";
 import DrawerShopping from "./components/DrawerShopping";
 import CheckOut from "./components/CheckOut";
 import AsGuest from "./components/AsGuest";
@@ -32,7 +31,7 @@ function App() {
       <ScrollToTop />
       <div className="container max-w-full">
         <Header openDrawerShoppingCart={setOpenDrawerShoppingCart} />
-        <main className="pt-[62px]">
+        <main className="pt-[62px] bg-gray-100">
           <Outlet />
         </main>
         <Footer />
@@ -52,7 +51,6 @@ function App() {
       <AsGuest />
 
       <DrawerMenFashionStore />
-      <Search />
       <SearchV2 />
 
       <ToastContainer autoClose={1500} />

@@ -28,7 +28,7 @@ function App() {
 
   return (
     <>
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
       <div className="container max-w-full">
         <Header openDrawerShoppingCart={setOpenDrawerShoppingCart} />
         <main className="pt-[62px] bg-gray-100">

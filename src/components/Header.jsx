@@ -6,10 +6,17 @@ import {
   IconButton,
   Button,
   Badge,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
 } from "@material-tailwind/react";
 import {
+  ArrowRightStartOnRectangleIcon,
+  BanknotesIcon,
   Bars3Icon,
   ChevronLeftIcon,
+  UserCircleIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
@@ -20,7 +27,7 @@ import {
 } from "@heroicons/react/24/outline/index.js";
 import logo from "../assets/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   openDialogLogin,
   openDialogSearch,
@@ -28,6 +35,8 @@ import {
   openDrawerShooping,
   openDrawerShoppingCart,
 } from "../slice/menuSlice";
+import { logout } from "../slice/apiSlice";
+import { toast } from "react-toastify";
 
 function HeaderLogo() {
   const location = useLocation();
@@ -50,7 +59,13 @@ function HeaderLogo() {
               <Bars3Icon className="h-6 w-7" />
             </IconButton>
             <Link to={"/"}>
-              <img src={logo} alt="logo" height="60" width="60" />
+              <img
+                src={logo}
+                alt="logo"
+                height="60"
+                width="60"
+                className="object-cover"
+              />
             </Link>
           </>
         ) : (
@@ -137,6 +152,15 @@ function HeaderMenu() {
 
 function HeaderProfileMenu() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isLoggedIn, data } = useSelector((state) => state.auth);
+  const handleDialogLogout = () => {
+    dispatch(logout());
+    toast.success("Logout Success!");
+  };
+  const wishList = () => {
+    navigate(`/wishlist`);
+  };
 
   return (
     <>
@@ -145,6 +169,7 @@ function HeaderProfileMenu() {
           variant="text"
           className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent"
           ripple={false}
+          onClick={() => wishList()}
         >
           <HeartIcon className="h-6 w-6" />
         </IconButton>
@@ -163,14 +188,55 @@ function HeaderProfileMenu() {
             <ShoppingBagIcon className="h-6 w-6" />
           </Button>
         </Badge>
-        <IconButton
-          variant="text"
-          className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent"
-          ripple={false}
-          onClick={() => dispatch(openDialogLogin())}
-        >
-          <UserIcon className="h-6 w-6" />
-        </IconButton>
+        {!isLoggedIn ? (
+          <IconButton
+            variant="text"
+            className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent"
+            ripple={false}
+            onClick={() => dispatch(openDialogLogin())}
+          >
+            <UserIcon className="h-6 w-6" />
+          </IconButton>
+        ) : (
+          <div className="flex items-center gap-2">
+            <Menu>
+              <MenuHandler>
+                <div className="rounded-full h-6 w-6 flex items-center justify-center bg-gray-900 cursor-pointer">
+                  <Typography
+                    variant="small"
+                    className="text-white text-[10px] font-semibold"
+                  >
+                    {data.name.split(" ")[0].slice(0, 1)}
+                    {data.name.split(" ")[1] !== undefined
+                      ? data.name.split(" ")[1].slice(0, 1)
+                      : ""}
+                  </Typography>
+                </div>
+              </MenuHandler>
+              <MenuList>
+                <MenuItem
+                  className="flex items-center gap-2"
+                  onClick={() => navigate("/accountInfo")}
+                >
+                  <UserCircleIcon className="h-5 w-5" />
+                  <Typography variant="small" className="font-medium">
+                    Profile
+                  </Typography>
+                </MenuItem>
+                <hr className="my-2 border-blue-gray-50" />
+                <MenuItem
+                  className="flex items-center gap-2"
+                  onClick={handleDialogLogout}
+                >
+                  <ArrowRightStartOnRectangleIcon className="h-5 w-5" />
+                  <Typography variant="small" className="font-medium">
+                    Logout
+                  </Typography>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </div>
+        )}
       </div>
     </>
   );

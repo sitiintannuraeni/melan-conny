@@ -14,11 +14,24 @@ import {
   openDialogAsGuest,
   openDialogRegister,
 } from "../slice/menuSlice";
+import { useAuthMutation } from "../services/apiAuth";
 
 function Login() {
+  const [inputEmail, setInputEmail] = useState("");
+  const [inputPassword, setInputPassword] = useState("");
   const { dialogLogin } = useSelector((state) => state.menu);
   const dispatch = useDispatch();
   const [passwordType, setPasswordType] = useState("password");
+  const [login, { isLoading, isError, isSuccess, error }] = useAuthMutation();
+
+  if (isError) {
+    console.log("is Error Login", error);
+  }
+
+  if (isSuccess) {
+    console.log("login success");
+  }
+
   function handlePasswordType(e) {
     e.preventDefault();
     if (passwordType === "password") {
@@ -26,6 +39,13 @@ function Login() {
     } else {
       setPasswordType("password");
     }
+  }
+
+  function handleClickLogin() {
+    login({
+      email: inputEmail,
+      password: inputPassword,
+    });
   }
 
   return (
@@ -38,26 +58,28 @@ function Login() {
       >
         <Card className="mx-auto w-full max-w-sm">
           <CardBody className="flex flex-col gap-4">
-            <Typography variant="h4" color="blue-gray">
-              Login
-              <div className="float-right">
-                <a
-                  href="#"
-                  className="flex items-center hover:text-blue-500 text-black transition-colors"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(closeDialogLogin());
-                  }}
-                >
-                  <XMarkIcon className="w-6 h-6" />
-                </a>
-              </div>
-            </Typography>
-            <Typography className="-mb-1 size-sm text-[black]">
+            <div className="flex justify-between items-center">
+              <Typography variant="h4" color="blue-gray">
+                Login
+              </Typography>
+              <a
+                href="#"
+                className="flex items-center -mt-3 hover:text-blue-500 text-black transition-colors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(closeDialogLogin());
+                }}
+              >
+                <XMarkIcon className="w-6 h-6" />
+              </a>
+            </div>
+            <div className="-mb-1 size-sm text-[black]">
               Email*
               <div className="flex items-center justify-center">
                 <input
-                  type="text"
+                  type="email"
+                  value={inputEmail}
+                  onChange={(e) => setInputEmail(e.target.value)}
                   className="w-[400px] h-[40px] text-sm outline-none border-none bg-transparent"
                   placeholder="Enter Your Email..."
                 />
@@ -65,9 +87,9 @@ function Login() {
               <div className="flex justify-end">
                 <div className="w-[100%] border-b-[1px] border-[#000000] " />
               </div>
-            </Typography>
+            </div>
 
-            <Typography className="-mb-2 size-sm text-[black]">
+            <div className="-mb-2 size-sm text-[black]">
               Password*
               <div className="float-right">
                 <a
@@ -85,6 +107,8 @@ function Login() {
               <div className="flex items-center justify-center">
                 <input
                   type={passwordType}
+                  value={inputPassword}
+                  onChange={(e) => setInputPassword(e.target.value)}
                   className="w-[400px] h-[40px] text-sm outline-none border-none bg-transparent"
                   placeholder="Enter Your Password..."
                 />
@@ -92,10 +116,16 @@ function Login() {
               <div className="flex justify-end">
                 <div className="w-[100%] border-b-[1px] border-[#000000] " />
               </div>
-            </Typography>
+            </div>
           </CardBody>
           <CardFooter className="pt-0">
-            <Button onClick={() => alert("send data login")} fullWidth>
+            <Button
+              type="button"
+              disabled={isLoading}
+              loading={isLoading}
+              onClick={() => handleClickLogin()}
+              fullWidth
+            >
               Login
             </Button>
             <div className="py-4 flex items-center justify-center">
@@ -132,8 +162,8 @@ function Login() {
               className="font-bold text-center mt-3 text-[black] underline"
               onClick={(e) => {
                 e.preventDefault();
-                dispatch(openDialogRegister());
                 dispatch(closeDialogLogin());
+                dispatch(openDialogRegister());
               }}
             >
               Register Now

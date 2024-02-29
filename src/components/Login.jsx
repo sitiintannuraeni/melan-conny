@@ -5,6 +5,7 @@ import {
   CardBody,
   CardFooter,
   Dialog,
+  Input,
   Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
@@ -73,48 +74,40 @@ function Login() {
                 <XMarkIcon className="w-6 h-6" />
               </a>
             </div>
-            <div className="-mb-1 size-sm text-[black]">
-              Email*
-              <div className="flex items-center justify-center">
-                <input
-                  type="email"
-                  value={inputEmail}
-                  onChange={(e) => setInputEmail(e.target.value)}
-                  className="w-[400px] h-[40px] text-sm outline-none border-none bg-transparent"
-                  placeholder="Enter Your Email..."
-                />
-              </div>
-              <div className="flex justify-end">
-                <div className="w-[100%] border-b-[1px] border-[#000000] " />
-              </div>
+            <div className="flex items-center justify-center mt-2">
+              <Input
+                variant="static"
+                label="Email*"
+                type="email"
+                value={inputEmail}
+                onChange={(e) => setInputEmail(e.target.value)}
+                placeholder="Enter Your Email..."
+              />
             </div>
-
-            <div className="-mb-2 size-sm text-[black]">
-              Password*
-              <div className="float-right">
-                <a
-                  href="#"
-                  onClick={(e) => handlePasswordType(e)}
-                  className="flex items-center hover:text-blue-500 transition-colors"
-                >
-                  {passwordType === "password" ? (
-                    <EyeSlashIcon className=" mt-8 mr-2 w-5 h-5" />
-                  ) : (
-                    <EyeIcon className="mt-8 mr-2 w-5 h-5" />
-                  )}
-                </a>
-              </div>
-              <div className="flex items-center justify-center">
-                <input
+            <div className="mt-3">
+              <div className="flex w-full">
+                <Input
+                  variant="static"
+                  label="Password*"
+                  placeholder="Enter Your Password..."
+                  className="text-[#] text-[17px]"
                   type={passwordType}
                   value={inputPassword}
                   onChange={(e) => setInputPassword(e.target.value)}
-                  className="w-[400px] h-[40px] text-sm outline-none border-none bg-transparent"
-                  placeholder="Enter Your Password..."
+                  icon={
+                    passwordType === "password" ? (
+                      <EyeSlashIcon
+                        className="h-5 cursor-pointer text-black"
+                        onClick={(e) => handlePasswordType(e)}
+                      />
+                    ) : (
+                      <EyeIcon
+                        className="h-5 cursor-pointer text-black"
+                        onClick={(e) => handlePasswordType(e)}
+                      />
+                    )
+                  }
                 />
-              </div>
-              <div className="flex justify-end">
-                <div className="w-[100%] border-b-[1px] border-[#000000] " />
               </div>
             </div>
           </CardBody>

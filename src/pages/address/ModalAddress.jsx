@@ -9,6 +9,7 @@ import {
   DialogBody,
   DialogFooter,
   Input,
+  Textarea,
 } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeDialogAddress } from "../../slice/menuSlice";
@@ -29,13 +30,13 @@ function ModalAddress() {
           <div>ADD NEW ADDRESS</div>
           <a
             href="#"
-            className="-mt-3 flex items-center hover:text-blue-500 text-black transition-colors"
+            className="flex items-center hover:text-blue-500 text-black transition-colors"
             onClick={(e) => {
               e.preventDefault();
               dispatch(closeDialogAddress());
             }}
           >
-            <XMarkIcon className="w-6 h-6 mt-1" />
+            <XMarkIcon className="w-6 h-6" />
           </a>
         </DialogHeader>
         <DialogBody className="px-3 ">
@@ -58,92 +59,23 @@ function ModalAddress() {
                 />
               </div>
               <div className="text-black w-full mt-8">
-                <Input
+                <Textarea
                   variant="static"
                   label="Address*"
                   placeholder="Enter your address"
                   className="text-[16px]"
                 />
               </div>
-              <div className="flex w-72 flex-col gap-6 mt-8">
-                <Select variant="static" label="Select Version">
-                  <div className="h-[220px] overflow-auto">
-                    <Option className="bg-transparent text-[12px]">BALI</Option>
-                    <Option className="bg-transparent text-[12px]">
-                      BANGKA BELITUNG
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      BANTEN
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      BENGKULU
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      D.I. YOGYAKARTA
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      D.I. JAKARTA
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      BANGKA BELITUNG
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      BANTEN
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      BENGKULU
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      D.I. YOGYAKARTA
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      D.I. JAKARTA
-                    </Option>
-                  </div>
-                </Select>
-                <Select
-                  variant="static"
-                  label="Address*"
-                  placeholder="Enter your address"
-                  className="text-[16px]"
-                >
-                  <div className="h-[220px] overflow-auto">
-                    <Option className="bg-transparent text-[12px]">BALI</Option>
-                    <Option className="bg-transparent text-[12px]">
-                      BANGKA BELITUNG
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      BANTEN
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      BENGKULU
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      D.I. YOGYAKARTA
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      D.I. JAKARTA
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      GORONTALO
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      JAMBI
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      JAWA BARAT
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      JAWA TENGAH
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      JAWA TIMUR
-                    </Option>
-                    <Option className="bg-transparent text-[12px]">
-                      KALIMANTAN BARAT
-                    </Option>
-                  </div>
-                </Select>
+              <div className="grid grid-cols-2 w-full mt-8">
+                <div className="flex flex-col">
+                  <Select variant="static" label="Select Version">
+                    <Option>Material Tailwind HTML</Option>
+                    <Option>Material Tailwind React</Option>
+                    <Option>Material Tailwind Vue</Option>
+                    <Option>Material Tailwind Angular</Option>
+                    <Option>Material Tailwind Svelte</Option>
+                  </Select>
+                </div>
               </div>
             </div>
           </div>
@@ -159,7 +91,7 @@ function ModalAddress() {
             />
           </div>
           <div className="flex grid-cols-2 justify-center">
-            <div className="items-center mt-[-90px] pl-12">
+            <div className="items-center mt-[-90px] lg:pl-12 pl-4">
               <Button
                 size="sm"
                 className="bg-[#989898] rounded-md w-[250px] flex items-center justify-center"

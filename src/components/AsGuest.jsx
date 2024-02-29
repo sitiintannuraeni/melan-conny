@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Button,
   Dialog,
@@ -7,18 +7,27 @@ import {
   DialogFooter,
   Typography,
   IconButton,
+  Card,
+  CardBody,
+  Checkbox,
+  CardFooter,
 } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  closeDialogAsGuest,
-  closeDialogCheckOut,
-  openDialogLogin,
-} from "../slice/menuSlice";
+import { closeDialogAsGuest } from "../slice/menuSlice";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 function AsGuest() {
   const dialogAsGuest = useSelector((state) => state.menu.dialogAsGuest);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const body = document.querySelector("body");
+    if (body && dialogAsGuest) {
+      body.classList.add("overflow-hidden");
+    } else {
+      body.classList.remove("overflow-hidden");
+    }
+  }, [dialogAsGuest]);
 
   return (
     <>
@@ -42,7 +51,7 @@ function AsGuest() {
             <XMarkIcon className="w-6 h-6" />
           </a>
         </div>
-        <Typography className="p-4">
+        <Typography as="div" className="p-4">
           <div className="text-md text-[black]">
             Phone*
             <div className="flex justify-start items-start space-x-3 mt-3">

@@ -4,8 +4,12 @@ import { openDialogShareLink } from "../../slice/menuSlice";
 import { useDispatch } from "react-redux";
 import { key } from "localforage";
 import NumberFormatCurrency from "../../utils";
+import { useState } from "react";
+import { addToCart, setPriceTotal, setQtyTotal } from "../../slice/cartSlice";
+import { useAddToBagsMutation } from "../../services/apiBags";
 
 function DetailDesc({
+  id,
   product_name,
   price,
   total_sold,
@@ -16,6 +20,55 @@ function DetailDesc({
   desc,
 }) {
   const dispatch = useDispatch();
+  const [sizeId, setSizeId] = useState(0);
+  const [errorSize, setErrorSize] = useState(false);
+  const [activeSize, setActiveSize] = useState("");
+
+  // const [bags, { data, isLoading, isError, isSuccess, error }] =
+  //   useAddToBagsMutation();
+
+  // if (isError) {
+  //   console.log("is Error", error);
+  // }
+
+  // if (isSuccess) {
+  //   console.log("Success", data);
+  // }
+
+  // function handleClickAddToBags() {
+  //   bags({
+  //     user_id: 1,
+  //     total_price: 165000,
+  //   });
+  // }
+
+  const handleAddToBag = (data) => {
+    console.log({ data });
+    if (data.size_id === 0) {
+      return setErrorSize(true);
+    }
+
+    dispatch(
+      addToCart({
+        id: data.id,
+        product_name: data.product_name,
+        price: data.price,
+        qty: 1,
+        size_id: data.size_id,
+      })
+    );
+    dispatch(setPriceTotal());
+    dispatch(setQtyTotal());
+  };
+
+  //   dispatch(
+  //     addToBags({
+  //       id: data.id,
+  //       user_id: data.user_id,
+  //       total_price: data.total_price,
+  //     })
+  //   );
+
   return (
     <>
       <div className="px-3">
@@ -36,8 +89,9 @@ function DetailDesc({
             return (
               <Button
                 key={index}
-                variant="outlined"
-                className="text-sm h-[40px] w-[40px] flex justify-center items-center"
+                variant={activeSize === size.id ? "filled" : "outlined"}
+                onClick={() => setSizeId(ukuran.id)}
+                className="text-sm hover:text-white h-[40px] w-[40px] flex justify-center items-center hover:bg-black/100"
               >
                 {ukuran.size_name}
               </Button>
@@ -46,7 +100,19 @@ function DetailDesc({
         </div>
         <div className="grid grid-cols-5 gap-4 w-full max-w-md mt-4 font-bold">
           <div className="col-span-4">
-            <Button size="lg" fullWidth>
+            <Button
+              size="lg"
+              fullWidth
+              onClick={() =>
+                handleAddToBag({
+                  id: id,
+                  product_name: product_name,
+                  price: price,
+                  qty: 1,
+                  size_id: sizeId,
+                })
+              }
+            >
               ADD TO BAG
             </Button>
           </div>

@@ -10,7 +10,7 @@ function DetailCard() {
 
   return (
     <>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 px-10 pb-10">
+      <div className="grid grid-cols-2 lg:grid-cols-4 lg:gap-4 lg:px-10 pb-10">
         <CardProduct
           img={ProductA}
           name="Versa Tees Oversized Black"

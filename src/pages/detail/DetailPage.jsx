@@ -29,20 +29,21 @@ function DetailPage() {
   }
 
   if (isError) {
-    console.log("is Loading Product");
+    console.log("is Error Product");
     return <></>;
   }
 
   if (isSuccess) {
     return (
       <>
-        <div className="px-10">
-          <div className="grid lg:grid-cols-2 py-12">
+        <div className="lg:px-10 px-2">
+          <div className="grid lg:grid-cols-2 py-12 ">
             <div className="w-full max-w-md mx-auto">
               <DetailImages images={product.images} />
             </div>
             <div>
               <DetailDesc
+                id={product.id}
                 product_name={product.product_name}
                 price={product.price}
                 total_sold={product.total_sold}

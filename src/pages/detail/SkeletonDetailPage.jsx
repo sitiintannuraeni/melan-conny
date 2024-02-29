@@ -16,7 +16,7 @@ function SkeletonDetailPage() {
         <div className="w-full max-w-md mx-auto">
           <Card shadow={false} className="px-0">
             <CardHeader shadow={false} className="mx-0 mt-0">
-              <div className="grid h-[500px] w-[450px] place-items-center rounded-lg bg-gray-400">
+              <div className="grid h-[485px] w-[450px] place-items-center rounded-lg bg-gray-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

@@ -32,7 +32,7 @@
 }
 
 .swiper-big-product-img {
-  height: 330px;
+  height: 3px;
   width: 100%;
 }
 
@@ -64,6 +64,16 @@
   height: 3px;
   background: #000;
 }
+
+/* .swiper-small-product-img-home .swiper-slide-thumb-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 100%;
+  height: 3px;
+  background: #000;
+} */
 
 .swiper-small-product-img .swiper-slide-thumb-active {
   opacity: 1;

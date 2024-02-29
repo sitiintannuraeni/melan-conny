@@ -49,7 +49,7 @@ function CardWishList({ img, name, price }) {
 function WishList() {
   return (
     <>
-      <div className="mt-7 px-24 pb-44 cursor-default">
+      <div className="mt-7 lg:px-24 lg:pb-44 pb-16 cursor-default">
         <div className="pb-10">
           <div className="flex justify-center items-center pb-3">
             <img
@@ -62,21 +62,23 @@ function WishList() {
             <Typography className="text-center  ">
               MEN'S FASHION STORE Account
             </Typography>
-            <Typography className="text-[#989898]">
+            <Typography className="text-[#989898] text-center">
               You can manage your account and track your order here
             </Typography>
           </div>
           <div className=" border-b-[1px] border-black mt-12 w-full" />
         </div>
-        <div className="flex flex-col-2 gap-20 w-full">
+        <div className="lg:flex lg:flex-col-2 grid grid-cols lg:gap-20 w-full">
           <div>
             <Sidebar />
           </div>
           <div className="w-full">
             <div className="fond-semibold">
-              <Typography className="font-semibold">My WishList</Typography>
+              <Typography className="font-semibold pl-5 lg:pl-0">
+                My WishList
+              </Typography>
             </div>
-            <div className="flex flex-col-4 gap-10">
+            <div className="lg:flex lg:flex-col-4 grid grid-cols-2 lg:gap-10 gap-2 pl-5 lg:pl-0">
               <CardWishList
                 img={Image1}
                 name={"Elgant Basic Shirt Black"}

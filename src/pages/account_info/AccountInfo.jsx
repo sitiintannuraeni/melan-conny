@@ -4,11 +4,14 @@ import Image1 from "../../assets/wishlist1.png";
 import Image2 from "../../assets/wishlist2.png";
 import Image3 from "../../assets/wishlist3.png";
 import Image4 from "../../assets/wishlist4.png";
-import { Card, Typography } from "@material-tailwind/react";
+import { Button, Card, Typography } from "@material-tailwind/react";
 import { useParams } from "react-router-dom";
 import { useGetUserQuery } from "../../services/apiAuth";
+import { useDispatch } from "react-redux";
+import { openDialogChangePasswod } from "../../slice/menuSlice";
 
 function AccountInfo() {
+  const dispatch = useDispatch();
   const {
     data: user,
     isLoading,
@@ -33,7 +36,7 @@ function AccountInfo() {
   if (isSuccess) {
     return (
       <>
-        <div className="mt-7 px-24 pb-44 cursor-default">
+        <div className="mt-7 lg:px-24 lg:pb-44 pb-16 cursor-default">
           <div className="pb-10">
             <div className="flex justify-center items-center pb-3">
               <img
@@ -46,17 +49,17 @@ function AccountInfo() {
               <Typography className="text-center  ">
                 MEN'S FASHION STORE Account
               </Typography>
-              <Typography className="text-[#989898]">
+              <Typography className="text-[#989898] text-center">
                 You can manage your account and track your order here
               </Typography>
             </div>
             <div className=" border-b-[1px] border-black mt-12 w-full" />
           </div>
-          <div className="flex flex-col-2 gap-20 w-full">
+          <div className="lg:flex lg:flex-col-2 grid grid-cols lg:gap-20 w-full">
             <div>
               <Sidebar />
             </div>
-            <div className="w-full">
+            <div className="w-full px-2">
               <div className="fond-semibold pb-4">
                 <Typography className="font-semibold">Account Info</Typography>
               </div>
@@ -112,10 +115,17 @@ function AccountInfo() {
                 </div>
               </div>
               <div className="flex justify-between border border-current mt-3 rounded-md px-3 h-14 items-center">
-                <Typography>Password</Typography>
-                <Typography className="underline cursor-pointer">
-                  Change Password
-                </Typography>
+                <div>
+                  <Typography>Password</Typography>
+                </div>
+                <div
+                  className="underline cursor-pointer"
+                  onClick={() => dispatch(openDialogChangePasswod())}
+                >
+                  <Typography className="text-normal">
+                    Change Password
+                  </Typography>
+                </div>
               </div>
             </div>
           </div>

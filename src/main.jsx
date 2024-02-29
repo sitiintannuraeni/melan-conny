@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
 import { Router, RouterProvider } from "react-router-dom";
 import { router } from "./routes.jsx";
@@ -30,7 +29,7 @@ const customTheme = {
         backdrop: {
           display: "grid",
           placeItems: "place-items-center",
-          position: "relative",
+          position: "fixed",
           top: 0,
           left: 0,
           width: "w-screen",
@@ -38,6 +37,13 @@ const customTheme = {
           backgroundColor: "bg-black",
           backgroundOpacity: "bg-opacity-60",
           backdropFilter: "backdrop-blur-sm",
+        },
+      },
+      sizes: {
+        xs: {
+          width: "w-full md:w-3/5 lg:w-2/5 2xl:w-1/4",
+          minWidth: "min-w-[80%] md:min-w-[60%] lg:min-w-[30%] 2xl:min-w-[25%]",
+          maxWidth: "max-w-[80%] md:max-w-[60%] lg:max-w-[30%] 2xl:max-w-[25%]",
         },
       },
     },

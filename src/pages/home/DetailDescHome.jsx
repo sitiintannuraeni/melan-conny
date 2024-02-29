@@ -17,102 +17,101 @@ function DetailDescHome({
   const dispatch = useDispatch();
   return (
     <>
-      <div className="p-8">
-        <Typography className="font-medium tracking-wide text-lg">
+      <div className="w-full">
+        <Typography className="font-medium tracking-wide text-md text-black">
           {product_name}
         </Typography>
-        <Typography className="font-medium tracking-wide text-md mt-2">
+        <Typography className="font-medium tracking-wide text-sm mt-2 text-black">
           <NumberFormatCurrency value={price} />
         </Typography>
-        <Typography className="text-[#989898] text-xs">
+        <Typography className="text-[#989898] text-[11px]">
           {total_sold} items sold
         </Typography>
-        <Typography className="text-[#000000] mt-6 text-md">
+        <Typography className="text-[#000000] mt-6 text-sm">
           Select Size
         </Typography>
-        <div className="flex gap-[9px] mt-2">
+        <div className="flex gap-[7px] mt-2">
           {size.map((ukuran, index) => {
             return (
               <Button
                 key={index}
                 variant="outlined"
-                className="text-xs h-[40px] w-2 flex justify-center items-center"
+                className="text-xs h-[40px] w-1 flex justify-center items-center"
               >
                 {ukuran.size_name}
               </Button>
             );
           })}
         </div>
-        <div className="grid grid-cols-5 gap-4 w-full max-w-md mt-4 font-bold">
+        <div className="grid grid-cols-5 gap-4 w-[90%] mt-4 font-bold">
           <div className="col-span-4">
-            <Button size="lg" fullWidth>
-              ADD TO BAG
-            </Button>
+            <Button fullWidth>ADD TO BAG</Button>
           </div>
-          <div className="col-span-3">
+          <div className="col-span-3 flex justify-between">
             <Button
-              size="md"
               variant="outlined"
-              className="flex items-center gap-2 pl-9"
+              className="flex justify-center items-center gap-3"
               fullWidth
             >
-              <HeartIcon className="h-5 w-5" />
-              <Typography variant="small" className="font-bold">
+              <HeartIcon className="h-4 w-4" />
+              <Typography className="font-bold text-sm">
                 ADD TO WISHLIST
               </Typography>
             </Button>
           </div>
-          <div>
+          <div className="flex justify-center items-center">
             <Button
-              variant="outlined"
               fullWidth
-              size="md"
+              variant="outlined"
               onClick={() => dispatch(openDialogShareLink())}
-              className=""
             >
-              <ShareIcon className="h-5 w-7 pr-3" />
+              <ShareIcon className="h-5 w-7 " />
             </Button>
           </div>
         </div>
         <div className="h-full">
           <div className="grid grid-cols-1">
-            <div className="text-lg font-medium mt-5">Details</div>
-            <div className="w-[70px] border-b-[4px] border-black"></div>
+            <div className="text-md font-medium mt-5 text-black">Details</div>
+            <div className="w-[70px] border-b-[3px] border-black"></div>
           </div>
-          <div className="">
-            <Typography className="mt-4 font-semibold text-md text-[#857F7F]">
+          <div className="h-[150px] overflow-y-auto scrollbar-y overflow-x-hidden">
+            <Typography className="mt-4 font-semibold text-[14px] text-[#857F7F]">
               {product_name}
             </Typography>
-            <div className="grid grid-cols-2 w-[200px] mt-[30px] text-base tracking-wider">
-              <div className="font-semibold text-[#857F7F] text-md">
+            <div className="grid grid-cols-2 w-[200px] mt-[20px] text-base tracking-wider">
+              <div className="font-semibold text-[#857F7F] text-sm">
                 Material :
               </div>
-              <div className="text-[#B0B0B0] text-sm mt-[3px]">{material}</div>
+              <div className="text-[#B0B0B0] text-sm mt-[1px]">{material}</div>
             </div>
-            <div className="grid grid-cols-1 w-[200px] mt-[30px] text-base tracking-wider gap-1">
-              <div className="font-semibold text-[#857F7F] text-md">
+            <div className="grid grid-cols-1 w-[200px] mt-[20px] text-base tracking-wider gap-1">
+              <div className="font-semibold text-[#857F7F] text-sm">
                 Features :
               </div>
               <div className="text-[#B0B0B0] text-sm">{features}</div>
             </div>
             <div className="grid grid-cols-1 w-[450px] mt-[30px] text-base tracking-wider gap-1">
-              <div className="font-semibold text-[#857F7F] text-md">
+              <div className="font-semibold text-[#857F7F] text-sm">
                 Overview :
               </div>
               <div className="text-[#B0B0B0] text-sm">
-                <Typography variant="small">{overview}</Typography>
+                <Typography className="text-sm">{overview}</Typography>
               </div>
             </div>
-            <div className="font-semibold text-[#857F7F] mt-9 text-md">
+            <div className="font-semibold text-[#857F7F] mt-9 text-sm">
               Size Chart : <br /> Length x Chest x Shoulder
             </div>
-            <div className="text-[#B0B0B0] mt-2 text-sm">
+            <div className="text-[#B0B0B0] mt-2">
               {size.map((ukuran, index) => {
-                return <Typography key={index}>{ukuran.label}</Typography>;
+                return (
+                  <Typography key={index} className="text-sm">
+                    {ukuran.label}
+                  </Typography>
+                );
               })}
             </div>
             <div className="text-[#857F7F] mt-8">
-              <Typography className="text-md font-semibold text-md">
+              <Typography className="text-md font-semibold text-sm">
                 Talent
               </Typography>
             </div>

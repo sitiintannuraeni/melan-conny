@@ -8,11 +8,9 @@ import DetailDescHome from "./DetailDescHome";
 import DetailLink from "../detail/DetailLink";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import SkeletonDetailHome from "./SkeletonDetailHome";
+import DetailLinkHome from "./DetailLinkHome";
 
-function DetailCardHome() {
-  const { dialogDetailCardHome, idDetailDialogCardHome: productId } =
-    useSelector((state) => state.menu);
-  const dispatch = useDispatch();
+function DetailCardHomeView({ productId }) {
   const {
     data: product,
     isLoading,
@@ -22,29 +20,22 @@ function DetailCardHome() {
     error,
   } = useGetProductByIdQuery(productId);
 
-  let viewHtml = "";
-
   if (isLoading || isFetching) {
-    console.log("is Loading Product");
-    viewHtml = (
-      <>
-        <SkeletonDetailHome />
-      </>
-    );
+    return <SkeletonDetailHome />;
   }
 
   if (isError) {
-    console.log("is Loading Product");
-    viewHtml = <></>;
+    return <></>;
   }
 
   if (isSuccess) {
-    console.log(product.images);
-    viewHtml = (
+    return (
       <>
-        <div className="flex justify-between text-black">
-          <div className="grid lg:grid-cols-2">
+        <div className="grid lg:grid-cols-2 py-6">
+          <div className="w-full max-w-md mx-auto px-7">
             <DetailImageHome images={product.images} />
+          </div>
+          <div>
             <DetailDescHome
               product_name={product.product_name}
               price={product.price}
@@ -55,32 +46,40 @@ function DetailCardHome() {
               overview={product.overview}
               desc={product.desc}
             />
-            <DetailLink />
           </div>
-          <a
-            href="#"
-            className="flex items-start hover:text-blue-500 text-black transition-colors"
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(closeDialogDetailCardHome());
-            }}
-          >
-            <XMarkIcon className="w-6 h-6" />
-          </a>
+          <DetailLinkHome />
         </div>
       </>
     );
   }
+}
+
+function DetailCardHome() {
+  const { dialogDetailCardHome, idDetailDialogCardHome: productId } =
+    useSelector((state) => state.menu);
+  const dispatch = useDispatch();
 
   return (
     <>
       <Dialog
         size="lg"
         open={dialogDetailCardHome}
-        handler={() => dispatch(closeDialogDetailCardHome())}
-        className="p-4"
+        handler={() => {
+          dispatch(closeDialogDetailCardHome());
+        }}
+        className="p-4 h-[90%]"
       >
-        {viewHtml}
+        <a
+          href="#"
+          className="absolute top-4 right-4 hover:text-blue-500 text-black transition-colors"
+          onClick={(e) => {
+            e.preventDefault();
+            dispatch(closeDialogDetailCardHome());
+          }}
+        >
+          <XMarkIcon className="w-6 h-6" />
+        </a>
+        {productId !== 0 ? <DetailCardHomeView productId={productId} /> : <></>}
       </Dialog>
     </>
   );

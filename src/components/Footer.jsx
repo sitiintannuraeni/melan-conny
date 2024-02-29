@@ -11,47 +11,87 @@ import WhatsApp from "../assets/whatsApp.png";
 function Footer() {
   return (
     <>
-      <div className="bg-black w-full h-[650px] text-white">
+      <div className="bg-black w-full h-[590px] lg:h-[650px] text-white">
         <div className="text-center py-2">
-          <Typography className="text-lg">MEN'S FASHION STORE</Typography>
+          <Typography className="lg:text-lg text-base mt-4">
+            MEN'S FASHION STORE
+          </Typography>
         </div>
-        <div className="flex flex-col-4 justify-center gap-28 py-4 pr-10">
-          <div className="mt-6">
-            <Typography className="text-lg">Shop</Typography>
-            <div className="mt-4 felx justify-center">
-              <Typography className="text-md">
+        <div className="grid grid-cols-4 justify-center pl-7 py-4 gap-3 lg:pr-10 lg:flex lg:flex-col-4 lg:gap-16 ">
+          <div className="mt-5">
+            <Typography className="lg:text-lg text-base">Shop</Typography>
+            <div className="mt-4">
+              <Typography className="lg:text-base text-xs">
                 Rainy Season Collection
               </Typography>
-              <Typography className="mt-3 text-md ">Available Items</Typography>
-              <Typography className="mt-3 text-md ">Collection</Typography>
-              <Typography className="mt-3 text-md ">Accessories</Typography>
-              <Typography className="mt-3 text-md ">Heylocal</Typography>
-              <Typography className="mt-3 text-md ">Zoma Basic</Typography>
-              <Typography className="mt-3 text-md">Prepp Studio</Typography>
-              <Typography className="mt-3 text-md">Boonaboo</Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs">
+                Available Items
+              </Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs">
+                Collection
+              </Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs ">
+                Accessories
+              </Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs ">
+                Heylocal
+              </Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs ">
+                Zoma Basic
+              </Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs">
+                Prepp Studio
+              </Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs">
+                Boonaboo
+              </Typography>
+            </div>
+          </div>
+          <div className="mt-5 pl-3">
+            <Typography className="lg:text-lg text-base pl-3 lg:pl-none">
+              About
+            </Typography>
+            <div className="mt-2 pl-3 lg:pl-none">
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs ">
+                Our Story
+              </Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs 0">
+                Articel
+              </Typography>
             </div>
           </div>
           <div className="mt-5">
-            <Typography className="text-lg">About</Typography>
-            <div className="mt-2">
-              <Typography className="mt-3 text-md ">Our Story</Typography>
-              <Typography className="mt-3 text-md 0">Articel</Typography>
+            <Typography className="lg:text-lg text-base pl-2">
+              Payment
+            </Typography>
+            <div className="mt-2 pl-2">
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs">
+                Bank BCA
+              </Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs">
+                Bank Mandiri
+              </Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs ">
+                Bank BRI
+              </Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs ">
+                Bank BNI
+              </Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs ">
+                Bank Permata
+              </Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs ">
+                Shopee Pay
+              </Typography>
             </div>
           </div>
           <div className="mt-5">
-            <Typography className="text-lg">Payment</Typography>
-            <div className="2 mt-2">
-              <Typography className="mt-3 text-md 5px]">Bank BCA</Typography>
-              <Typography className="mt-3 text-md">Bank Mandiri</Typography>
-              <Typography className="mt-3 text-md ">Bank BRI</Typography>
-              <Typography className="mt-3 text-md ">Bank BNI</Typography>
-              <Typography className="mt-3 text-md ">Bank Permata</Typography>
-              <Typography className="mt-3 text-md ">Shopee Pay</Typography>
+            <div className="pl-4 lg:none">
+              <Typography className="lg:text-lg text-base">Help</Typography>
+              <Typography className="mt-4 lg:mt-3 lg:text-base text-xs">
+                FAQ
+              </Typography>
             </div>
-          </div>
-          <div className="mt-5">
-            <Typography className="text-lg">Help</Typography>
-            <Typography className="mt-3">FAQ</Typography>
           </div>
         </div>
         <div className="flex flex-col-3 items-center justify-center mt-8 gap-3 pb-14">

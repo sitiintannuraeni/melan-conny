@@ -1,24 +1,25 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import menuReducer from "./slice/menuSlice.js";
-import cartReducer from "./slice/cartSlice.js"
+import cartReducer from "./slice/cartSlice.js";
 import { persistReducer } from "redux-persist";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import authReducer from "./slice/apiSlice.js"
-import {apiProduct} from './services/apiProduct.js'
-import {apiAuth} from "./services/apiAuth.js";
+import authReducer from "./slice/apiSlice.js";
+import { apiProduct } from "./services/apiProduct.js";
+import { apiAuth } from "./services/apiAuth.js";
+import { apiBags } from "./services/apiBags.js";
 
 const persistConfig = {
   key: "root",
   storage: storage,
-  blacklist: ['menu','apiProducts', 'apiAuth'],
-  whitelist: ['cart'],
+  blacklist: ["menu", "apiProducts", "apiAuth", "apiBags"],
+  whitelist: ["cart"],
 };
 
 const authPersistConfig = {
-  key: 'auth',
+  key: "auth",
   storage: storage,
-}
+};
 
 export const rootReducers = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
@@ -26,6 +27,7 @@ export const rootReducers = combineReducers({
   cart: cartReducer,
   [apiProduct.reducerPath]: apiProduct.reducer,
   [apiAuth.reducerPath]: apiAuth.reducer,
+  [apiBags.reducerPath]: apiBags.reducer,
 });
 
 const persistedReduser = persistReducer(persistConfig, rootReducers);
@@ -34,7 +36,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat([apiProduct.middleware, apiAuth.middleware]),
+    }).concat([apiProduct.middleware, apiAuth.middleware, apiBags.middleware]),
 });
 
 setupListeners(store.dispatch);

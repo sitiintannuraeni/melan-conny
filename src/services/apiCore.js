@@ -16,4 +16,5 @@ const baseQueryAccessToken = fetchBaseQuery({
 export const apiCore = createApi({
   baseQuery: baseQueryAccessToken,
   endpoints: () => ({}),
+  // keepUnusedDataFor: 10,
 });

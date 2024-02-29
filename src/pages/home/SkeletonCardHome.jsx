@@ -1,12 +1,5 @@
 import { PhotoIcon } from "@heroicons/react/24/outline";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  IconButton,
-  Typography,
-} from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 
 function SkeletonCard() {
   return (
@@ -19,7 +12,7 @@ function SkeletonCard() {
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="currentColor"
-            className="h-[100px] w-[100px] text-gray-500"
+            className="h-[80px] w-[80px] text-gray-500"
           >
             <path
               strokeLinecap="round"

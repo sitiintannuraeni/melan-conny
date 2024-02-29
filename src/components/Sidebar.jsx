@@ -17,11 +17,11 @@ function Sidebar() {
   const dispatch = useDispatch();
 
   const AccountInfo = () => {
-    navigate(`/accountInfo`);
+    navigate(`/account-info`);
   };
 
   const MyOrder = () => {
-    navigate(`/myOrder`);
+    navigate(`/my-order`);
   };
 
   const WishList = () => {

@@ -12,6 +12,7 @@ import MyOrder from "./pages/my_order/MyOrder";
 import Addres from "./pages/address/Address";
 import AccountInfo from "./pages/account_info/AccountInfo";
 import ProtectedLayouts from "./layouts/ProtectedLayouts";
+import ViewBag from "./pages/view_bag/ViewBag";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,10 +22,12 @@ export const router = createBrowserRouter(
         <Route path="/detail/:id" element={<DetailPage />}></Route>
         <Route path="/checkout" element={<CheckoutPage />}></Route>
         <Route element={<ProtectedLayouts />}>
-          <Route path="/accountInfo" element={<AccountInfo />}></Route>
+          <Route path="/account-info" element={<AccountInfo />}></Route>
           <Route path="/wishlist" element={<WishList />}></Route>
-          <Route path="/myOrder" element={<MyOrder />}></Route>
+          <Route path="/my-order" element={<MyOrder />}></Route>
           <Route path="/address" element={<Addres />}></Route>
+          <Route path="/checkout" element={<CheckoutPage />}></Route>
+          <Route path="/view-bag" element={<ViewBag />}></Route>
         </Route>
       </Route>
     </>

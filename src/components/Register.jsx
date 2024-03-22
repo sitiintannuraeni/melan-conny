@@ -7,22 +7,32 @@ import {
   Dialog,
   Typography,
   Button,
+  Input,
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  closeDialogLogin,
-  closeDialogRegister,
-  openDialogLogin,
-  openDialogRegister,
-} from "../slice/menuSlice";
+import { closeDialogRegister, openDialogLogin } from "../slice/menuSlice";
 import { useEffect } from "react";
+import { useAuthRegisterMutation } from "../services/apiAuth";
 
 function Register() {
+  const [inputName, setInputName] = useState("");
+  const [inputEmail, setInputEmail] = useState("");
+  const [inputPhone, setInputPhone] = useState("");
+  const [inputPassword, setInputPassword] = useState("");
+  const [inputConfirmPassword, setInputConfirmPassword] = useState("");
+  const [inputBirthDate, setInputBirthDate] = useState("");
   const { dialogRegister } = useSelector((state) => state.menu);
   const dispatch = useDispatch();
   const [passwordType, setPasswordType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
+  const [register, { isLoading, isError, isSuccess, error }] =
+    useAuthRegisterMutation();
+  console.log({ register });
+
+  if (isError) {
+    console.log("is Error Register", error);
+  }
 
   useEffect(() => {
     const body = document.querySelector("body");
@@ -31,7 +41,26 @@ function Register() {
     } else {
       body.classList.remove("overflow-hidden");
     }
-  }, [dialogRegister]);
+    if (isSuccess) {
+      setInputName("");
+      setInputEmail("");
+      setInputPhone("");
+      setInputPassword("");
+      setInputConfirmPassword("");
+      setInputBirthDate("");
+    }
+  }, [dialogRegister, isSuccess]);
+
+  function handleClickRegister() {
+    register({
+      name: inputName,
+      email: inputEmail,
+      phone: inputPhone,
+      password: inputPassword,
+      confirm_password: inputConfirmPassword,
+      birthdate: inputBirthDate,
+    });
+  }
 
   function handlePasswordType(e) {
     e.preventDefault();
@@ -79,77 +108,70 @@ function Register() {
             <Card className="w-full h-full" shadow={false}>
               <CardBody className="flex flex-col relative px-4 pt-0 pb-6">
                 <div>
-                  <div className="mb-2 text-sm text-[black]">
-                    Your Name*
+                  <div className="mb-2 mt-3">
                     <div className="flex items-center justify-center">
-                      <input
+                      <Input
+                        variant="static"
+                        label="Your Name*"
                         type="text"
-                        className="w-[400px] h-[40px] text-xs outline-none border-none bg-transparent"
+                        value={inputName}
+                        onChange={(e) => setInputName(e.target.value)}
                         placeholder="Enter Your Name..."
                       />
                     </div>
-                    <div className="flex justify-end">
-                      <div className="w-[100%] border-b-[1px] border-[#000000] " />
-                    </div>
                   </div>
                 </div>
                 <div>
-                  <div className="mb-2 text-sm text-black">
-                    Your Email*
+                  <div className="mb-2 mt-3">
                     <div className="flex items-center justify-center">
-                      <input
+                      <Input
+                        variant="static"
+                        label="Your Email*"
                         type="email"
-                        className="w-[400px] h-[40px] text-xs outline-none border-none bg-transparent"
+                        value={inputEmail}
+                        onChange={(e) => setInputEmail(e.target.value)}
                         placeholder="Enter Your Email..."
                       />
                     </div>
-                    <div className="flex justify-end">
-                      <div className="w-[100%] border-b-[1px] border-[#000000] " />
-                    </div>
                   </div>
                 </div>
                 <div>
-                  <div className="mb-2 text-sm text-[black]">
-                    Phone*
+                  <div className="mb-2 mt-3">
                     <div className="flex items-center justify-center">
-                      <div className="w-[40px]">+62</div>
-                      <input
-                        type="number"
-                        className="w-[380px] h-[40px] text-xs outline-none border-none bg-transparent"
-                        placeholder="Enter Your Phone Number..."
+                      <Input
+                        variant="static"
+                        label="Phone*"
+                        value={inputPhone}
+                        onChange={(e) => setInputPhone(e.target.value)}
+                        placeholder="Enter Your Phone..."
                       />
                     </div>
-                    <div className="flex justify-end">
-                      <div className="w-[100%] border-b-[1px] border-[#000000] " />
-                    </div>
                   </div>
                 </div>
                 <div>
-                  <div className="mb-2 text-sm text-[black]">
-                    Password*
-                    <div className="float-right">
-                      <a
-                        href="#"
-                        onClick={(e) => handlePasswordType(e)}
-                        className="flex items-center hover:text-blue-500 transition-colors"
-                      >
-                        {passwordType === "password" ? (
-                          <EyeSlashIcon className=" mt-6 w-6 h-5" />
+                  <div className="mb-2 mt-3">
+                    <Input
+                      variant="static"
+                      label="Password*"
+                      placeholder="Enter Password"
+                      className="text-[#] text-[17px]"
+                      type={passwordType}
+                      value={inputPassword}
+                      onChange={(e) => setInputPassword(e.target.value)}
+                      icon={
+                        passwordType === "password" ? (
+                          <EyeSlashIcon
+                            className="h-5 cursor-pointer text-black"
+                            onClick={(e) => handlePasswordType(e)}
+                          />
                         ) : (
-                          <EyeIcon className="mt-6 w-6 h-5" />
-                        )}
-                      </a>
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <input
-                        type={passwordType}
-                        className="w-[400px] h-[40px] text-xs outline-none border-none bg-transparent"
-                        placeholder="Enter Your Password..."
-                      />
-                    </div>
-                    <div className="flex justify-end">
-                      <div className="w-[100%] border-b-[1px] border-[#000000] " />
-                    </div>
+                          <EyeIcon
+                            className="h-5 cursor-pointer text-black"
+                            onClick={(e) => handlePasswordType(e)}
+                          />
+                        )
+                      }
+                    />
                   </div>
                 </div>
                 <div className="mb-2 text-[black]">
@@ -175,65 +197,57 @@ function Register() {
                   </div>
                 </div>
                 <div>
-                  <div className="mb-2 mt-5 text-sm text-[black]">
-                    Confirm Password*
-                    <div className="float-right">
-                      <a
-                        href="#"
-                        onClick={(e) => handleConfirmPasswordType(e)}
-                        className="flex items-center hover:text-blue-500 transition-colors"
-                      >
-                        {confirmPasswordType === "password" ? (
-                          <EyeSlashIcon className=" mt-6 w-6 h-5" />
+                  <div className="mb-2 mt-5">
+                    <Input
+                      variant="static"
+                      label="Confirm Password*"
+                      placeholder="Confirm Password"
+                      className="text-[#] text-[17px]"
+                      type={confirmPasswordType}
+                      value={inputConfirmPassword}
+                      onChange={(e) => setInputConfirmPassword(e.target.value)}
+                      icon={
+                        confirmPasswordType === "password" ? (
+                          <EyeSlashIcon
+                            className="h-5 cursor-pointer text-black"
+                            onClick={(e) => handleConfirmPasswordType(e)}
+                          />
                         ) : (
-                          <EyeIcon className="mt-6 w-6 h-5" />
-                        )}
-                      </a>
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <input
-                        type={confirmPasswordType}
-                        className="w-[400px] h-[40px] text-xs outline-none border-none bg-transparent"
-                        placeholder="Confirm Your Password..."
-                      />
-                    </div>
-                    <div className="flex justify-end">
-                      <div className="w-[100%] border-b-[1px] border-[#000000] " />
-                    </div>
+                          <EyeIcon
+                            className="h-5 cursor-pointer text-black"
+                            onClick={(e) => handleConfirmPasswordType(e)}
+                          />
+                        )
+                      }
+                    />
                   </div>
                 </div>
                 <div>
-                  <div className="mb-2 mt-5 text-sm text-[black]">
-                    Birth Date*
+                  <div className="mb-2 mt-3">
                     <div className="flex items-center justify-center">
-                      <input
+                      <Input
+                        variant="static"
+                        label="Birth Date*"
                         type="date"
-                        className="w-[400px] h-[40px] text-xs outline-none border-none bg-transparent"
-                        placeholder="Enter Your Name..."
+                        onChange={(e) => setInputBirthDate(e.target.value)}
                       />
-                    </div>
-                    <div className="flex justify-end">
-                      <div className="w-[100%] border-b-[1px] border-[#000000] " />
                     </div>
                   </div>
                 </div>
-                <Checkbox
-                  label={
-                    <Typography
-                      variant="small"
-                      color="gray"
-                      className="flex items-center font-normal text-[10px] text-[black]"
-                    >
-                      i agree receive information and commercial offers from
-                      Heylocal and World White Enterprise
-                    </Typography>
-                  }
-                  containerProps={{ className: "-ml-2.5" }}
-                />
+                <div className="flex flex-col-2 gap-2">
+                  <Checkbox />
+                  <Typography className="text-[11px] mt-2 text-black">
+                    i agree receive information and commercial offers from
+                    Heylocal and World White Enterprise
+                  </Typography>
+                </div>
               </CardBody>
               <CardFooter className="pt-0 ">
                 <Button
-                  onClick={() => alert("create user")}
+                  type="button"
+                  disabled={isLoading}
+                  loading={isLoading}
+                  onClick={() => handleClickRegister()}
                   fullWidth
                   className="bg-[#B0B0B0]"
                 >

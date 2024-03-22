@@ -16,6 +16,7 @@ import {
   openDialogRegister,
 } from "../slice/menuSlice";
 import { useAuthMutation } from "../services/apiAuth";
+import { useEffect } from "react";
 
 function Login() {
   const [inputEmail, setInputEmail] = useState("");
@@ -29,9 +30,18 @@ function Login() {
     console.log("is Error Login", error);
   }
 
-  if (isSuccess) {
-    console.log("login success");
-  }
+  useEffect(() => {
+    const body = document.querySelector("body");
+    if (body && dialogLogin) {
+      body.classList.add("overflow-hidden");
+    } else {
+      body.classList.remove("overflow-hidden");
+    }
+    if (isSuccess) {
+      setInputEmail("");
+      setInputPassword("");
+    }
+  }, [dialogLogin, isSuccess]);
 
   function handlePasswordType(e) {
     e.preventDefault();

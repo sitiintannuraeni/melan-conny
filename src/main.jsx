@@ -11,6 +11,17 @@ import { persistStore } from "redux-persist";
 let persistor = persistStore(store);
 
 const customTheme = {
+  select: {
+    styles: {
+      base: {
+        container: {
+          position: "relative",
+          width: "w-full",
+          minWidth: "",
+        },
+      },
+    },
+  },
   drawer: {
     defaultProps: {
       size: 400,

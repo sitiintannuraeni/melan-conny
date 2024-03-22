@@ -1,28 +1,25 @@
-import { Alert, Button, Typography } from "@material-tailwind/react";
+import { Button, Typography } from "@material-tailwind/react";
 import banner from "../../assets/banner.png";
-import bannerPants from "../../assets/banner1.png";
-import { useGetProductsQuery } from "../../services/apiProduct.js";
+import { useGetProductsByGroupCategoryQuery } from "../../services/apiProduct.js";
 import DetailCardHome from "./DetailCardHome.jsx";
 import CardProduct from "../../components/CardProduct.jsx";
-import Product1 from "../../assets/pants.png";
-import Product2 from "../../assets/pants-1.png";
-import Product3 from "../../assets/pants-2.png";
-import Product4 from "../../assets/pants-3.png";
-import Product5 from "../../assets/pants-4.png";
-import Product6 from "../../assets/pants-5.png";
 import SkeletonCardHome from "./SkeletonCardHome.jsx";
+import HomeBanner from "../../components/HomeBanner.jsx";
+import { baseUrlApi } from "../../services/apiCore.js";
+import { useNavigate } from "react-router-dom";
 
-function ListProducts() {
+function ListProductByCategory() {
+  const navigate = useNavigate();
   const {
-    data: products,
+    data: productByCategory,
     isLoading,
     isFetching,
     isSuccess,
     isError,
     error,
-  } = useGetProductsQuery();
+  } = useGetProductsByGroupCategoryQuery();
+
   if (isLoading || isFetching) {
-    console.log("is Loading Product");
     return (
       <>
         <SkeletonCardHome />
@@ -31,140 +28,101 @@ function ListProducts() {
   }
 
   if (isError) {
-    console.log("is Erorr Product");
+    console.log("is Error Product");
     return <></>;
   }
 
   if (isSuccess) {
     return (
       <>
-        <div>
-          <div className="flex justify-between mb-5 lg:mb-12 px-2 lg:px-20 items-center">
-            <Typography className="text-lg font-bold">
-              SHORT AND LONG T-SHIRT
-            </Typography>
-            <Button variant="outlined" size="sm" className="rounded-md">
-              View All
-            </Button>
+        {productByCategory.map((category, categoryIndex) => (
+          <div key={categoryIndex}>
+            <div className="flex justify-between mb-5 lg:mb-12 md:mb-10 md:mt-14 px-5 lg:px-20 md:px-10 items-center">
+              <div className="w-[250px] lg:w-[85%] md:w-[85%]">
+                <Typography className="lg:text-lg text-base md:text-lg font-bold">
+                  {category.category_name}
+                </Typography>
+              </div>
+              <Button
+                variant="outlined"
+                size="sm"
+                className="rounded-md text-[8px] lg:text-[11px]"
+                onClick={() => navigate("/view-all")}
+              >
+                View All
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 px-7 gap-3 lg:grid-cols-4 lg:gap-4 lg:px-20 md:gap-4 md:px-10 pb-10">
+              {category.products.map((product, index) => {
+                return (
+                  <CardProduct
+                    key={index}
+                    id={product.id}
+                    img={`${baseUrlApi}/${product.images[0].path}`}
+                    name={product.product_name}
+                    price={product.price}
+                    items={`${product.total_sold} items sold`}
+                  />
+                );
+              })}
+            </div>
+            {categoryIndex + 1 < productByCategory.length ? (
+              <HomeBanner />
+            ) : (
+              <></>
+            )}
           </div>
-          <div className="grid grid-cols-2 px-7 gap-3 lg:grid-cols-4 lg:gap-4 lg:px-20 pb-10">
-            {products.map((product, index) => {
-              return (
-                <CardProduct
-                  key={index}
-                  id={product.id}
-                  img={product.images[0].url}
-                  name={product.product_name}
-                  price={product.price}
-                  items={`${product.total_sold} items sold`}
-                />
-              );
-            })}
-          </div>
-        </div>
+        ))}
       </>
     );
   }
 }
 
-function ListProductsPants() {
-  const {
-    data: products,
-    isLoading,
-    isFetching,
-    isSuccess,
-    isError,
-    error,
-  } = useGetProductsQuery();
-  if (isLoading || isFetching) {
-    console.log("is Loading Product");
-    return (
-      <>
-        <SkeletonCardHome />
-      </>
-    );
-  }
-
-  if (isError) {
-    console.log("is Erorr Product");
-    return <></>;
-  }
-
-  if (isSuccess) {
-    return (
-      <>
-        <div>
-          <div className="flex justify-between mb-5 lg:mb-12 px-2 lg:px-20 items-center">
-            <Typography className="text-lg font-bold">STYLEM PANTS</Typography>
-            <Button variant="outlined" size="sm" className="rounded-md">
-              View All
-            </Button>
-          </div>
-          <div className="grid grid-cols-2 px-7 gap-3 lg:grid-cols-4 lg:gap-4 lg:px-20 pb-10">
-            {products.map((product, index) => {
-              return (
-                <CardProduct
-                  key={index}
-                  id={product.id}
-                  img={product.images[0].url}
-                  name={product.product_name}
-                  price={product.price}
-                  items={`${product.total_sold} items sold`}
-                />
-              );
-            })}
-          </div>
-        </div>
-      </>
-    );
-  }
-}
 function HomePage() {
   return (
     <>
-      <div>
-        <figure className="relative h-full w-full">
-          <img className="object-cover" src={banner} alt="nature image" />
-          <figcaption className="absolute bottom-52 left-2/4 grid w-[calc(55%-4rem)] -translate-x-2/4 grid-rows-2">
-            <div className="flex justify-between lg:h-[30px] px-[172px]">
-              <Typography className="text-lg font-semibold">
-                Regular Vit |
+      <div className="">
+        <figure className="relative lg:h-[717px] md:h-[440px] h-[350px] w-full">
+          <img
+            className="object-contain absolute w-full h-full left-0 top-0"
+            src={banner}
+            alt="nature image"
+          />
+          <figcaption className="lg:h-full h-[286px] md:h-full lg:mt-0 -mt-6 w-full flex flex-col justify-center items-center relative z-[1]">
+            <div className="flex gap-3 items-center lg:mt-0 mt-16">
+              <Typography className="lg:text-4xl md:text-4xl text-lg font-bold lg:-ml-[72px] md:-ml-[52px] -ml-5">
+                VERSA
               </Typography>
-              <Typography className="text-lg text-white font-semibold pr-[58px]">
+              <Typography className="lg:text-4xl md:text-4xl text-lg text-white font-bold">
+                TEES
+              </Typography>
+            </div>
+            <div className="flex lg:gap-4 gap-2 items-center py-1">
+              <Typography className="lg:text-lg md:text-lg text-xs font-medium lg:-ml-14 md:-ml-10 -ml-3">
+                Regular Vit
+              </Typography>
+              <div className="lg:h-[20px] h-[16px] lg:w-[2px] w-[1px] bg-black"></div>
+              <Typography className="lg:text-lg  md:text-lg text-xs text-white font-medium">
                 Oversided fit
               </Typography>
             </div>
-            <div className="py-4 px-6 -translate-y-[50px]">
-              <Typography className="text-[#5E5C5C] text-[19px] text-center">
+            <div className="px-6 mx-auto max-w-xl w-full">
+              <Typography className="text-[#5E5C5C] md:text-[15px] lg:text-[19px] text-[10px] text-center lg:-ml-14 ml-1">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </Typography>
             </div>
           </figcaption>
         </figure>
-        <div className="px-3 lg:px-40 py-5 flex items-center justify-center mb-8">
-          <div className="lg:border-[8px] border-[6px] border-black rounded-lg lg:w-[90px] w-[60px]" />
+        <div className="px-3 lg:px-40 lg:py-5 -mt-10 lg:-mt-0 md:mt-4 flex items-center justify-center mb-8">
+          <div className="lg:border-[8px] border-[6px] border-black rounded-lg lg:w-[90px] w-[50px]" />
         </div>
-        <ListProducts />
         <DetailCardHome />
       </div>
       <div>
-        <figure className="relative h-full w-full">
-          <img className="object-cover" src={bannerPants} alt="nature image" />
-          <figcaption className="absolute lg:bottom-10 bottom-3 left-2/4 flex w-[calc(100%-4rem)] -translate-x-2/4 px-3 bg-transparent">
-            <Typography className="lg:text-2xl text-xs text-[#857F7F] text-center lg:px-[120px] px-1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
-          </figcaption>
-        </figure>
-        <div className="px-3 lg:px-40 py-5 flex items-center justify-center mb-8">
-          <div className="lg:border-[8px] border-[6px] border-black rounded-lg lg:w-[90px] w-[60px]" />
-        </div>
-        <ListProductsPants />
+        <ListProductByCategory />
       </div>
     </>
   );
 }
-
 export default HomePage;

@@ -13,7 +13,6 @@ import {
 } from "@material-tailwind/react";
 import {
   ArrowRightStartOnRectangleIcon,
-  BanknotesIcon,
   Bars3Icon,
   ChevronLeftIcon,
   UserCircleIcon,
@@ -32,7 +31,6 @@ import {
   openDialogLogin,
   openDialogSearch,
   openDrawerMenFashionStore,
-  openDrawerShooping,
   openDrawerShoppingCart,
 } from "../slice/menuSlice";
 import { logout } from "../slice/apiSlice";
@@ -42,13 +40,12 @@ function HeaderLogo() {
   const location = useLocation();
   const navigate = useNavigate();
   const pathName = location.pathname.split("/")[1];
-  console.log(location.pathname.split("/")[1], "detail");
   const dispatch = useDispatch();
 
   return (
     <>
       <div className="flex justify-start items-center h-full space-x-8 px-3">
-        {pathName !== "detail" ? (
+        {pathName === "" ? (
           <>
             <IconButton
               variant="text"
@@ -73,7 +70,7 @@ function HeaderLogo() {
             variant="text"
             className="h-6 w-6 hover:bg-transparent active:bg-transparent"
             ripple={false}
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/")}
           >
             <ChevronLeftIcon className="h-7 w-7" />
           </IconButton>
@@ -84,6 +81,7 @@ function HeaderLogo() {
 }
 function HeaderMenu() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -107,19 +105,7 @@ function HeaderMenu() {
           <a
             href="#"
             className="flex items-center hover:text-blue-500 transition-colors"
-          >
-            COLLABORATIONS
-          </a>
-        </Typography>
-        <Typography
-          as="li"
-          variant="small"
-          color="blue-gray"
-          className="p-1 font-medium"
-        >
-          <a
-            href="#"
-            className="flex items-center hover:text-blue-500 transition-colors"
+            onClick={(e) => e.preventDefault(navigate("/trucking-order"))}
           >
             TRACKING ORDER
           </a>
@@ -153,13 +139,11 @@ function HeaderMenu() {
 function HeaderProfileMenu() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { qtyTotal } = useSelector((state) => state.cart);
   const { isLoggedIn, data } = useSelector((state) => state.auth);
   const handleDialogLogout = () => {
     dispatch(logout());
     toast.success("Logout Success!");
-  };
-  const wishList = () => {
-    navigate(`/wishlist`);
   };
 
   return (
@@ -167,27 +151,37 @@ function HeaderProfileMenu() {
       <div className="flex items-center gap-4">
         <IconButton
           variant="text"
+          className="h-6 w-6 lg:hidden rounded-full hover:bg-transparent active:bg-transparent"
+          ripple={false}
+          onClick={() => {
+            dispatch(openDialogSearch());
+          }}
+        >
+          <MagnifyingGlassIcon className="h-6 w-6" />
+        </IconButton>
+        <IconButton
+          variant="text"
           className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent"
           ripple={false}
-          onClick={() => wishList()}
+          onClick={() => navigate("/wishlist")}
         >
           <HeartIcon className="h-6 w-6" />
         </IconButton>
-
         <Badge
-          content="3"
-          className="bg-black text-white p-0 min-w-[20px] min-h-[20px]"
+          content={qtyTotal}
+          className={`bg-black text-white p-0 min-w-[20px] min-h-[20px] ${qtyTotal <= 0 ? "hidden" : ""}`}
         >
           <Button
             size="sm"
             variant="text"
             ripple={false}
             className="px-0 py-0 flex gap-1 items-center rounded-full hover:bg-transparent active:bg-transparent"
-            onClick={() => dispatch(openDrawerShooping())}
+            onClick={() => dispatch(openDrawerShoppingCart())}
           >
             <ShoppingBagIcon className="h-6 w-6" />
           </Button>
         </Badge>
+
         {!isLoggedIn ? (
           <IconButton
             variant="text"
@@ -216,7 +210,7 @@ function HeaderProfileMenu() {
               <MenuList>
                 <MenuItem
                   className="flex items-center gap-2"
-                  onClick={() => navigate("/accountInfo")}
+                  onClick={() => navigate("/account-info")}
                 >
                   <UserCircleIcon className="h-5 w-5" />
                   <Typography variant="small" className="font-medium">
@@ -242,7 +236,7 @@ function HeaderProfileMenu() {
   );
 }
 
-function Header({ openDrawerShoppingCart }) {
+function Header() {
   const [openNav, setOpenNav] = useState(false);
 
   const handleWindowResize = () =>
@@ -266,7 +260,7 @@ function Header({ openDrawerShoppingCart }) {
           <div className="flex items-center">
             <IconButton
               variant="text"
-              className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+              className="ml-auto h-6 w-6 hidden text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
               ripple={false}
               onClick={() => setOpenNav(!openNav)}
             >
@@ -281,7 +275,7 @@ function Header({ openDrawerShoppingCart }) {
           <div className="hidden lg:block">
             <HeaderMenu />
           </div>
-          <HeaderProfileMenu openDrawerShoppingCart={openDrawerShoppingCart} />
+          <HeaderProfileMenu />
         </div>
         <Collapse open={openNav}>
           <HeaderMenu />

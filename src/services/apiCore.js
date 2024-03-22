@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-const baseUrlApi = import.meta.env.VITE_BASE_URL_API;
+export const baseUrlApi = import.meta.env.VITE_BASE_URL_API;
 
 const baseQueryAccessToken = fetchBaseQuery({
   baseUrl: baseUrlApi,
@@ -16,5 +16,4 @@ const baseQueryAccessToken = fetchBaseQuery({
 export const apiCore = createApi({
   baseQuery: baseQueryAccessToken,
   endpoints: () => ({}),
-  // keepUnusedDataFor: 10,
 });

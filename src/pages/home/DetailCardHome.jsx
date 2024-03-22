@@ -1,11 +1,10 @@
 import React from "react";
-import { Button, Dialog, Typography } from "@material-tailwind/react";
+import { Button, Dialog } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeDialogDetailCardHome } from "../../slice/menuSlice";
 import { useGetProductByIdQuery } from "../../services/apiProduct";
 import DetailImageHome from "./DetailImageHome";
-import DetailDescHome from "./DetailDescHome";
-import DetailLink from "../detail/DetailLink";
+import ModalDescHome from "./ModalDescHome";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import SkeletonDetailHome from "./SkeletonDetailHome";
 import DetailLinkHome from "./DetailLinkHome";
@@ -36,7 +35,8 @@ function DetailCardHomeView({ productId }) {
             <DetailImageHome images={product.images} />
           </div>
           <div>
-            <DetailDescHome
+            <></>
+            <ModalDescHome
               product_name={product.product_name}
               price={product.price}
               total_sold={product.total_sold}

@@ -105,13 +105,19 @@ function SearchV2() {
                 />
               </ListItemPrefix>
               <div className="grid grid-rows-3 gap-2">
-                <Typography color="blue-gray" className="text-sm font-bold">
+                <Typography
+                  color="blue-gray"
+                  className="lg:text-sm text-[13px] font-bold"
+                >
                   {result.product_name}
                 </Typography>
-                <Typography color="gray" className="font-normal text-md">
+                <Typography
+                  color="gray"
+                  className="font-normal lg:text-base text-sm lg:mt-0 -mt-[2px]"
+                >
                   <NumberFormatCurrency value={result.price} />
                 </Typography>
-                <Typography className="text-[#989898] text-sm">
+                <Typography className="text-[#989898] lg:text-sm text-xs">
                   {result.total_sold} items sold
                 </Typography>
               </div>
@@ -127,8 +133,8 @@ function SearchV2() {
       <div
         className={`w-full h-[100vh] bg-black/50 z-[999] ${dialogSearch ? "fixed" : "hidden"} top-0`}
       >
-        <div className="w-full max-w-xl mx-auto top-16" ref={myRef}>
-          <div className="w-full mx-auto bg-white top-16 shadow-xl rounded-lg relative z-[999] ">
+        <div className="w-full max-w-xl mx-auto px-4 top-16 " ref={myRef}>
+          <div className="w-full mx-auto bg-white lg:top-16 top-4 shadow-xl rounded-lg relative z-[999] ">
             <div className="">
               <input
                 value={inputSearch}
@@ -143,7 +149,7 @@ function SearchV2() {
               </div>
             </div>
           </div>
-          <div className="w-full max-h-[400px] sw-10 overflow-y-auto mt-1 bg-white top-16 shadow-xl rounded-lg relative z-[999] ">
+          <div className="w-full max-h-[400px] sw-10 overflow-y-auto mt-1 bg-white lg:top-16 top-4 shadow-xl rounded-lg relative z-[999] ">
             {resultView}
           </div>
         </div>

@@ -9,12 +9,7 @@ import {
 } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeDialogChangePassword } from "../../slice/menuSlice";
-import {
-  EyeIcon,
-  EyeSlashIcon,
-  HeartIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { EyeIcon, EyeSlashIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
 function ModalChange() {

@@ -24,9 +24,9 @@ function ModalAddress() {
         open={dialogAddress}
         size="xs"
         handler={() => dispatch(closeDialogAddress())}
-        className="h-[90%] overflow-auto"
+        className="lg:h-[85%] h-[65%] overflow-auto"
       >
-        <DialogHeader className="text-lg flex justify-between">
+        <DialogHeader className="text-lg flex justify-between sticky top-0 p-4 bg-white z-[1]">
           <div>ADD NEW ADDRESS</div>
           <a
             href="#"
@@ -40,7 +40,7 @@ function ModalAddress() {
           </a>
         </DialogHeader>
         <DialogBody className="px-3 ">
-          <div className="border border-current h-[380px] px-5 rounded-md overflow-auto">
+          <div className="border border-current h-[380px] px-5 rounded-md overflow-auto scrollbar-y">
             <div className="mt-2">
               <div className="text-black w-full mt-8 ">
                 <Input
@@ -66,17 +66,65 @@ function ModalAddress() {
                   className="text-[16px]"
                 />
               </div>
-              <div className="grid grid-cols-2 w-full mt-8">
-                <div className="flex flex-col">
-                  <Select variant="static" label="Select Version">
-                    <Option>Material Tailwind HTML</Option>
-                    <Option>Material Tailwind React</Option>
-                    <Option>Material Tailwind Vue</Option>
-                    <Option>Material Tailwind Angular</Option>
-                    <Option>Material Tailwind Svelte</Option>
-                  </Select>
-                </div>
+            </div>
+            <div className="grid grid-cols-2 gap-2 w-full mt-8">
+              <div className="w-full">
+                <Select className="select2" variant="static" label="Province*">
+                  <Option>Jawa Barat</Option>
+                  <Option>Jawa Timur</Option>
+                  <Option>Jawa Tengah</Option>
+                  <Option>Kalimantan</Option>
+                  <Option>Sumatra Utara</Option>
+                </Select>
               </div>
+              <div className="w-full">
+                <Select variant="static" label="City*" className="select2">
+                  <Option>Bandung</Option>
+                  <Option>Bekasi</Option>
+                  <Option>Bogor</Option>
+                  <Option>Cirebon</Option>
+                  <Option>Majalengka</Option>
+                </Select>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-2 w-full py-7">
+              <div className="w-full">
+                <Select className="select2" variant="static" label="District*">
+                  <Option>Bandung</Option>
+                  <Option>Bogor</Option>
+                  <Option>Cirebon</Option>
+                  <Option>Garut</Option>
+                </Select>
+              </div>
+              <div className="w-full">
+                <Select
+                  variant="static"
+                  label="Sub District*"
+                  className="select2"
+                >
+                  <Option>Bogor Selatan</Option>
+                  <Option>Bogor Selatan</Option>
+                  <Option>Bogor Selatan</Option>
+                  <Option>Bogor Selatan</Option>
+                  <Option>Bogor Selatan</Option>
+                </Select>
+              </div>
+            </div>
+            <div className="text-black w-full mt-3">
+              <Input
+                variant="static"
+                label="Postal code*"
+                placeholder="Postal code"
+                className="text-[16px]"
+              />
+            </div>
+            <div className="text-black w-full py-7">
+              <Input
+                variant="static"
+                label="Phone*"
+                placeholder="+62 Your phone number"
+                className="text-[16px]"
+              />
             </div>
           </div>
         </DialogBody>
@@ -91,7 +139,7 @@ function ModalAddress() {
             />
           </div>
           <div className="flex grid-cols-2 justify-center">
-            <div className="items-center mt-[-90px] lg:pl-12 pl-4">
+            <div className="items-center mt-[-80px] lg:pl-12 pl-4">
               <Button
                 size="sm"
                 className="bg-[#989898] rounded-md w-[250px] flex items-center justify-center"

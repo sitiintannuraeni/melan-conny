@@ -1,63 +1,76 @@
 import { Card, List, ListItem, ListItemPrefix } from "@material-tailwind/react";
-import { MapIcon, MapPinIcon, PowerIcon } from "@heroicons/react/24/solid";
-import IconAddress from "../assets/addresIcon.png";
 import {
   ArrowRightStartOnRectangleIcon,
   HeartIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { logout } from "../slice/apiSlice";
-import { toast } from "react-toastify";
 
 function Sidebar() {
+  const location = useLocation();
+  const pathName = location.pathname.split("/")[1];
   const navigate = useNavigate();
+  const [activeMenu, setActiveMenu] = useState("");
   const dispatch = useDispatch();
 
-  const AccountInfo = () => {
-    navigate(`/account-info`);
+  useEffect(() => {
+    setActiveMenu(pathName);
+  }, [pathName]);
+
+  const handleDialogLogout = () => {
+    dispatch(logout());
+    // toast.success("Logout Success!");
   };
 
-  const MyOrder = () => {
-    navigate(`/my-order`);
-  };
-
-  const WishList = () => {
-    navigate(`/wishlist`);
-  };
-
-  const Addres = () => {
-    navigate(`/address`);
-  };
-
-  // const handleLogout = () => {
-  //   dispatch(logout());
-  // };
+  const listItemActive = "active:bg:black active:text-white";
 
   return (
-    <Card className="h-[350px] w-full max-w-[20rem] bg-gray-50" shadow={false}>
+    <Card
+      className="h-[350px] w-full lg:max-w-[20rem] max-w-[25rem] bg-gray-50"
+      shadow={false}
+    >
       <List>
-        <ListItem className="text-[#989898]" onClick={() => AccountInfo()}>
+        <ListItem
+          selected={activeMenu === "account-info"}
+          className={`text-[#989898]`}
+          onClick={() => navigate("/account-info")}
+        >
           <ListItemPrefix>
             <UserIcon className="h-6 w-6" />
           </ListItemPrefix>
           Account info
         </ListItem>
-        <ListItem className="text-[#989898]" onClick={() => MyOrder()}>
+        <ListItem
+          selected={activeMenu === "my-order"}
+          className={`text-[#989898]`}
+          onClick={() => navigate("/my-order")}
+        >
           <ListItemPrefix>
             <ShoppingBagIcon className="h-6 w-6" />
           </ListItemPrefix>
           My-Order
         </ListItem>
-        <ListItem className="text-[#989898]" onClick={() => WishList()}>
+        <ListItem
+          selected={activeMenu === "wishlist"}
+          className={`text-[#989898]`}
+          onClick={() => navigate("/wishlist")}
+        >
           <ListItemPrefix>
             <HeartIcon className="h-6 w-6" />
           </ListItemPrefix>
           WishList
         </ListItem>
-        <ListItem className="text-[#989898]" onClick={() => Addres()}>
+        <ListItem
+          selected={activeMenu === "address"}
+          className={`text-[#989898]`}
+          onClick={() => navigate("/address")}
+        >
           <ListItemPrefix>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -81,8 +94,11 @@ function Sidebar() {
           </ListItemPrefix>
           Address
         </ListItem>
-        <ListItem className="text-[#989898]">
-          {/* onClick={handleLogout()} */}
+        <ListItem
+          selected={activeMenu === "logout"}
+          className={`text-[#989898]`}
+          onClick={handleDialogLogout}
+        >
           <ListItemPrefix>
             <ArrowRightStartOnRectangleIcon className="h-6 w-6" />
           </ListItemPrefix>

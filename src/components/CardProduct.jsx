@@ -8,7 +8,7 @@ import {
   IconButton,
   Typography,
 } from "@material-tailwind/react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { openDialogDetailCardHome } from "../slice/menuSlice";
 import { useDispatch } from "react-redux";
 import NumberFormatCurrency from "../utils";
@@ -22,7 +22,7 @@ function CardProduct({ id, img, name, price, items }) {
   };
   return (
     <Card
-      className="flex flex-col mt-4 bg-transparent lg:bg-white lg:border lg:border-gray-300 w-full relative h-[400px] lg:h-[450px]"
+      className="flex flex-col mt-4 bg-transparent bg-white border border-gray-300 w-full relative h-[290px] lg:h-[450px] md:h-[400px]"
       shadow={false}
     >
       <CardHeader
@@ -34,7 +34,7 @@ function CardProduct({ id, img, name, price, items }) {
         <img
           src={img}
           alt="product-img"
-          className="rounded-t-xl cursor-pointer relative z-20 w-full h-[200px] lg:h-[300px] object-cover"
+          className="rounded-t-xl cursor-pointer relative z-20 w-full h-[170px] lg:h-[300px] md:h-[320px] object-cover"
           onClick={() => detailProduct(id)}
         />
         <div className="absolute z-20 top-3 right-[10px] bg-transparent">
@@ -78,12 +78,12 @@ function CardProduct({ id, img, name, price, items }) {
           </Button>
         </div>
       </CardHeader>
-      <CardBody className="h-[17%]">
+      <CardBody className="p-3 lg:p-6 h-[17%] mt-2 lg:mt-0">
         <div className="">
-          <div className="flex flex-col justify-start items-start lg:items-start text-start lg:flex-row">
+          <div className="flex flex-col justify-start items-start text-start lg:flex-row">
             <Typography
               variant="small"
-              className="font-['Helvetica'] font-bold"
+              className="font-['Helvetica'] lg:font-bold font-normal"
             >
               {name}
             </Typography>
@@ -97,7 +97,7 @@ function CardProduct({ id, img, name, price, items }) {
               {items}
             </Typography>
           </div>
-          <Typography className="lg:hidden" variant="small" color="black">
+          <Typography className="lg:hidden font-normal" variant="small">
             <NumberFormatCurrency value={price} />
           </Typography>
         </div>

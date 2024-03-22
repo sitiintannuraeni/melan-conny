@@ -12,7 +12,7 @@ import { apiBags } from "./services/apiBags.js";
 const persistConfig = {
   key: "root",
   storage: storage,
-  blacklist: ["menu", "apiProducts", "apiAuth", "apiBags"],
+  blacklist: ["apiProducts", "apiAuth", "apiBags", "menu"],
   whitelist: ["cart"],
 };
 

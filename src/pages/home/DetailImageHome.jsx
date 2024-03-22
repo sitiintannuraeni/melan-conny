@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import "../../swiper-home.css";
+import "../../styles/swiper-home.css";
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 
 function DetailImageHome({ images }) {

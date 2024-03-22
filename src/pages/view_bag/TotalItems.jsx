@@ -8,20 +8,20 @@ function TotalItems() {
       <Typography className="text-xs text-[#989898]">Total 2 item</Typography>
       <div className="border border-black/10 mt-2" />
       <div className="mt-1 flex justify-start space-x-2">
-        <Checkbox />
+        <Checkbox defaultChecked />
         <Typography className="mt-[9.5px] text-base">ALL ITEMS</Typography>
       </div>
-      <div className="grid grid-cols-2 space-x-[180px]">
-        <div className="grid grid-cols-2 space-x-[-73px] w-[463px]">
-          <div className="grid grid-cols-2 space-x-[-65px] mt-4">
-            <Checkbox />
+      <div className="grid grid-cols-2 lg:space-x-[236px] space-x-[150px]">
+        <div className="grid grid-cols-2 lg:space-x-[-130px] space-x-[-40px] lg:w-[570px] w-[338px]">
+          <div className="flex flex-col-2 lg:space-x-3 mt-4 lg:w-[150px] w-[124px]">
+            <Checkbox defaultChecked />
             <img
               src={DrawerOne}
               alt="logo"
-              className="h-[130px] w-[100px] object-cover"
+              className="h-[130px] w-[80px] object-cover rounded-lg"
             />
           </div>
-          <div className="mt-4 grid grid-rows-3">
+          <div className="mt-4 grid grid-rows-3 lg:w-[335px] w-[185px]">
             <Typography className="text-base">
               Elgant Basic Shirt Black
             </Typography>
@@ -43,7 +43,7 @@ function TotalItems() {
             </div>
           </div>
         </div>
-        <div className="w-[103px] flex justify-end mt-4 ">
+        <div className="lg:w-[47px] w-[20px] flex justify-end mt-4">
           <XMarkIcon className="h-5 w-5 cursor-pointer" />
         </div>
       </div>

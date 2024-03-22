@@ -40,8 +40,8 @@ function Icon({ id, open }) {
 }
 
 function Information() {
-  const [open, setOpen] = useState(0);
-  const [alwaysOpen, setAlwaysOpen] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [alwaysOpen, setAlwaysOpen] = useState(false);
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
   const [openDetailPayment, setOpenDetailPayment] = useState(false);
   const [checkedPayment, setCheckedPayment] = useState(0);
@@ -88,29 +88,29 @@ function Information() {
               className=""
             />
           </div>
-          <div className="grid grid-cols-2 lg:gap-6 gap-14 mt-5">
-            <Select variant="standard" label="Select Version">
+          <div className="grid grid-cols-2 lg:gap-6 gap-20 mt-5">
+            <Select variant="standard" label="Province*">
               <Option>Material Tailwind HTML</Option>
               <Option>Material Tailwind React</Option>
               <Option>Material Tailwind Vue</Option>
               <Option>Material Tailwind Angular</Option>
               <Option>Material Tailwind Svelte</Option>
             </Select>
-            <Select variant="standard" label="Select Version">
+            <Select variant="standard" label="City*">
               <Option>Material Tailwind HTML</Option>
               <Option>Material Tailwind React</Option>
               <Option>Material Tailwind Vue</Option>
               <Option>Material Tailwind Angular</Option>
               <Option>Material Tailwind Svelte</Option>
             </Select>
-            <Select variant="standard" label="Select Version">
+            <Select variant="standard" label="District*">
               <Option>Material Tailwind HTML</Option>
               <Option>Material Tailwind React</Option>
               <Option>Material Tailwind Vue</Option>
               <Option>Material Tailwind Angular</Option>
               <Option>Material Tailwind Svelte</Option>
             </Select>
-            <Select variant="standard" label="Select Version">
+            <Select variant="standard" label="Sub District*">
               <Option>Material Tailwind HTML</Option>
               <Option>Material Tailwind React</Option>
               <Option>Material Tailwind Vue</Option>
@@ -278,7 +278,7 @@ function Information() {
                           <img
                             src={Permata1}
                             alt="BCA2"
-                            className="w-7 h-7 object-cover"
+                            className="w-8 h-7 object-cover"
                           />
                           <Typography className="-mt-[2px]">
                             PERMATA Virtual account
@@ -313,6 +313,7 @@ function Information() {
                       }}
                     />
                   </div>
+                  {/* <div className="border border-gray-150 mt-12" /> */}
                 </AccordionBody>
               </Accordion>
               <Accordion open={open === 2} icon={<Icon id={2} open={open} />}>

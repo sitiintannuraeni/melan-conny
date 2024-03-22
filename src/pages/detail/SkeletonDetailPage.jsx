@@ -12,11 +12,11 @@ import { useState } from "react";
 function SkeletonDetailPage() {
   return (
     <>
-      <div className="grid lg:grid-cols-2 mt-16 animate-pulse ">
+      <div className="grid lg:grid-cols-2 grid-cols-1 animate-pulse px-4 py-14">
         <div className="w-full max-w-md mx-auto">
-          <Card shadow={false} className="px-0">
+          <Card shadow={false} className="lg:px-0 ">
             <CardHeader shadow={false} className="mx-0 mt-0">
-              <div className="grid h-[485px] w-[450px] place-items-center rounded-lg bg-gray-400">
+              <div className="flex lg:h-[485px] h-[380px] w-full place-items-center justify-center rounded-lg bg-gray-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -52,95 +52,95 @@ function SkeletonDetailPage() {
           </Card>
         </div>
 
-        <div className="px-3 flex flex-col h-full">
+        <div className="flex flex-col h-full lg:mt-0 mt-4">
           <div className="">
-            <Typography className="h-7 w-[70%] rounded-full bg-gray-400">
+            <Typography className="h-7 lg:w-[70%] rounded-full bg-gray-400">
               &nbsp;
             </Typography>
-            <Typography className="h-3 w-[70%] rounded-full bg-gray-400 mt-2">
+            <Typography className="h-3 lg:w-[70%] rounded-full bg-gray-400 mt-2">
               &nbsp;
             </Typography>
-            <Typography className="h-3 w-[70%] rounded-full bg-gray-400 mt-2 text-xs">
+            <Typography className="h-3 lg:w-[70%] rounded-full bg-gray-400 mt-2 text-xs">
               &nbsp;
             </Typography>
-            <Typography className="h-3 w-[30%] rounded-full bg-gray-400 mt-[7.5%]">
+            <Typography className="h-3 lg:w-[30%] rounded-full bg-gray-400 mt-[7.5%]">
               &nbsp;
             </Typography>
           </div>
           <div className="flex flex-col-6 mt-4 gap-2">
-            <Typography className="h-[50px] w-[8%] rounded-lg bg-gray-400">
+            <Typography className="h-[50px] lg:w-[8%] w-full rounded-lg bg-gray-400">
               &nbsp;
             </Typography>
-            <Typography className="h-[50px] w-[8%] rounded-lg bg-gray-400">
+            <Typography className="h-[50px] lg:w-[8%] w-full rounded-lg bg-gray-400">
               &nbsp;
             </Typography>
-            <Typography className="h-[50px] w-[8%] rounded-lg bg-gray-400">
+            <Typography className="h-[50px] lg:w-[8%] w-full rounded-lg bg-gray-400">
               &nbsp;
             </Typography>
-            <Typography className="h-[50px] w-[8%] rounded-lg bg-gray-400">
+            <Typography className="h-[50px] lg:w-[8%] w-full rounded-lg bg-gray-400">
               &nbsp;
             </Typography>
-            <Typography className="h-[50px] w-[8%] rounded-lg bg-gray-400">
+            <Typography className="h-[50px] lg:w-[8%] w-full rounded-lg bg-gray-400">
               &nbsp;
             </Typography>
-            <Typography className="h-[50px] w-[8%] rounded-lg bg-gray-400">
+            <Typography className="h-[50px] lg:w-[8%] w-full rounded-lg bg-gray-400">
               &nbsp;
             </Typography>
           </div>
           <div className="flex flex-col mt-3">
-            <Typography className="h-12 w-[58.5%] rounded-lg bg-gray-400">
+            <Typography className="h-12 lg:w-[58.5%] rounded-lg bg-gray-400">
               &nbsp;
             </Typography>
           </div>
           <div className="flex flex-col-6 mt-3 gap-4">
-            <Typography className="h-12 w-[43%] rounded-lg bg-gray-400">
+            <Typography className="h-12 lg:w-[43%] w-[80%] rounded-lg bg-gray-400">
               &nbsp;
             </Typography>
-            <Typography className="h-12 w-[13%] rounded-lg bg-gray-400">
+            <Typography className="h-12 lg:w-[13%] w-[16%] rounded-lg bg-gray-400">
               &nbsp;
             </Typography>
           </div>
           <div className="mt-7">
-            <Typography className="h-7 w-[67%] rounded-full bg-gray-400">
+            <Typography className="h-7 lg:w-[67%] rounded-full bg-gray-400">
               &nbsp;
             </Typography>
-            <Typography className="h-[10px] w-[67%] rounded-full bg-gray-400 mt-3">
+            <Typography className="h-[10px] lg:w-[67%] rounded-full bg-gray-400 mt-3">
               &nbsp;
             </Typography>
-            <Typography className="h-[10px] w-[67%] rounded-full bg-gray-400 mt-3">
+            <Typography className="h-[10px] lg:w-[67%] rounded-full bg-gray-400 mt-3">
               &nbsp;
             </Typography>
-            <Typography className="h-[10px] w-[67%] rounded-full bg-gray-400 mt-3">
+            <Typography className="h-[10px] lg:w-[67%] rounded-full bg-gray-400 mt-3">
               &nbsp;
             </Typography>
-            <Typography className="h-[10px] w-[67%] rounded-full bg-gray-400 mt-3">
+            <Typography className="h-[10px] lg:w-[67%] rounded-full bg-gray-400 mt-3">
               &nbsp;
             </Typography>
-            <Typography className="h-[10px] w-[67%] rounded-full bg-gray-400 mt-3">
+            <Typography className="h-[10px] lg:w-[67%] rounded-full bg-gray-400 mt-3">
               &nbsp;
             </Typography>
-            <Typography className="h-[10px] w-[67%] rounded-full bg-gray-400 mt-3">
+            <Typography className="h-[10px] lg:w-[67%] rounded-full bg-gray-400 mt-3">
               &nbsp;
             </Typography>
-            <Typography className="h-[10px] w-[67%] rounded-full bg-gray-400 mt-3">
+            <Typography className="h-[10px] lg:w-[67%] rounded-full bg-gray-400 mt-3">
               &nbsp;
             </Typography>
-            <Typography className="h-[10px] w-[67%] rounded-full bg-gray-400 mt-3">
+            <Typography className="h-[10px] lg:w-[67%] rounded-full bg-gray-400 mt-3">
               &nbsp;
             </Typography>
-            <Typography className="h-[10px] w-[67%] rounded-full bg-gray-400 mt-3">
+            <Typography className="h-[10px] lg:w-[67%] rounded-full bg-gray-400 mt-3">
               &nbsp;
             </Typography>
-            <Typography className="h-[10px] w-[67%] rounded-full bg-gray-400 mt-2">
+            <Typography className="h-[10px] lg:w-[67%] rounded-full bg-gray-400 mt-2">
               &nbsp;
             </Typography>
-            <Typography className="h-[10px] w-[67%] rounded-full bg-gray-400 mt-2">
+            <Typography className="h-[10px] lg:w-[67%] rounded-full bg-gray-400 mt-2">
               &nbsp;
             </Typography>
-            <Typography className="h-[10px] w-[67%] rounded-full bg-gray-400 mt-2">
+            <Typography className="h-[10px] lg:w-[67%] rounded-full bg-gray-400 mt-2">
               &nbsp;
             </Typography>
-            <Typography className="h-[10px] w-[67%] rounded-full bg-gray-400 mt-2">
+            <Typography className="h-[10px] lg:w-[67%] rounded-full bg-gray-400 mt-2">
               &nbsp;
             </Typography>
           </div>

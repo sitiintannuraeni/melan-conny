@@ -14,6 +14,7 @@ const initialState = {
   idDetailDialogCardHome: 0,
   dialogAddress: false,
   dialogChangePassword: false,
+  dialogVariant: false,
 };
 
 export const menuSlice = createSlice({
@@ -94,6 +95,12 @@ export const menuSlice = createSlice({
     closeDialogChangePassword: (state) => {
       state.dialogChangePassword = false;
     },
+    openDialogVariant: (state) => {
+      state.dialogVariant = true;
+    },
+    closeDialogVariant: (state) => {
+      state.dialogVariant = false;
+    },
   },
 });
 
@@ -122,6 +129,8 @@ export const {
   closeDialogAddress,
   openDialogChangePasswod,
   closeDialogChangePassword,
+  openDialogVariant,
+  closeDialogVariant,
 } = menuSlice.actions;
 
 export default menuSlice.reducer;

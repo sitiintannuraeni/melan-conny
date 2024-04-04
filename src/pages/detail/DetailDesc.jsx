@@ -1,10 +1,23 @@
-import { HeartIcon, ShareIcon } from "@heroicons/react/24/outline";
+import {
+  HeartIcon,
+  ShareIcon,
+  ShoppingBagIcon,
+} from "@heroicons/react/24/outline";
 import { Button, Typography } from "@material-tailwind/react";
-import { openDialogShareLink, openDialogVariant } from "../../slice/menuSlice";
-import { useDispatch } from "react-redux";
+import { openDialogLogin, openDialogShareLink } from "../../slice/menuSlice";
+import { useDispatch, useSelector } from "react-redux";
 import NumberFormatCurrency from "../../utils";
 import { useState } from "react";
-import { addToCart, setPriceTotal, setQtyTotal } from "../../slice/cartSlice";
+import Image2 from "../../assets/product-2.png";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { setAuthLoginRedirect } from "../../slice/apiSlice";
+import { useAddToBagsMutation } from "../../services/apiBags";
+import {
+  useAddToBagItemsMutation,
+  useUpdateToBagItemsMutation,
+} from "../../services/apiBagsItems";
+import { useCallback } from "react";
 import { toast } from "react-toastify";
 
 function DetailDesc({
@@ -19,35 +32,104 @@ function DetailDesc({
   overview,
   desc,
 }) {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [sizeId, setSizeId] = useState(0);
   const [sizeName, setSizeName] = useState("");
   const [errorSize, setErrorSize] = useState(false);
   const [activeSize, setActiveSize] = useState(0);
+  const {
+    qtyTotal,
+    bagId,
+    products: cartProducts,
+  } = useSelector((state) => state.cart);
+  const location = useLocation();
+  const { user } = useSelector((state) => state.auth);
+  const [
+    addToBags,
+    { data: responseApiBag, isLoading, isError, isSuccess, error },
+  ] = useAddToBagsMutation();
+
+  const [
+    addToBagItems,
+    {
+      data: responseBagItems,
+      isLoading: isLoadingBagItems,
+      isError: isErrorBagItems,
+      isSuccess: isSuccessBagItems,
+      error: errorBagItems,
+    },
+  ] = useAddToBagItemsMutation();
+
+  const [
+    updateItem,
+    {
+      isLoading: isUpdating,
+      isError: isUpdateError,
+      isSuccess: isUpdateSuccess,
+    },
+  ] = useUpdateToBagItemsMutation();
+
+  const handleAddToBagItems = useCallback(() => {
+    if (isSuccess) {
+      console.log("hit endpont api bag items");
+      addToBagItems(responseApiBag);
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    handleAddToBagItems();
+  }, [handleAddToBagItems]);
 
   const handleAddToBag = (data) => {
-    if (data.size_id === 0) {
-      return setErrorSize(true);
+    if (!isLoggedIn) {
+      dispatch(setAuthLoginRedirect(location.pathname));
+      dispatch(openDialogLogin());
+    } else {
+      if (data.size_id === 0) {
+        return setErrorSize(true);
+      } else {
+        const dataBody = {
+          user_id: user.id,
+          total_price: data.price,
+          product_id: data.product_id,
+          size_id: data.size_id,
+          quantity: 1,
+        };
+
+        if (qtyTotal === 0) {
+          console.log("add to bag");
+          addToBags(dataBody);
+          toast.success("Success add to cart");
+        } else {
+          console.log("add to bag items");
+          toast.success("Success add to cart");
+          // hit endpoint add to bag items
+          // tambahkan validasi untuk size yang sudah ada dikeranjang
+          // contoh : ketika size m di tambahkan quantity akan di plus 1
+          const currentItem = exsisItem(data.product_id, data.size_id);
+          if (!currentItem.status) {
+            addToBagItems({
+              bag_id: bagId,
+              product_id: data.product_id,
+              size_id: data.size_id,
+              quantity: currentItem.quantity + 1,
+            });
+          } else {
+            const body = {
+              bag_id: bagId,
+              product_id: data.product_id,
+              size_id: data.size_id,
+              quantity: currentItem.quantity + 1,
+            };
+            updateItem({ id: currentItem.id, data: body });
+          }
+        }
+      }
     }
 
-    dispatch(
-      addToCart({
-        id: data.id,
-        product_name: data.product_name,
-        image: data.image,
-        price: data.price,
-        qty: 1,
-        size_id: data.size_id,
-        size_name: data.size_name,
-      })
-    );
-
-    dispatch(setPriceTotal());
-    dispatch(setQtyTotal());
-
-    //
-
-    toast.success("Success add to cart");
+    // toast.success("Success add to cart");
   };
 
   const handleSelectSize = (size) => {
@@ -57,9 +139,32 @@ function DetailDesc({
     setErrorSize(false);
   };
 
+  const exsisItem = useCallback(
+    (productId, sizeId) => {
+      const index = cartProducts.findIndex(
+        (item) => item.product_id === productId && item.size_id === sizeId
+      );
+      console.log("result index", index);
+      if (index !== -1) {
+        return {
+          id: cartProducts[index].id,
+          quantity: cartProducts[index].quantity,
+          status: true,
+        };
+      } else {
+        return {
+          id: 0,
+          quantity: 0,
+          status: false,
+        };
+      }
+    },
+    [cartProducts]
+  );
+
   return (
     <>
-      <div className="px-3 lg:mt-0 mt-5 md:px-20 lg:px-6">
+      <div className="px-3 lg:mt-0 mt-5 md:px-20 lg:px-6 select-none">
         <Typography className="font-medium tracking-wide lg:text-lg text-lg md:text-xl">
           {product_name}
         </Typography>
@@ -69,10 +174,10 @@ function DetailDesc({
         <Typography className="text-[#989898] mt-1 lg:text-xs text-[12px] md:text-sm">
           {total_sold} items sold
         </Typography>
-        <Typography className="text-[#000000] lg:mt-10 mt-4 text-md">
+        <Typography className="text-[#000000] lg:mt-5 mt-2 text-md">
           Select Size
         </Typography>
-        <div className="grid lg:grid-cols-10 grid-cols-7 lg:gap-[61px] gap-[54px] mt-3 w-full">
+        <div className="grid lg:grid-cols-10 grid-cols-7 lg:gap-[61px] gap-[54px] md:gap-[20px] mt-3 lg:w-full w-full md:w-[750 px]">
           {size.map((ukuran, index) => {
             return (
               <Button
@@ -82,36 +187,172 @@ function DetailDesc({
                 className="text-sm hover:text-white h-[40px] w-full flex justify-center items-center hover:bg-black/100"
               >
                 {ukuran.size_name}
+                {/* :{ukuran.pivot.stock} */}
               </Button>
             );
           })}
         </div>
-        {errorSize ? (
+        {errorSize && (
           <Typography variant="small" className="text-red-700">
             Size must be selected!
           </Typography>
-        ) : (
-          ""
         )}
-        <div className="grid lg:grid-cols-5 grid-cols-4 gap-4 w-full lg:max-w-md mt-4 font-bold">
-          <div className="col-span-4">
+        <div className="grid grid-cols-4 gap-2 mt-5">
+          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
+            <div className="w-[120px] h-[50px] mt-[5.4px]">
+              <img
+                src={Image2}
+                alt="image2"
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-[140px] mt-4">
+              <div className="flex items-center ">
+                <Typography className="text-xs text-black">Maroon</Typography>
+              </div>
+              <Typography className="text-[10.7px] text-black/60">
+                stok 12374
+              </Typography>
+            </div>
+          </div>
+          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
+            <div className="w-[120px] h-[50px] mt-[5.4px]">
+              <img
+                src={Image2}
+                alt="image2"
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-[140px] mt-4 ">
+              <div className="flex items-center ">
+                <Typography className="text-xs text-black">White</Typography>
+              </div>
+              <Typography className="text-[10.7px] text-black/60">
+                stok 123
+              </Typography>
+            </div>
+          </div>
+          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
+            <div className="w-[120px] h-[50px] mt-[5.4px]">
+              <img
+                src={Image2}
+                alt="image2"
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-[140px] mt-4 ">
+              <div className="flex items-center ">
+                <Typography className="text-xs text-black">Blue</Typography>
+              </div>
+              <Typography className="text-[10.7px] text-black/60">
+                stok 1234
+              </Typography>
+            </div>
+          </div>
+          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
+            <div className="w-[120px] h-[50px] mt-[5.4px]">
+              <img
+                src={Image2}
+                alt="image2"
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-[140px] mt-4 ">
+              <div className="flex items-center ">
+                <Typography className="text-xs text-black">Green</Typography>
+              </div>
+              <Typography className="text-[10.7px] text-black/60">
+                stok 1222
+              </Typography>
+            </div>
+          </div>
+          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
+            <div className="w-[120px] h-[50px] mt-[5.4px]">
+              <img
+                src={Image2}
+                alt="image2"
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-[140px] mt-4 ">
+              <div className="flex items-center ">
+                <Typography className="text-xs text-black">Black</Typography>
+              </div>
+              <Typography className="text-[10.7px] text-black/60">
+                stok 1123
+              </Typography>
+            </div>
+          </div>
+          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
+            <div className="w-[120px] h-[50px] mt-[5.4px]">
+              <img
+                src={Image2}
+                alt="image2"
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-[140px] mt-4 ">
+              <div className="flex items-center ">
+                <Typography className="text-xs text-black">Brown</Typography>
+              </div>
+              <Typography className="text-[10.7px] text-black/60">
+                stok 1555
+              </Typography>
+            </div>
+          </div>
+          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
+            <div className="w-[120px] h-[50px] mt-[5.4px]">
+              <img
+                src={Image2}
+                alt="image2"
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="w-[140px] mt-4 ">
+              <div className="flex items-center ">
+                <Typography className="text-xs text-black">Pink</Typography>
+              </div>
+              <Typography className="text-[10.7px] text-black/60">
+                stok 1666
+              </Typography>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col-2 mt-5 gap-2">
+          <div className="flex flex-col-2">
             <Button
-              className="w-full size-12 text-base"
-              onClick={() =>
+              className="w-[174px] size-12 text-xs flex flex-col-2 gap-2"
+              loading={isLoading}
+              disabled={isLoading}
+              onClick={() => {
                 handleAddToBag({
-                  id: id,
+                  product_id: id,
                   product_name: product_name,
                   image: image,
                   price: price,
                   qty: 1,
                   size_id: sizeId,
                   size_name: sizeName,
-                })
-              }
+                });
+              }}
             >
-              ADD TO BAG
+              <a href="">
+                <ShoppingBagIcon className="h-4 w-4 mt-[1px]" />
+              </a>
+              <Typography className="text-xs font-bold mt-[2px]">
+                Add to Bag
+              </Typography>
             </Button>
           </div>
+          <Button
+            className="w-[174px] size-12 text-xs bg-black/40 text-black"
+            variant="outlined"
+            onClick={() => navigate("/checkout")}
+          >
+            Checkout
+          </Button>
+        </div>
+        <div className="grid lg:grid-cols-5 grid-cols-4 gap-4 w-full lg:max-w-md mt-4 font-bold ">
           <div className="col-span-3">
             <Button
               variant="outlined"
@@ -131,17 +372,6 @@ function DetailDesc({
               onClick={() => dispatch(openDialogShareLink())}
             >
               <ShareIcon className="h-5 w-5 flex-auto" />
-            </Button>
-          </div>
-          <div className="col-span-3">
-            <Button
-              variant="outlined"
-              className="flex justify-center gap-2 w-full"
-              onClick={() => dispatch(openDialogVariant())}
-            >
-              <Typography className="font-bold text-xs lg:text-base flex items-center">
-                SEE ALL VARIAN
-              </Typography>
             </Button>
           </div>
         </div>

@@ -33,7 +33,7 @@ function DetailImages({ images }) {
               thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
           }}
           modules={[FreeMode, Navigation, Thumbs, Autoplay]}
-          className="swiper-big-product-img rounded-xl "
+          className="swiper-big-product-img rounded-xl select-none"
         >
           {images.map((image, index) => {
             return (
@@ -50,7 +50,7 @@ function DetailImages({ images }) {
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}
-          className="swiper-small-product-img rounded-lg mt-5"
+          className="swiper-small-product-img rounded-lg mt-5 select-none"
         >
           {images.map((image, swiper) => {
             return (

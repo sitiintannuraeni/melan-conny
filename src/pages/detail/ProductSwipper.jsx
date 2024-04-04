@@ -13,6 +13,7 @@ import { Pagination } from "swiper/modules";
 import CardProduct from "../../components/CardProduct";
 import { BrowserView, MobileView } from "react-device-detect";
 import { useGetProductBySalesQuery } from "../../services/apiProduct";
+import DetailCardHome from "../home/DetailCardHome";
 export default function ProductSwipper({ images }) {
   const {
     data: recommendation,
@@ -22,7 +23,6 @@ export default function ProductSwipper({ images }) {
     isError,
     error,
   } = useGetProductBySalesQuery();
-  console.log({ recommendation });
 
   if (isLoading || isFetching) {
     console.log("is Loading");
@@ -61,6 +61,7 @@ export default function ProductSwipper({ images }) {
                 );
               })}
             </Swiper>
+            <DetailCardHome />
           </BrowserView>
           <MobileView>
             <Swiper

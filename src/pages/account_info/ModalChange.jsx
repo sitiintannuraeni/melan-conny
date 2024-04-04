@@ -1,4 +1,5 @@
 import {
+  Alert,
   Button,
   Dialog,
   DialogBody,
@@ -11,8 +12,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeDialogChangePassword } from "../../slice/menuSlice";
 import { EyeIcon, EyeSlashIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import { useChangePasswordMutation } from "../../services/apiAuth";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 function ModalChange() {
+  const [inputCurrentPassword, setInputCurrentPassword] = useState("");
+  const [inputNewPassword, setInputNewPassword] = useState("");
+  const [inputConfirmPassword, setInputConfirmPassword] = useState("");
+  const [isErrorNewPassword, setIsErrorNewPassword] = useState(false);
+  const [formErrors, setFormErrors] = useState("");
   const [passwordType, setPasswordType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
   const [confirmPassword, setConfirmPassword] = useState("password");
@@ -20,6 +29,25 @@ function ModalChange() {
     (state) => state.menu.dialogChangePassword
   );
   const dispatch = useDispatch();
+  const [changePassword, { isLoading, isError, isSuccess, error }] =
+    useChangePasswordMutation();
+
+  if (isError) {
+    console.log("is Error", error);
+  }
+
+  useEffect(() => {
+    if (isSuccess) {
+      setInputCurrentPassword("");
+      setInputNewPassword("");
+      setInputConfirmPassword("");
+      closeDialogChangePassword();
+    }
+  }, [isSuccess]);
+
+  if (isError) {
+    console.log("is Error", error);
+  }
 
   function handlePasswordType(e) {
     e.preventDefault();
@@ -46,13 +74,21 @@ function ModalChange() {
       setConfirmPassword("password");
     }
   }
+
+  function handleClickNewPassword() {
+    changePassword({
+      current_password: inputCurrentPassword,
+      new_password: inputNewPassword,
+      confirm_password: inputConfirmPassword,
+    });
+  }
   return (
     <>
       <Dialog
         open={dialogChangePassword}
         size="xs"
         handler={() => dispatch(closeDialogChangePassword())}
-        className=""
+        className=" select-none"
       >
         <DialogHeader className="flex justify-between">
           <Typography className="cursor-default text-lg font-semibold">
@@ -61,7 +97,10 @@ function ModalChange() {
           <a
             href="#"
             className="flex items-center hover:text-blue-500 text-black transition-colors"
-            onClick={() => dispatch(closeDialogChangePassword())}
+            onClick={(e) => {
+              e.preventDefault();
+              dispatch(closeDialogChangePassword());
+            }}
           >
             <XMarkIcon className="h-6 w-6" />
           </a>
@@ -74,6 +113,8 @@ function ModalChange() {
               placeholder="Current Password"
               className="text-[#] text-[17px]"
               type={passwordType}
+              value={inputCurrentPassword}
+              onChange={(e) => setInputCurrentPassword(e.target.value)}
               icon={
                 passwordType === "password" ? (
                   <EyeSlashIcon
@@ -96,6 +137,8 @@ function ModalChange() {
               placeholder="New Password"
               className="text-[#] text-[17px]"
               type={confirmPasswordType}
+              value={inputNewPassword}
+              onChange={(e) => setInputNewPassword(e.target.value)}
               icon={
                 confirmPasswordType === "password" ? (
                   <EyeSlashIcon
@@ -124,6 +167,8 @@ function ModalChange() {
               placeholder="Confirm new Password"
               className="text-[#] text-[17px]"
               type={confirmPassword}
+              value={inputConfirmPassword}
+              onChange={(e) => setInputConfirmPassword(e.target.value)}
               icon={
                 confirmPassword === "password" ? (
                   <EyeSlashIcon
@@ -141,7 +186,13 @@ function ModalChange() {
           </div>
         </DialogBody>
         <DialogFooter className="flex justify-center">
-          <Button className="w-80 bg-[#B0B0B0] text-sm">
+          <Button
+            className="w-80 bg-[#B0B0B0] text-sm"
+            // disabled
+            disabled={isLoading}
+            loading={isLoading}
+            onClick={() => handleClickNewPassword()}
+          >
             CONFIRM NEW PASSWORD
           </Button>
         </DialogFooter>

@@ -33,7 +33,7 @@ function DetailImageHome({ images }) {
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
         modules={[FreeMode, Navigation, Thumbs, Autoplay]}
-        className="swiper-big-product-img-home rounded-xl"
+        className="swiper-big-product-img-home rounded-xl select-none"
       >
         {images.map((image, index) => {
           return (
@@ -50,7 +50,7 @@ function DetailImageHome({ images }) {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="swiper-small-product-img-home rounded-lg mt-3 cursor-pointer"
+        className="swiper-small-product-img-home rounded-lg mt-3 cursor-pointer select-none"
       >
         {images.map((image, swiper) => {
           return (

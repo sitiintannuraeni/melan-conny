@@ -37,6 +37,7 @@ function DetailCardHomeView({ productId }) {
           <div>
             <></>
             <ModalDescHome
+              id={product.id}
               product_name={product.product_name}
               price={product.price}
               total_sold={product.total_sold}

@@ -15,7 +15,12 @@ function ShoppingBag() {
       <div className="lg:pl-[90px] pl-none mt-4">
         <div className="flex justify-between">
           <Typography className="text-lg font-normal">Shopping Bag</Typography>
-          <Typography className="text-sm underline">Edit</Typography>
+          <Typography
+            className="text-sm underline cursor-pointer"
+            onClick={() => navigate("/view-bag")}
+          >
+            Edit
+          </Typography>
         </div>
         <Typography className="text-xs mt-2">Total 1 item(s)</Typography>
         <div className="border border-b-[1px] mt-1 border-black/20" />

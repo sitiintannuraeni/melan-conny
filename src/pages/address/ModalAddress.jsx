@@ -14,17 +14,73 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { closeDialogAddress } from "../../slice/menuSlice";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useAddToAddressMutation } from "../../services/apiShippingAddress";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 function ModalAddress() {
+  const [inputRecipientsName, setInputRecipientsName] = useState("");
+  const [inputAddress, setInputAddress] = useState("");
+  const [inputProvince, setInputProvince] = useState("");
+  const [inputCity, setInputCity] = useState("");
+  const [inputDistrict, setInputDistrict] = useState("");
+  const [inputSubDistrict, setInputSubDistrict] = useState("");
+  const [inputPostalCode, setInputPostalCode] = useState("");
+  const [inputNumberPhone, setInputNumberPhone] = useState("");
+  const { user } = useSelector((state) => state.auth);
+
   const dialogAddress = useSelector((state) => state.menu.dialogAddress);
   const dispatch = useDispatch();
+
+  const [addToAddress, { isLoading, isError, isSuccess, error }] =
+    useAddToAddressMutation();
+
+  useEffect(() => {
+    const body = document.querySelector("body");
+    if (body && dialogAddress) {
+      body.classList.add("overflow-hidden");
+    } else {
+      body.classList.remove("overflow-hidden");
+    }
+    if (isSuccess) {
+      setInputRecipientsName("");
+      setInputAddress("");
+      setInputProvince("");
+      setInputCity("");
+      setInputDistrict("");
+      setInputSubDistrict("");
+      setInputPostalCode("");
+      setInputNumberPhone("");
+    }
+  }, [dialogAddress, isSuccess]);
+
+  if (isError) {
+    console.log("is Error Address", error);
+  }
+
+  function handleClickSave() {
+    addToAddress({
+      user_id: user.id,
+      recipients_name: inputRecipientsName,
+      address: inputAddress,
+      province: inputProvince,
+      city: inputCity,
+      district: inputDistrict,
+      sub_district: inputSubDistrict,
+      postal_code: inputPostalCode,
+      number_phone: inputNumberPhone,
+    });
+    dispatch(closeDialogAddress());
+  }
+
   return (
     <>
       <Dialog
         open={dialogAddress}
         size="xs"
         handler={() => dispatch(closeDialogAddress())}
-        className="lg:h-[85%] h-[65%] overflow-auto"
+        className="lg:h-[85%] h-[65%] overflow-auto select-none"
       >
         <DialogHeader className="text-lg flex justify-between sticky top-0 p-4 bg-white z-[1]">
           <div>ADD NEW ADDRESS</div>
@@ -45,6 +101,8 @@ function ModalAddress() {
               <div className="text-black w-full mt-8 ">
                 <Input
                   variant="static"
+                  // value={inputAddress}
+                  // onChange={(e) => setInputAddress(e.target.value)}
                   label="Address Name*"
                   placeholder="Address Name"
                   className="text-[16px]"
@@ -53,6 +111,8 @@ function ModalAddress() {
               <div className="text-black w-full mt-8">
                 <Input
                   variant="static"
+                  value={inputRecipientsName}
+                  onChange={(e) => setInputRecipientsName(e.target.value)}
                   label="Recipient’s Name*"
                   placeholder="Enter recipient’s name "
                   className="text-[16px]"
@@ -61,6 +121,8 @@ function ModalAddress() {
               <div className="text-black w-full mt-8">
                 <Textarea
                   variant="static"
+                  value={inputAddress}
+                  onChange={(e) => setInputAddress(e.target.value)}
                   label="Address*"
                   placeholder="Enter your address"
                   className="text-[16px]"
@@ -69,44 +131,61 @@ function ModalAddress() {
             </div>
             <div className="grid grid-cols-2 gap-2 w-full mt-8">
               <div className="w-full">
-                <Select className="select2" variant="static" label="Province*">
-                  <Option>Jawa Barat</Option>
-                  <Option>Jawa Timur</Option>
-                  <Option>Jawa Tengah</Option>
-                  <Option>Kalimantan</Option>
-                  <Option>Sumatra Utara</Option>
+                <Select
+                  variant="standard"
+                  label="Province*"
+                  value={inputProvince}
+                  onChange={(value) => setInputProvince(value)}
+                >
+                  <Option value={"JAWA BARAT"}>JAWA BARAT</Option>
+                  <Option value={"JAWA TENGAH"}>JAWA TENGAH</Option>
+                  <Option value={"JAWA TIMUR"}>JAWA TIMUR</Option>
+                  <Option value={"DKI JAKARTA"}>DKI DJAKARTA</Option>
+                  <Option value={"GORONTALO"}>GORONTALO</Option>
                 </Select>
               </div>
               <div className="w-full">
-                <Select variant="static" label="City*" className="select2">
-                  <Option>Bandung</Option>
-                  <Option>Bekasi</Option>
-                  <Option>Bogor</Option>
-                  <Option>Cirebon</Option>
-                  <Option>Majalengka</Option>
+                <Select
+                  variant="standard"
+                  label="City*"
+                  value={inputCity}
+                  onChange={(value) => setInputCity(value)}
+                >
+                  <Option value={"KAB BOGOR"}>KAB BANDUNG</Option>
+                  <Option value={"KAB BEKASI"}>KAB BEKASI</Option>
+                  <Option value={"KAB CIAMIS"}>KAB CIAMIS</Option>
+                  <Option value={"KAB CIANJUR"}>KAB CIANJUR</Option>
+                  <Option value={"KAB KARAWANG"}>KAB KARAWANG</Option>
                 </Select>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-2 w-full py-7">
               <div className="w-full">
-                <Select className="select2" variant="static" label="District*">
-                  <Option>Bandung</Option>
-                  <Option>Bogor</Option>
-                  <Option>Cirebon</Option>
-                  <Option>Garut</Option>
+                <Select
+                  variant="standard"
+                  label="District*"
+                  value={inputDistrict}
+                  onChange={(value) => setInputDistrict(value)}
+                >
+                  <Option value={"CIGOMBONG"}>CIGOMBONG</Option>
+                  <Option value={"CARINGIN"}>CARINGIN</Option>
+                  <Option value={"CICURUG"}>CICURUG</Option>
+                  <Option value={"CISARUA"}>CISARUA</Option>
+                  <Option value={"CIAWI"}>CIAWI</Option>
                 </Select>
               </div>
               <div className="w-full">
                 <Select
-                  variant="static"
+                  variant="standard"
                   label="Sub District*"
-                  className="select2"
+                  value={inputSubDistrict}
+                  onChange={(value) => setInputSubDistrict(value)}
                 >
-                  <Option>Bogor Selatan</Option>
-                  <Option>Bogor Selatan</Option>
-                  <Option>Bogor Selatan</Option>
-                  <Option>Bogor Selatan</Option>
-                  <Option>Bogor Selatan</Option>
+                  <Option value={"Kopo"}>Kopo</Option>
+                  <Option value={"Leuwimalang"}>Leuwimalang</Option>
+                  <Option value={"Cilember"}>Cilember</Option>
+                  <Option value={"Citeko"}>Citeko</Option>
+                  <Option value={"Cibeurem"}>Cibeurem</Option>
                 </Select>
               </div>
             </div>
@@ -114,8 +193,9 @@ function ModalAddress() {
               <Input
                 variant="static"
                 label="Postal code*"
-                placeholder="Postal code"
-                className="text-[16px]"
+                value={inputPostalCode}
+                onChange={(e) => setInputPostalCode(e.target.value)}
+                className="text-lg"
               />
             </div>
             <div className="text-black w-full py-7">
@@ -123,7 +203,9 @@ function ModalAddress() {
                 variant="static"
                 label="Phone*"
                 placeholder="+62 Your phone number"
-                className="text-[16px]"
+                value={inputNumberPhone}
+                onChange={(e) => setInputNumberPhone(e.target.value)}
+                className="text-lg"
               />
             </div>
           </div>
@@ -143,8 +225,14 @@ function ModalAddress() {
               <Button
                 size="sm"
                 className="bg-[#989898] rounded-md w-[250px] flex items-center justify-center"
+                disabled={isLoading}
+                loading={isLoading}
+                onClick={() => {
+                  handleClickSave();
+                  setIsShippingAddres(true);
+                }}
               >
-                small
+                SAVE
               </Button>
               <div className="mt-3 pl-[100px]">
                 <Typography

@@ -9,20 +9,49 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
-import { openDialogDetailCardHome } from "../slice/menuSlice";
-import { useDispatch } from "react-redux";
+import { openDialogDetailCardHome, openDialogLogin } from "../slice/menuSlice";
+import { useDispatch, useSelector } from "react-redux";
 import NumberFormatCurrency from "../utils";
+import { useState } from "react";
+import { useAddToWishlistMutation } from "../services/apiWishList";
+import { useCallback } from "react";
+import { useEffect } from "react";
+import { setAuthLoginRedirect } from "../slice/apiSlice";
 
 function CardProduct({ id, img, name, price, items }) {
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isClickLove, setIsClickLove] = useState(false);
+  const { user } = useSelector((state) => state.auth);
 
   const detailProduct = (id) => {
     navigate(`/detail/${id}`);
   };
+
+  const [
+    addToWishlist,
+    { data: responseApiWishlist, isLoading, isError, isSuccess, error },
+  ] = useAddToWishlistMutation();
+
+  const handleAddToBag = (data) => {
+    if (!isLoggedIn) {
+      dispatch(setAuthLoginRedirect(location.pathname));
+      dispatch(openDialogLogin());
+    } else {
+      console.log("add to wishlist");
+      const dataBody = {
+        product_id: data.product_id,
+        user_id: user.id,
+        total_price: data.total_price,
+      };
+      addToWishlist(dataBody);
+    }
+  };
+
   return (
     <Card
-      className="flex flex-col mt-4 bg-transparent bg-white border border-gray-300 w-full relative h-[290px] lg:h-[450px] md:h-[400px]"
+      className="flex flex-col mt-4 bg-transparent bg-white border border-gray-300 w-full relative h-[290px] lg:h-[450px] md:h-[400px] select-none"
       shadow={false}
     >
       <CardHeader
@@ -37,15 +66,44 @@ function CardProduct({ id, img, name, price, items }) {
           className="rounded-t-xl cursor-pointer relative z-20 w-full h-[170px] lg:h-[300px] md:h-[320px] object-cover"
           onClick={() => detailProduct(id)}
         />
-        <div className="absolute z-20 top-3 right-[10px] bg-transparent">
-          <IconButton
-            variant="text"
-            size="sm"
-            className="rounded-full bg-white"
-          >
-            <HeartIcon className="h-4 w-4" />
-          </IconButton>
-        </div>
+        {isClickLove ? (
+          <div className="absolute z-20 top-3 right-[10px] ">
+            <IconButton
+              variant="text"
+              size="sm"
+              className="rounded-full bg-white"
+              onClick={() => setIsClickLove(false)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-4 h-4 text-[#D90429]"
+              >
+                <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+              </svg>
+            </IconButton>
+          </div>
+        ) : (
+          <div className="absolute z-20 top-3 right-[10px]">
+            <IconButton
+              variant="text"
+              size="sm"
+              className="rounded-full bg-white"
+              onClick={() => {
+                setIsClickLove(true);
+                handleAddToBag({
+                  product_id: id,
+                  user_id: user.id,
+                  total_price: price,
+                });
+              }}
+            >
+              <HeartIcon className="h-4 w-4" />
+            </IconButton>
+          </div>
+        )}
+
         <div className="absolute z-20 bottom-2 right-[10px]">
           <Button
             variant="outlined"
@@ -97,7 +155,10 @@ function CardProduct({ id, img, name, price, items }) {
               {items}
             </Typography>
           </div>
-          <Typography className="lg:hidden font-normal" variant="small">
+          <Typography
+            className="lg:hidden font-normal text-start"
+            variant="small"
+          >
             <NumberFormatCurrency value={price} />
           </Typography>
         </div>

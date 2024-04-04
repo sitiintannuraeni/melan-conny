@@ -1,15 +1,12 @@
 import {
   Button,
-  Card,
-  CardBody,
   Checkbox,
   Drawer,
   IconButton,
   Input,
-  Tabs,
+  Spinner,
   Typography,
 } from "@material-tailwind/react";
-import LogoDrawer from "../assets/logoDrawer.png";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { closeDrawerShoppingCart } from "../slice/menuSlice";
@@ -18,50 +15,22 @@ import ListCardProduct from "./ListCartProduct";
 import NumberFormatCurrency from "../utils";
 import { useState } from "react";
 import Logo from "../assets/logo1.png";
-
-function EmptyState() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const handleCloseDrawer = () => {
-    dispatch(closeDrawerShoppingCart());
-    navigate("/");
-  };
-  return (
-    <>
-      <div className="mt-[210px] lg:mt-[175px]">
-        <div className="flex justify-center items-center">
-          <IconButton variant="text">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-10 h-10"
-            >
-              <path
-                fillRule="evenodd"
-                d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </IconButton>
-        </div>
-        <Typography className="flex justify-center items-center text-lg">
-          Your bag is empty.
-        </Typography>
-        <Typography className="flex justify-center items-center text-lg">
-          Let's add one, shall we
-        </Typography>
-        <div className="flex justify-center items-center lg:mt-[220px] mt-[225px]">
-          <Button className="w-full" size="lg" onClick={handleCloseDrawer}>
-            SHOP NOW
-          </Button>
-        </div>
-      </div>
-    </>
-  );
-}
+import DrawerSCLayout from "./DrawerSCLayout";
+import EmptyState from "./DrawerShopEmpty";
 
 function TruckingOrder() {
+  const [truckingOrders, setTruckingOrders] = useState([{ id: 1 }]);
+
+  const handleAddInputTruckingOrders = () => {
+    setTruckingOrders((current) => [
+      ...current,
+      { id: current[current.length - 1].id + 1 },
+    ]);
+  };
+
+  const handleRemoveInputTruckingOrders = (id) => {
+    setTruckingOrders((current) => current.filter((item) => item.id !== id));
+  };
   return (
     <>
       <div className="mt-16">
@@ -80,13 +49,37 @@ function TruckingOrder() {
           <Typography className="flex justify-center items-center mt-6">
             Order Number Tracking
           </Typography>
-          <div className="flex justify-center flex-col-2 items-center mt-4">
-            <div className="w-54">
-              <Input variant="static" placeholder="Insert order number" />
-            </div>
-            <IconButton variant="outlined" className="rounded-md h-7 w-7 mt-2">
-              <PlusIcon className="h-4 w-4" />
-            </IconButton>
+          <div className="flex flex-col gap-2">
+            {truckingOrders.map((truckingOrder, index) => {
+              const isLastItem =
+                index + 1 === truckingOrders.length ||
+                truckingOrders.length === 1;
+              return (
+                <div
+                  className="flex justify-center flex-col-2 items-center"
+                  key={index}
+                >
+                  <div className="lg:w-80 w-64">
+                    <Input variant="static" placeholder="Insert order number" />
+                  </div>
+                  <IconButton
+                    variant="outlined"
+                    className="rounded-md lg:h-8 lg:w-8 h-7 w-7 mt-2"
+                    onClick={() =>
+                      isLastItem
+                        ? handleAddInputTruckingOrders()
+                        : handleRemoveInputTruckingOrders(truckingOrder.id)
+                    }
+                  >
+                    {isLastItem ? (
+                      <PlusIcon className="h-4 w-4" />
+                    ) : (
+                      <XMarkIcon className="h-4 w-4" />
+                    )}
+                  </IconButton>
+                </div>
+              );
+            })}
           </div>
           <div className="flex justify-center items-center mt-6">
             <Button className="bg-[#D9D9D9] w-[130px]">SUBMIT</Button>
@@ -101,6 +94,15 @@ function AllItems() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { priceTotal, qtyTotal } = useSelector((state) => state.cart);
+
+  if (qtyTotal <= 0) {
+    return (
+      <>
+        <EmptyState />
+      </>
+    );
+  }
+
   return (
     <>
       <div className="w-full border-b-[1px] border-black mt-1">
@@ -164,65 +166,18 @@ function AllItems() {
 }
 
 function DrawerShoppingCart() {
-  const { products } = useSelector((state) => state.cart);
   const [activeBtn, setActiveBtn] = useState("shopping");
-  const drawerShoppingCart = useSelector(
-    (state) => state.menu.drawerShoppingCart
-  );
-  const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   return (
     <>
-      <Drawer
-        placement="right"
-        open={drawerShoppingCart}
-        onClose={() => dispatch(closeDrawerShoppingCart())}
-        className="p-3"
-      >
-        <div className="flex items-center gap-2 mt-1">
-          <div className="mb-6 flex items-center gap-2">
-            <a
-              href="#"
-              className="flex items-center hover:text-blue-500 text-black transition-colors"
-              onClick={(e) => {
-                e.preventDefault();
-                dispatch(closeDrawerShoppingCart());
-              }}
-            >
-              <XMarkIcon className="w-6 h-6" />
-            </a>
-            <div className="hidden items-center gap-3 lg:flex md:flex">
-              <img src={LogoDrawer} alt="logoDrawer" width="50" />
-              <Typography variant="h5" color="blue-gray">
-                SHOPPING BAG
-              </Typography>
-            </div>
-            <div className="w-full flex-shrink-0 flex items-center lg:hidden gap-3 md:hidden mt-2">
-              <Button
-                variant={activeBtn === "shopping" ? "filled" : "outlined"}
-                size="sm"
-                className="w-full rounded-full"
-                onClick={() => setActiveBtn("shopping")}
-              >
-                SHOPPING BAG
-              </Button>
-              <Button
-                variant={activeBtn === "tracking" ? "filled" : "outlined"}
-                size="sm"
-                className="w-full rounded-full"
-                onClick={() => setActiveBtn("tracking")}
-              >
-                TRACKING ORDER
-              </Button>
-            </div>
-          </div>
-        </div>
-        {products.length <= 0 ? (
-          <EmptyState />
-        ) : (
+      <DrawerSCLayout>
+        {isLoggedIn ? (
           <>{activeBtn === "shopping" ? <AllItems /> : <TruckingOrder />}</>
+        ) : (
+          <EmptyState />
         )}
-      </Drawer>
+      </DrawerSCLayout>
     </>
   );
 }

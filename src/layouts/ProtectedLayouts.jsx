@@ -10,7 +10,7 @@ import SidebarResponsive from "../pages/responsive/SiderbarResponsive";
 function BrowserLayout() {
   return (
     <>
-      <div className="mt-7 lg:px-24 lg:pb-44 pb-16 cursor-default">
+      <div className="mt-7 lg:px-24 lg:pb-44 pb-16 cursor-default select-none">
         <div className="pb-10">
           <div className="flex justify-center items-center pb-3">
             <img

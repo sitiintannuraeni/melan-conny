@@ -8,6 +8,9 @@ import {
   Typography,
   Button,
   Input,
+  Select,
+  Option,
+  Alert,
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,13 +25,15 @@ function Register() {
   const [inputPassword, setInputPassword] = useState("");
   const [inputConfirmPassword, setInputConfirmPassword] = useState("");
   const [inputBirthDate, setInputBirthDate] = useState("");
+  const [inputGender, setInputGender] = useState("");
   const { dialogRegister } = useSelector((state) => state.menu);
+  const [errorSize, setErrorSize] = useState(false);
   const dispatch = useDispatch();
   const [passwordType, setPasswordType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
   const [register, { isLoading, isError, isSuccess, error }] =
     useAuthRegisterMutation();
-  console.log({ register });
+  // console.log({ register });
 
   if (isError) {
     console.log("is Error Register", error);
@@ -48,6 +53,7 @@ function Register() {
       setInputPassword("");
       setInputConfirmPassword("");
       setInputBirthDate("");
+      setInputGender("");
     }
   }, [dialogRegister, isSuccess]);
 
@@ -59,6 +65,7 @@ function Register() {
       password: inputPassword,
       confirm_password: inputConfirmPassword,
       birthdate: inputBirthDate,
+      gender: inputGender,
     });
   }
 
@@ -121,6 +128,11 @@ function Register() {
                     </div>
                   </div>
                 </div>
+                {errorSize && (
+                  <Typography variant="small" className="text-red-700">
+                    Size must be selected!
+                  </Typography>
+                )}
                 <div>
                   <div className="mb-2 mt-3">
                     <div className="flex items-center justify-center">
@@ -231,6 +243,19 @@ function Register() {
                         type="date"
                         onChange={(e) => setInputBirthDate(e.target.value)}
                       />
+                    </div>
+                  </div>
+                  <div className="mb-2 mt-3">
+                    <div className="flex items-center justify-center">
+                      <Select
+                        variant="standard"
+                        label="Gender"
+                        value={inputGender}
+                        onChange={(value) => setInputGender(value)}
+                      >
+                        <Option value={"Male"}>Male</Option>
+                        <Option value={"Female"}>Female</Option>
+                      </Select>
                     </div>
                   </div>
                 </div>

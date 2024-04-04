@@ -65,7 +65,7 @@ function Login() {
         size="xs"
         open={dialogLogin}
         handler={() => dispatch(closeDialogLogin())}
-        className="bg-transparent shadow-none"
+        className="bg-transparent shadow-none select-none"
       >
         <Card className="mx-auto w-full max-w-sm">
           <CardBody className="flex flex-col gap-4">

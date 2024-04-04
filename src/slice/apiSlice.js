@@ -5,6 +5,7 @@ const initialState = {
   isLoggedIn: false,
   data: {},
   user: {},
+  redirectTo: "",
 };
 
 const authSlice = createSlice({
@@ -19,6 +20,9 @@ const authSlice = createSlice({
     setAuthUser: (state, action) => {
       state.user = action.payload;
     },
+    setAuthLoginRedirect: (state, action) => {
+      state.redirectTo = action.payload;
+    },
     logout: (state) => {
       state.token = "";
       state.isLoggedIn = false;
@@ -28,6 +32,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setAuthToken, logout, setAuthUser } = authSlice.actions;
+export const { setAuthToken, setAuthLoginRedirect, logout, setAuthUser } =
+  authSlice.actions;
 
 export default authSlice.reducer;

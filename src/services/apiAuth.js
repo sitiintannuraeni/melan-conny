@@ -1,6 +1,10 @@
 import { setAuthToken, setAuthUser } from "../slice/apiSlice.js";
 import { toast } from "react-toastify";
-import { closeDialogLogin, closeDialogRegister } from "../slice/menuSlice.js";
+import {
+  closeDialogChangePassword,
+  closeDialogLogin,
+  closeDialogRegister,
+} from "../slice/menuSlice.js";
 import { apiCore, baseUrlApi } from "./apiCore.js";
 
 export const apiAuth = apiCore.injectEndpoints({
@@ -87,6 +91,9 @@ export const apiAuth = apiCore.injectEndpoints({
                 email: user.email,
                 name: user.name,
                 birthdate: user.birthdate,
+                gender: user.gender,
+                profession: user.profession,
+                instagram: user.instagram,
               })
             );
           }
@@ -116,16 +123,57 @@ export const apiAuth = apiCore.injectEndpoints({
         }
       },
     }),
+
     getUser: builder.query({
       query: () => "/api/user",
     }),
 
     updateUser: builder.mutation({
-      query: ({ id, ...body }) => ({
+      query: ({ id, body }) => ({
         url: `api/users/${id}`,
         method: "PUT",
         body: body,
       }),
+      onQueryStarted: async (credentials, { dispatch, queryFulfilled }) => {
+        try {
+          const { data: response } = await queryFulfilled;
+          const { success, message, data: user } = response;
+
+          if (success) {
+            dispatch(
+              setAuthUser({
+                id: user.id,
+                phone: user.phone,
+                email: user.email,
+                name: user.name,
+                birthdate: user.birthdate,
+                gender: user.gender,
+                profession: user.profession,
+                instagram: user.instagram,
+              })
+            );
+            toast.success(message, {
+              toastId: "loginSuccess",
+            });
+          }
+        } catch (error) {
+          console.log("update gagal", error);
+        }
+      },
+    }),
+
+    changePassword: builder.mutation({
+      query: (body) => ({
+        url: `/api/changepassword`,
+        method: "POST",
+        body: body,
+      }),
+      onQueryStarted: async (credentials, { dispatch, queryFulfilled }) => {
+        dispatch(closeDialogChangePassword());
+        // toast.success("success confirm new password", {
+        //   toastId: "Success",
+        // });
+      },
     }),
   }),
   overrideExisting: false,
@@ -136,4 +184,5 @@ export const {
   useAuthMutation,
   useGetUserQuery,
   useUpdateUserMutation,
+  useChangePasswordMutation,
 } = apiAuth;

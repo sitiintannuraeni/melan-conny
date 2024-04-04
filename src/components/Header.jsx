@@ -15,6 +15,7 @@ import {
   ArrowRightStartOnRectangleIcon,
   Bars3Icon,
   ChevronLeftIcon,
+  ShoppingCartIcon,
   UserCircleIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
@@ -44,7 +45,7 @@ function HeaderLogo() {
 
   return (
     <>
-      <div className="flex justify-start items-center h-full space-x-8 px-3">
+      <div className="flex justify-start items-center h-full space-x-8 px-3 select-none">
         {pathName === "" ? (
           <>
             <IconButton
@@ -85,7 +86,7 @@ function HeaderMenu() {
 
   return (
     <>
-      <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 ">
+      <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 select-none">
         <Typography
           as="li"
           variant="small"
@@ -139,8 +140,9 @@ function HeaderMenu() {
 function HeaderProfileMenu() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isLoggedIn, user: data } = useSelector((state) => state.auth);
   const { qtyTotal } = useSelector((state) => state.cart);
-  const { isLoggedIn, data } = useSelector((state) => state.auth);
+
   const handleDialogLogout = () => {
     dispatch(logout());
     toast.success("Logout Success!");
@@ -148,7 +150,7 @@ function HeaderProfileMenu() {
 
   return (
     <>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 select-none">
         <IconButton
           variant="text"
           className="h-6 w-6 lg:hidden rounded-full hover:bg-transparent active:bg-transparent"
@@ -168,8 +170,8 @@ function HeaderProfileMenu() {
           <HeartIcon className="h-6 w-6" />
         </IconButton>
         <Badge
-          content={qtyTotal}
-          className={`bg-black text-white p-0 min-w-[20px] min-h-[20px] ${qtyTotal <= 0 ? "hidden" : ""}`}
+          content={isLoggedIn ? qtyTotal : 0}
+          className={`bg-black text-white p-0 min-w-[20px] min-h-[20px] ${qtyTotal <= 0 || !isLoggedIn ? "hidden" : ""}`}
         >
           <Button
             size="sm"
@@ -214,7 +216,7 @@ function HeaderProfileMenu() {
                 >
                   <UserCircleIcon className="h-5 w-5" />
                   <Typography variant="small" className="font-medium">
-                    Profile
+                    {data.name.split(" ")[0]}
                   </Typography>
                 </MenuItem>
                 <hr className="my-2 border-blue-gray-50" />
@@ -252,7 +254,7 @@ function Header() {
   return (
     <>
       <Navbar
-        className="max-w-full px-3 py-1 fixed top-0 z-[999] h-auto lg:h-[62px] rounded-none"
+        className="max-w-full px-3 py-1 fixed top-0 z-[999] h-auto lg:h-[62px] rounded-none select-none"
         blurred={false}
         shadow={false}
       >

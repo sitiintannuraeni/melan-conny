@@ -104,10 +104,10 @@ function SearchV2() {
                   size="xl"
                 />
               </ListItemPrefix>
-              <div className="grid grid-rows-3 gap-2">
+              <div className="grid grid-rows-3 lg:gap-0 gap-2">
                 <Typography
                   color="blue-gray"
-                  className="lg:text-sm text-[13px] font-bold"
+                  className="lg:text-sm text-[13px] font-bold "
                 >
                   {result.product_name}
                 </Typography>

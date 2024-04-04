@@ -1,50 +1,67 @@
-import { Typography } from "@material-tailwind/react";
-import Image1 from "../../assets/wishlist1.png";
-import Image2 from "../../assets/wishlist2.png";
-import Image3 from "../../assets/wishlist3.png";
-import Image4 from "../../assets/wishlist4.png";
+import { Spinner, Typography } from "@material-tailwind/react";
 import CardWishList from "./CardWishList";
 import { useGetWishListQuery } from "../../services/apiWishList";
+import { baseUrlApi } from "../../services/apiCore";
+import { useState } from "react";
+
+function WishListIsEmpty() {
+  return (
+    <>
+      <div>
+        <Typography>Want to save the items you love</Typography>
+        <Typography>
+          Just Click on the heart icon found on the product image and will show
+          up here
+        </Typography>
+      </div>
+    </>
+  );
+}
 
 function WishList() {
   const {
-    data: whisLists,
+    data: wishlists,
     isLoading,
     isFetching,
     isSuccess,
     isError,
     error,
   } = useGetWishListQuery();
-  console.log({ whisLists });
+
+  if (isLoading) {
+    return (
+      <>
+        <div className="flex justify-center pr-36 mt-36">
+          <Spinner className="h-8 w-8" />
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
-      <div className="fond-semibold">
-        <Typography className="font-semibold pl-5 lg:pl-0">
-          My WishList
-        </Typography>
-      </div>
-      <div className="lg:flex lg:flex-col-4 grid grid-cols-2 lg:px-14 px-8 lg:gap-10 gap-2 pl-8 lg:pl-0">
-        <CardWishList
-          img={Image1}
-          name={"Elgant Basic Shirt Black"}
-          price={"Rp 185.000"}
-        />
-        <CardWishList
-          img={Image2}
-          name={"Elgant Basic Shirt White"}
-          price={"Rp 185.000"}
-        />
-        <CardWishList
-          img={Image3}
-          name={"Elgant Basic Shirt Clean Look Sky"}
-          price={"Rp 185.000"}
-        />
-        <CardWishList
-          img={Image4}
-          name={"Elgant Short Sleeve Shirt Black"}
-          price={"Rp 170.000"}
-        />
-      </div>
+      <Typography className="font-semibold pl-5 lg:pl-0">
+        My WishList
+      </Typography>
+      {isError || wishlists.length <= 0 ? (
+        <WishListIsEmpty />
+      ) : (
+        isSuccess && (
+          <>
+            <div className="w-[600px] grid grid-cols-4 gap-3 border-gray-50">
+              {wishlists.data.map((wishlist, index) => (
+                <CardWishList
+                  key={index}
+                  id={wishlist.wishlist_id}
+                  img={`${baseUrlApi}/${wishlist.product_images[0].path}`}
+                  name={wishlist.product_name}
+                  price={wishlist.total_price}
+                />
+              ))}
+            </div>
+          </>
+        )
+      )}
     </>
   );
 }

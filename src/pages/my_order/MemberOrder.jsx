@@ -46,14 +46,14 @@ function MemberOrder() {
   return (
     <>
       <div className="mt-5 lg:px-0 px-3">
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center pr-[6.5px]">
           <img
             src={Logo}
             alt="logo"
             className="h-[110px] w-[120px] object-cover"
           />
         </div>
-        <Typography className="flex justify-center text-base text-black/90 font-medium">
+        <Typography className="flex justify-center pr-[6.5px] text-base text-black/90 font-medium">
           Waiting for payment confirmation
         </Typography>
         <div className="flex justify-center mt-4">
@@ -78,8 +78,8 @@ function MemberOrder() {
             </div>
           </div>
         </div>
-        <div className="flex justify-center lg:px-0">
-          <div className="border border-black/20 w-[400px] px-3 py-6 rounded-md">
+        <div className="flex justify-center">
+          <div className="border border-black/20 lg:w-[400px] w-[369px] px-3 py-6 rounded-md">
             <Typography className="-mt-2 text-sm text-black/40">
               Order ID
             </Typography>

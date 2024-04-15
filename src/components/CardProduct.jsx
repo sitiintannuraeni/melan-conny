@@ -14,8 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import NumberFormatCurrency from "../utils";
 import { useState } from "react";
 import { useAddToWishlistMutation } from "../services/apiWishList";
-import { useCallback } from "react";
-import { useEffect } from "react";
 import { setAuthLoginRedirect } from "../slice/apiSlice";
 
 function CardProduct({ id, img, name, price, items }) {
@@ -51,7 +49,7 @@ function CardProduct({ id, img, name, price, items }) {
 
   return (
     <Card
-      className="flex flex-col mt-4 bg-transparent bg-white border border-gray-300 w-full relative h-[290px] lg:h-[450px] md:h-[400px] select-none"
+      className="flex flex-col mt-4 bg-transparent bg-white border border-gray-300 w-full relative h-[290px] lg:h-[450px] md:h-[490px] select-none"
       shadow={false}
     >
       <CardHeader
@@ -89,7 +87,7 @@ function CardProduct({ id, img, name, price, items }) {
             <IconButton
               variant="text"
               size="sm"
-              className="rounded-full bg-white"
+              className="rounded-full bg-white "
               onClick={() => {
                 setIsClickLove(true);
                 handleAddToBag({
@@ -99,7 +97,7 @@ function CardProduct({ id, img, name, price, items }) {
                 });
               }}
             >
-              <HeartIcon className="h-4 w-4" />
+              <HeartIcon className="h-4 w-4 lg:h-4 lg:w-4 md:h-5 md:w-5" />
             </IconButton>
           </div>
         )}
@@ -139,26 +137,17 @@ function CardProduct({ id, img, name, price, items }) {
       <CardBody className="p-3 lg:p-6 h-[17%] mt-2 lg:mt-0">
         <div className="">
           <div className="flex flex-col justify-start items-start text-start lg:flex-row">
-            <Typography
-              variant="small"
-              className="font-['Helvetica'] lg:font-bold font-normal"
-            >
+            <Typography className="font-['Helvetica'] lg:font-bold font-normal lg:text-[13px] text-[13px] md:text-[20px]">
               {name}
             </Typography>
           </div>
           <div className="flex justify-center items-center"></div>
           <div className="flex justify-start items-start">
-            <Typography
-              variant="small"
-              className="font-['Helvetica'] text-[#7D7D7D] font-medium text-[13px] flex"
-            >
+            <Typography className="font-['Helvetica'] text-[#7D7D7D] font-medium lg:text-[13px] text-[12px] md:text-[18px] flex">
               {items}
             </Typography>
           </div>
-          <Typography
-            className="lg:hidden font-normal text-start"
-            variant="small"
-          >
+          <Typography className="lg:hidden font-normal text-start text-xs md:text-[17px]">
             <NumberFormatCurrency value={price} />
           </Typography>
         </div>

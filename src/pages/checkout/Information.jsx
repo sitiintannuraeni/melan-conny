@@ -99,15 +99,6 @@ function Information() {
     error,
   } = useGetAddressQuery();
 
-  const {
-    data: contacts,
-    isLoading: isLoadingContact,
-    isFetching: isFetchingContact,
-    isSuccess: isSuccessContact,
-    isError: isErrorContact,
-    error: errorContact,
-  } = useGetContactInformationQuery();
-
   const [
     addToAddress,
     {
@@ -151,28 +142,22 @@ function Information() {
                 </Typography>
               </div>
             </div>
-            {contacts.data.map((contact, index) => (
-              <div key={index}>
-                <div className="mt-2">
-                  <Typography className="text-xs text-[#989898]">
-                    Your Name
-                  </Typography>
-                  <Typography className="text-sm mt-1">
-                    {contact.name}
-                  </Typography>
-                </div>
-                <div className="border border-x-2 mt-2 border-black/10" />
-                <div className="mt-2">
-                  <Typography className="text-xs text-[#989898]">
-                    Email Address*
-                  </Typography>
-                  <Typography className="text-sm mt-1">
-                    Alexajy@gmail.com
-                  </Typography>
-                </div>
-                <div className="border border-x-2 mt-2 border-black/10" />
+            <div>
+              <div className="mt-2">
+                <Typography className="text-xs text-[#989898]">
+                  Your Name
+                </Typography>
+                <Typography className="text-sm mt-1">{user.name}</Typography>
               </div>
-            ))}
+              <div className="border border-x-2 mt-2 border-black/10" />
+              <div className="mt-2">
+                <Typography className="text-xs text-[#989898]">
+                  Email Address*
+                </Typography>
+                <Typography className="text-sm mt-1">{user.email}</Typography>
+              </div>
+              <div className="border border-x-2 mt-2 border-black/10" />
+            </div>
           </div>
         ) : (
           <div>
@@ -216,7 +201,7 @@ function Information() {
                 </Typography>
               </div>
             </div>
-            {shippingAddress.map((shipping, index) => (
+            {shippingAddress.data.map((shipping, index) => (
               <div key={index} id={shipping.id}>
                 <Typography className="text-[16px] mt-3">
                   {shipping.recipients_name}

@@ -100,7 +100,6 @@ function EditAccountInfo() {
   const [updateAccountInfo, { isLoading, isError, isSuccess, error }] =
     useUpdateUserMutation();
 
-  console.log({ inputGender, inputProfession });
   useEffect(() => {
     setInputName(user.name);
     setInputEmail(user.email);
@@ -248,7 +247,7 @@ function AccountInfo() {
         Account Info
       </Typography>
       <div className="pl-[25px] relative mt-8">
-        <div className="flex justify-between mt-1 lg:w-[686px] w-[310px] absolute">
+        <div className="flex justify-between mt-1 lg:w-[686px] w-[310px] md:w-[738px] absolute">
           <Typography>My Details</Typography>
           {isEdit ? (
             <Typography

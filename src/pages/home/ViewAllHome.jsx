@@ -94,7 +94,7 @@ function ViewAllHome() {
             items={"10,486 items sold"}
           />
         </div>
-        <div className="flex items-center lg:gap-4 gap-2 justify-center mt-2">
+        <div className="flex items-center lg:gap-4 gap-2 md:gap-4 justify-center mt-2">
           <Button
             variant="text"
             className="flex items-center lg:gap-2 gap-3"
@@ -102,43 +102,43 @@ function ViewAllHome() {
             disabled={active === 1}
           >
             <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" />
-            <Typography className="lg:text-xs text-[9px] font-bold">
+            <Typography className="lg:text-xs text-[9px] md:text-xs font-bold">
               Previous
             </Typography>
           </Button>
           <div className="flex items-center gap-2">
             <IconButton
               {...getItemProps(1)}
-              className="h-6 w-6 lg:rounded-md rounded-sm
-              lg:h-9 lg:w-9 lg:text-xs text-[8px]"
+              className="h-6 w-6 lg:rounded-md rounded-sm md:rounded-md 
+              lg:h-9 lg:w-9 lg:text-xs md:w-9 md:h-9 md:text-xs text-[8px]"
             >
               1
             </IconButton>
             <IconButton
               {...getItemProps(2)}
-              className="h-6 w-6 lg:rounded-md rounded-sm
-              lg:h-9 lg:w-9 lg:text-xs text-[8px]"
+              className="h-6 w-6 lg:rounded-md rounded-sm md:rounded-md 
+              lg:h-9 lg:w-9 lg:text-xs md:w-9 md:h-9 md:text-xs text-[8px]"
             >
               2
             </IconButton>
             <IconButton
               {...getItemProps(3)}
-              className="h-6 w-6 lg:rounded-md rounded-sm
-              lg:h-9 lg:w-9 lg:text-xs text-[8px]"
+              className="h-6 w-6 lg:rounded-md rounded-sm md:rounded-md 
+              lg:h-9 lg:w-9 lg:text-xs md:w-9 md:h-9 md:text-xs text-[8px]"
             >
               3
             </IconButton>
             <IconButton
               {...getItemProps(4)}
-              className="h-6 w-6 lg:rounded-md rounded-sm
-              lg:h-9 lg:w-9 lg:text-xs text-[8px]"
+              className="h-6 w-6 lg:rounded-md rounded-sm md:rounded-md 
+              lg:h-9 lg:w-9 lg:text-xs md:w-9 md:h-9 md:text-xs text-[8px]"
             >
               4
             </IconButton>
             <IconButton
               {...getItemProps(5)}
-              className="h-6 w-6 lg:rounded-md rounded-sm
-              lg:h-9 lg:w-9 lg:text-xs text-[8px]"
+              className="h-6 w-6 lg:rounded-md rounded-sm md:rounded-md 
+              lg:h-9 lg:w-9 lg:text-xs md:w-9 md:h-9 md:text-xs text-[8px]"
             >
               5
             </IconButton>
@@ -149,7 +149,7 @@ function ViewAllHome() {
             onClick={next}
             disabled={active === 5}
           >
-            <Typography className="lg:text-xs text-[9px] font-bold">
+            <Typography className="lg:text-xs text-[9px] md:text-xs font-bold">
               Next
             </Typography>
             <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />

@@ -79,7 +79,7 @@ function MemberOrder() {
           </div>
         </div>
         <div className="flex justify-center">
-          <div className="border border-black/20 lg:w-[400px] w-[369px] px-3 py-6 rounded-md">
+          <div className="border border-black/20 lg:w-[400px] w-[369px] md:w-[400px] px-3 py-6 rounded-md">
             <Typography className="-mt-2 text-sm text-black/40">
               Order ID
             </Typography>
@@ -104,8 +104,8 @@ function MemberOrder() {
                 <div className="w-[41px]">
                   <img src={BCA} alt="BCA" className="h-10 w-10" />
                 </div>
-                <div className="lg:w-[330px] w-[300px] ">
-                  <div className="flex items-center lg:gap-x-24 gap-x-16">
+                <div className="lg:w-[330px] w-[300px] md:w-[320px]">
+                  <div className="flex items-center lg:gap-x-24 gap-x-16 md:gap-x-44">
                     <div className="w-[200px]">
                       <Typography className="text-[12px] text-[#989898]">
                         BCA Virtual Account

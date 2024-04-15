@@ -34,11 +34,11 @@ function DetailPage() {
     return (
       <>
         <div className="lg:px-10 px-2">
-          <div className="lg:grid lg:grid-cols-2 flex flex-col py-12 ">
-            <div className="w-full max-w-md md:max-w-lg mx-auto">
+          <div className="lg:grid lg:grid-cols-2 flex flex-col lg:py-12 md:py-14 py-9 ">
+            <div className="w-full lg:max-w-md md:max-w-2xl mx-auto">
               <DetailImages images={product.images} />
             </div>
-            <div>
+            <div className=" ">
               <DetailDesc
                 id={product.id}
                 product_name={product.product_name}

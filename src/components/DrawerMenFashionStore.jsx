@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Drawer,
-  Typography,
-  List,
-  ListItem,
-} from "@material-tailwind/react";
+import { Drawer, Typography, List, ListItem } from "@material-tailwind/react";
 import {
   MagnifyingGlassIcon,
   UserIcon,
@@ -15,8 +10,10 @@ import {
   closeDrawerMenFashionStore,
   openDialogLogin,
 } from "../slice/menuSlice";
+import { useNavigate } from "react-router-dom";
 
 function DrawerMenFashionStore() {
+  const navigate = useNavigate();
   const drawerMenFashionStore = useSelector(
     (state) => state.menu.drawerMenFashionStore
   );
@@ -28,7 +25,7 @@ function DrawerMenFashionStore() {
         placement="left"
         open={drawerMenFashionStore}
         onClose={() => dispatch(closeDrawerMenFashionStore())}
-        className="p-4"
+        className="p-4 select-none"
       >
         <div className="mb-6 flex items-center justify-between mt-5">
           <div className="mb-6 flex items-center space-x-3">
@@ -99,7 +96,13 @@ function DrawerMenFashionStore() {
             <ListItem className="rounded-none">
               <Typography className="w-full font-semibold">BOONABOO</Typography>
             </ListItem>
-            <ListItem className="rounded-none">
+            <ListItem
+              className="rounded-none"
+              onClick={() => {
+                navigate("/trucking-order");
+                dispatch(closeDrawerMenFashionStore());
+              }}
+            >
               <Typography className="w-full font-semibold">
                 TRUCKING ORDER
               </Typography>

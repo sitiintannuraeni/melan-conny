@@ -11,7 +11,10 @@ import {
 } from "@material-tailwind/react";
 import { MapPinIcon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
-import { openDialogAddress } from "../../slice/menuSlice";
+import {
+  openDialogAddress,
+  openDialogUpdateAddress,
+} from "../../slice/menuSlice";
 import { LocationPin2 } from "../../icons/LocationPin2";
 import {
   useDeleteFromAddressMutation,
@@ -20,10 +23,11 @@ import {
 import { useEffect } from "react";
 
 function UpdateFromAddress() {
+  const dispatch = useDispatch();
   return (
     <>
-      <div>
-        <Typography className="text-black font-bold hover:text-[#40A2D8]">
+      <div onClick={() => dispatch(openDialogUpdateAddress())}>
+        <Typography className="text-black font-bold hover:text-[#40A2D8] lg:text-lg text-xs">
           Edit
         </Typography>
       </div>
@@ -49,7 +53,7 @@ function DeleteToAddress({ id }) {
   return (
     <>
       <Typography
-        className="text-black font-bold hover:text-red-600"
+        className="text-black lg:text-lg text-xs font-bold hover:text-red-600"
         onClick={() => handleRemoveFromAddress(id)}
       >
         Delete
@@ -76,9 +80,7 @@ function Address() {
       <>
         <div className="lg:px-0 px-4">
           <div className="fond-semibold pb-14">
-            <Typography className="font-semibold lg:pl-0 pl-3">
-              Saved Address
-            </Typography>
+            <Typography className="font-semibold ">Saved Address</Typography>
           </div>
           {addresses.data.map((address, index) => (
             <Card
@@ -94,18 +96,18 @@ function Address() {
                 className="m-0 mt-7 rounded-none"
               >
                 <div className="flex flex-col-3 gap-2">
-                  <Typography className="text-black/80 ">
+                  <Typography className="text-black/80 lg:text-base md:text-base text-base">
                     {address.recipients_name}
                   </Typography>
                   <div className="lg:h-[27px] h-[16px] lg:w-[1px] w-[1px] bg-black/30" />
-                  <Typography className="text-[#989898]">
+                  <Typography className="text-[#989898] lg:text-base md:text-base text-base">
                     {address.number_phone}
                   </Typography>
                 </div>
               </CardHeader>
-              <CardBody className="px-0 flex flex-col-2 p-0 gap-24 mt-3">
+              <CardBody className="px-0 flex flex-col-2 p-0 lg:gap-24 gap-5 mt-3">
                 <div className="w-[550px]">
-                  <Typography className="text-black">
+                  <Typography className="text-black lg:text-lg text-xs md:text-base">
                     {address.address}, {address.province}, {address.city},{" "}
                     {address.district}, {address.sub_district},{" "}
                     {address.sub_district}, {address.postal_code},{" "}
@@ -115,7 +117,9 @@ function Address() {
                 <div className="flex justify-end cursor-pointer">
                   <div className="flex flex-col-3 gap-2 justify-end ">
                     <UpdateFromAddress />
-                    <Typography className="text-black font-bold">/</Typography>
+                    <Typography className="text-black text-xs lg:text-lg font-bold">
+                      /
+                    </Typography>
                     <DeleteToAddress id={address.id} />
                   </div>
                 </div>
@@ -123,7 +127,7 @@ function Address() {
               <CardFooter className="flex justify-end -mt-7 px-0 py-10">
                 <Button
                   variant="outlined"
-                  className="w-[200px] rounded-md text-[#989898] text-[10px] border-[#989898]"
+                  className="lg:w-[200px] w-[150px] rounded-md text-[#989898] lg:text-[10px] text-[8.5px] border-[#989898]"
                 >
                   Atur Sebagai Utama
                 </Button>

@@ -42,13 +42,46 @@ export const apiAddress = apiCore.injectEndpoints({
       ],
     }),
 
-    // updateToAddress: builder.mutation({
-    //   query: { id, ...body }({
-    //     url: `api/shipping_address/${1}`,
-    //     method: "PUT",
-    //     body: body,
-    //   }),
-    // }),
+    updateToAddress: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `api/shipping_address/${id}`,
+        method: "PUT",
+        body: body,
+      }),
+      onQueryStarted: async (credentials, { dispatch, queryFulfilled }) => {
+        try {
+          const { data: response } = await queryFulfilled;
+          const { success, message, data: user } = response;
+
+          if (success) {
+            dispatch(
+              setAuthUser({
+                id: user.id,
+                recipients_name: user.recipients_name,
+                address: user.address,
+                province: user.province,
+                city: user.city,
+                district: user.district,
+                sub_district: user.sub_district,
+                postal_code: user.postal_code,
+                number_phone: user.number_phone,
+              })
+            );
+            toast.success(message, {
+              toastId: "update success",
+            });
+          }
+        } catch (error) {
+          console.log("update gagal", error);
+        }
+      },
+      // invalidatesTags: [
+      //   {
+      //     type: "ShippingAddress",
+      //     id: "LIST",
+      //   },
+      // ],
+    }),
 
     deleteFromAddress: builder.mutation({
       query: ({ id }) => ({

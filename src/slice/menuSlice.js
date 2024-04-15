@@ -15,6 +15,7 @@ const initialState = {
   dialogAddress: false,
   dialogChangePassword: false,
   dialogDescDetail: false,
+  updateDialogAddres: false,
 };
 
 export const menuSlice = createSlice({
@@ -101,6 +102,12 @@ export const menuSlice = createSlice({
     closeDialogDetail: (state) => {
       state.dialogDescDetail = false;
     },
+    openDialogUpdateAddress: (state) => {
+      state.updateDialogAddres = true;
+    },
+    closeDialogUpdateAddress: (state) => {
+      state.updateDialogAddres = false;
+    },
   },
 });
 
@@ -131,6 +138,8 @@ export const {
   closeDialogChangePassword,
   openDialogDetail,
   closeDialogDetail,
+  openDialogUpdateAddress,
+  closeDialogUpdateAddress,
 } = menuSlice.actions;
 
 export default menuSlice.reducer;

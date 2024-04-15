@@ -8,6 +8,7 @@ import { Button, Typography } from "@material-tailwind/react";
 import {
   closeDialogDetail,
   closeDialogDetailCardHome,
+  openDialogLogin,
   openDialogShareLink,
 } from "../../slice/menuSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +24,7 @@ import { useCallback } from "react";
 import { useEffect } from "react";
 import Image2 from "../../assets/product-2.png";
 import { toast } from "react-toastify";
+import { setAuthLoginRedirect } from "../../slice/apiSlice";
 
 function ModalDescHome({
   id,

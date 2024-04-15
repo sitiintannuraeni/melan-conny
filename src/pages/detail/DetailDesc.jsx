@@ -177,7 +177,7 @@ function DetailDesc({
         <Typography className="text-[#000000] lg:mt-5 mt-2 text-md">
           Select Size
         </Typography>
-        <div className="grid lg:grid-cols-10 grid-cols-7 lg:gap-[61px] gap-[54px] md:gap-[20px] mt-3 lg:w-full w-full md:w-[750 px]">
+        <div className="grid lg:grid-cols-10 grid-cols-7 lg:gap-[61px] gap-[54px] md:gap-[10px] mt-3 lg:w-full w-full md:w-[750 px]">
           {size.map((ukuran, index) => {
             return (
               <Button
@@ -197,122 +197,117 @@ function DetailDesc({
             Size must be selected!
           </Typography>
         )}
-        <div className="grid grid-cols-4 gap-2 mt-5">
-          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
+        <div className="grid lg:grid-cols-4 grid-cols-3 md:grid-cols-3 gap-2 mt-5">
+          <div className="bg-gray-200 lg:h-[60px] h-[50px] md:h-[75px] flex flex-col-2 gap-2 px-3">
             <div className="w-[120px] h-[50px] mt-[5.4px]">
               <img
                 src={Image2}
                 alt="image2"
-                className="object-cover w-full h-full"
+                className="object-cover lg:w-full lg:h-full w-[40px] h-[40px] md:w-[60px] md:h-[64px]"
               />
             </div>
             <div className="w-[140px] mt-4">
               <div className="flex items-center ">
-                <Typography className="text-xs text-black">Maroon</Typography>
+                <Typography className="lg:text-xs text-[8px] md:text-[15px] text-black">
+                  Maroon
+                </Typography>
               </div>
-              <Typography className="text-[10.7px] text-black/60">
+              <Typography className="lg:text-[10.7px] text-[8px] md:text-[13px] text-black/60">
                 stok 12374
               </Typography>
             </div>
           </div>
-          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
+          <div className="bg-gray-200 lg:h-[60px] h-[50px] md:h-[75px] flex flex-col-2 gap-2 px-3">
             <div className="w-[120px] h-[50px] mt-[5.4px]">
               <img
                 src={Image2}
                 alt="image2"
-                className="object-cover w-full h-full"
+                className="object-cover lg:w-full lg:h-full w-[40px] h-[40px] md:w-[60px] md:h-[64px]"
               />
             </div>
             <div className="w-[140px] mt-4 ">
               <div className="flex items-center ">
-                <Typography className="text-xs text-black">White</Typography>
+                <Typography className="lg:text-xs text-[8px] md:text-[15px] text-black">
+                  Blue
+                </Typography>
               </div>
-              <Typography className="text-[10.7px] text-black/60">
-                stok 123
-              </Typography>
-            </div>
-          </div>
-          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
-            <div className="w-[120px] h-[50px] mt-[5.4px]">
-              <img
-                src={Image2}
-                alt="image2"
-                className="object-cover w-full h-full"
-              />
-            </div>
-            <div className="w-[140px] mt-4 ">
-              <div className="flex items-center ">
-                <Typography className="text-xs text-black">Blue</Typography>
-              </div>
-              <Typography className="text-[10.7px] text-black/60">
+              <Typography className="lg:text-[10.7px] text-[8px] md:text-[13px] text-black/60">
                 stok 1234
               </Typography>
             </div>
           </div>
-          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
+          <div className="bg-gray-200 lg:h-[60px] h-[50px] md:h-[75px] flex flex-col-2 gap-2 px-3">
             <div className="w-[120px] h-[50px] mt-[5.4px]">
               <img
                 src={Image2}
                 alt="image2"
-                className="object-cover w-full h-full"
+                className="object-cover lg:w-full lg:h-full w-[40px] h-[40px] md:w-[60px] md:h-[64px]"
               />
             </div>
             <div className="w-[140px] mt-4 ">
               <div className="flex items-center ">
-                <Typography className="text-xs text-black">Green</Typography>
+                <Typography className="lg:text-xs text-[8px] md:text-[15px] text-black">
+                  Green
+                </Typography>
               </div>
-              <Typography className="text-[10.7px] text-black/60">
+              <Typography className="lg:text-[10.7px] text-[8px] md:text-[13px] text-black/60">
                 stok 1222
               </Typography>
             </div>
           </div>
-          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
+          <div className="bg-gray-200 lg:h-[60px] h-[50px] md:h-[75px] flex flex-col-2 gap-2 px-3">
             <div className="w-[120px] h-[50px] mt-[5.4px]">
               <img
                 src={Image2}
                 alt="image2"
-                className="object-cover w-full h-full"
+                className="object-cover lg:w-full lg:h-full w-[40px] h-[40px] md:w-[60px] md:h-[64px]"
               />
             </div>
             <div className="w-[140px] mt-4 ">
               <div className="flex items-center ">
-                <Typography className="text-xs text-black">Black</Typography>
+                <Typography className="lg:text-xs text-[8px] md:text-[15px] text-black">
+                  Black
+                </Typography>
               </div>
-              <Typography className="text-[10.7px] text-black/60">
+              <Typography className="lg:text-[10.7px] text-[8px] md:text-[13px] text-black/60">
                 stok 1123
               </Typography>
             </div>
           </div>
-          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
+          <div className="bg-gray-200 lg:h-[60px] h-[50px] md:h-[75px] flex flex-col-2 gap-2 px-3">
             <div className="w-[120px] h-[50px] mt-[5.4px]">
               <img
                 src={Image2}
                 alt="image2"
-                className="object-cover w-full h-full"
+                className="object-cover lg:w-full lg:h-full w-[40px] h-[40px] md:w-[60px] md:h-[64px]"
               />
             </div>
             <div className="w-[140px] mt-4 ">
               <div className="flex items-center ">
-                <Typography className="text-xs text-black">Brown</Typography>
+                <Typography className="lg:text-xs text-[8px] md:text-[15px] text-black">
+                  Brown
+                </Typography>
               </div>
-              <Typography className="text-[10.7px] text-black/60">
+              <Typography className="lg:text-[10.7px] text-[8px] md:text-[13px] text-black/60">
                 stok 1555
               </Typography>
             </div>
           </div>
-          <div className="bg-gray-200 h-[60px] flex flex-col-2 gap-2 px-3">
+          <div className="bg-gray-200 lg:h-[60px] h-[50px] md:h-[75px] flex flex-col-2 gap-2 px-3">
             <div className="w-[120px] h-[50px] mt-[5.4px]">
               <img
                 src={Image2}
                 alt="image2"
-                className="object-cover w-full h-full"
+                className="object-cover lg:w-full lg:h-full w-[40px] h-[40px] md:w-[60px] md:h-[64px]"
               />
             </div>
             <div className="w-[140px] mt-4 ">
               <div className="flex items-center ">
-                <Typography className="text-xs text-black">Pink</Typography>
+                <Typography className="lg:text-xs text-[8px] md:text-[15px] text-black">
+                  Pink
+                </Typography>
               </div>
-              <Typography className="text-[10.7px] text-black/60">
+              <Typography className="lg:text-[10.7px] text-[8px] md:text-[13px] text-black/60">
                 stok 1666
               </Typography>
             </div>
@@ -321,7 +316,7 @@ function DetailDesc({
         <div className="flex flex-col-2 mt-5 gap-2">
           <div className="flex flex-col-2">
             <Button
-              className="w-[174px] size-12 text-xs flex flex-col-2 gap-2"
+              className="lg:w-[174px] md:w-[269px] w-[172px] size-12 text-xs flex flex-col-2 gap-2"
               loading={isLoading}
               disabled={isLoading}
               onClick={() => {
@@ -345,21 +340,21 @@ function DetailDesc({
             </Button>
           </div>
           <Button
-            className="w-[174px] size-12 text-xs bg-black/40 text-black"
+            className="lg:w-[174px] md:w-[269px] w-[172px] text-xs bg-black/40 text-black"
             variant="outlined"
             onClick={() => navigate("/checkout")}
           >
             Checkout
           </Button>
         </div>
-        <div className="grid lg:grid-cols-5 grid-cols-4 gap-4 w-full lg:max-w-md mt-4 font-bold ">
-          <div className="col-span-3">
+        <div className="grid lg:grid-cols-5 grid-cols-4 lg:gap-4 gap-4 md:gap-[228px] w-full lg:max-w-md mt-4 font-bold">
+          <div className="lg:col-span-3 col-span-3 md:col-span-2">
             <Button
               variant="outlined"
-              className="flex items-center gap-2 pl-12 w-full lg:h-[95%] h-[45px]"
+              className="flex items-center gap-2 pl-12 lg:w-full md:w-[415px] w-full lg:h-[95%] h-[45px]"
             >
               <HeartIcon className="h-5 w-5" />
-              <Typography className="font-bold text-xs lg:text-base">
+              <Typography className="font-bold text-xs lg:text-base md:text-base">
                 ADD TO WISHLIST
               </Typography>
             </Button>
@@ -367,6 +362,7 @@ function DetailDesc({
           <div>
             <Button
               variant="outlined"
+              className="lg:w-20 md:w-[90px] md:pl-8 lg:pl-7 pl-6"
               fullWidth
               size="md"
               onClick={() => dispatch(openDialogShareLink())}

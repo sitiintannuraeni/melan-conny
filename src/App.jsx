@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SearchV2 from "./components/SearchV2";
 import ModalAddress from "./pages/address/ModalAddress";
 import ModalChange from "./pages/account_info/ModalChange";
+import UpdateModalAddress from "./pages/address/UpdateModalAddress";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -39,26 +40,24 @@ function App() {
         </main>
         <Footer />
       </div>
-
       <DrawerShoppingCart />
-
       <CheckOut />
-
       <Login />
       <Register />
       <AsGuest />
-
       <DrawerMenFashionStore />
       <SearchV2 />
       {/* <Test /> */}
       <ModalAddress />
       <ModalChange />
+      <UpdateModalAddress />
       <ToastContainer
         autoClose={3000}
         pauseOnHover={false}
         // position="top-center"
+        // width="200px"
+        // icon={false}
       />
-      {/* icon={false} */}
     </>
   );
 }

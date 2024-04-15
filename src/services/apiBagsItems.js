@@ -46,7 +46,7 @@ export const apiBagItems = apiCore.injectEndpoints({
         try {
           const { data: response } = await queryFulfilled;
           const priceTotal = response.data.reduce((prevValue, curValue) => {
-            return prevValue + curValue.quantity * curValue.product_price;
+            return prevValue + curValue.quantity * curValue.product.price;
           }, 0);
 
           const qtyTotal = response.data.reduce((prevValue, curValue) => {

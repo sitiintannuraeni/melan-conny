@@ -7,6 +7,7 @@ import SkeletonCardHome from "./SkeletonCardHome.jsx";
 import HomeBanner from "../../components/HomeBanner.jsx";
 import { baseUrlApi } from "../../services/apiCore.js";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 
 function ListProductByCategory() {
   const navigate = useNavigate();
@@ -62,6 +63,7 @@ function ListProductByCategory() {
                     name={product.product_name}
                     price={product.price}
                     items={`${product.total_sold} items sold`}
+                    is_wishlist={product.is_wishlist}
                   />
                 );
               })}
@@ -79,6 +81,28 @@ function ListProductByCategory() {
 }
 
 function HomePage() {
+  useEffect(() => {
+    let snapToken = '5518d3bb-9612-4166-af70-4b058280a199'
+    // Saat snapToken berubah, tampilkan layar pembayaran
+    // if (snapToken) {
+    //     // Panggil fungsi Snap SDK untuk menampilkan pembayaran
+    //     window.snap.pay(snapToken, {
+    //         onSuccess: function(result) {
+    //             console.log('Pembayaran berhasil:', result);
+    //             // Tampilkan pesan sukses atau navigasi ke halaman terima kasih
+    //         },
+    //         onError: function(result) {
+    //             console.error('Error pembayaran:', result);
+    //             // Tampilkan pesan error kepada pengguna
+    //         },
+    //         onClose: function() {
+    //             console.log('Pembayaran ditutup tanpa selesai');
+    //             // Tampilkan pesan bahwa pembayaran ditutup tanpa selesai
+    //         }
+    //     });
+    // }
+}, []);
+
   return (
     <>
       <div className="">

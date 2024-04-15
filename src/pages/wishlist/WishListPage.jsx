@@ -50,12 +50,13 @@ function WishList() {
           <>
             <div className="w-[600px] grid grid-cols-4 gap-3 border-gray-50">
               {wishlists.data.map((wishlist, index) => (
+                
                 <CardWishList
                   key={index}
-                  id={wishlist.wishlist_id}
-                  img={`${baseUrlApi}/${wishlist.product_images[0].path}`}
-                  name={wishlist.product_name}
-                  price={wishlist.total_price}
+                  id={wishlist.id}
+                  img={`${baseUrlApi}/${wishlist.product.images[0].path}`}
+                  name={wishlist.product.product_name}
+                  price={wishlist.product.price}
                 />
               ))}
             </div>

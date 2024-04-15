@@ -16,11 +16,11 @@ import { useState } from "react";
 import { useAddToWishlistMutation } from "../services/apiWishList";
 import { setAuthLoginRedirect } from "../slice/apiSlice";
 
-function CardProduct({ id, img, name, price, items }) {
+function CardProduct({ id, img, name, price, items, is_wishlist }) {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isClickLove, setIsClickLove] = useState(false);
+  const [isClickLove, setIsClickLove] = useState(is_wishlist);
   const { user } = useSelector((state) => state.auth);
 
   const detailProduct = (id) => {
@@ -40,8 +40,6 @@ function CardProduct({ id, img, name, price, items }) {
       console.log("add to wishlist");
       const dataBody = {
         product_id: data.product_id,
-        user_id: user.id,
-        total_price: data.total_price,
       };
       addToWishlist(dataBody);
     }

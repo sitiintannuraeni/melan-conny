@@ -16,6 +16,8 @@ import { useMemo } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import EmptyState from "./DrawerShopEmpty";
+import { baseUrlApi } from "../services/apiCore";
+
 
 function UpdateIncrementQty({ id, bagId, quantity, productId, sizeId }) {
   const [updateItem, { isLoading, isError, isSuccess, error }] =
@@ -196,7 +198,7 @@ function ListCardProduct() {
                   </div>
                   <div className="flex justify-start items-start select-none">
                     <img
-                      src={product.product_image}
+                      src={`${baseUrlApi}/${product.product.images[0].path}`}
                       alt="drawer1"
                       className="h-[100px] w-[65px] object-cover rounded-md"
                     />
@@ -204,11 +206,11 @@ function ListCardProduct() {
                 </div>
                 <div className="gap-1 w-[210px] select-none">
                   <Typography className="text-sm">
-                    {product.product_name}
+                    {product.product.product_name}
                   </Typography>
                   <Typography className="text-sm">
                     <NumberFormatCurrency
-                      value={product.quantity * product.product_price}
+                      value={product.quantity * product.product.price}
                     />
                   </Typography>
                   <Typography className="mt-3 text-sm">

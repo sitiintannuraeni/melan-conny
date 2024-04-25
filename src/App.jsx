@@ -1,10 +1,6 @@
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import DrawerShoppingCart from "./components/DrawerShoppingCart";
-import Register from "./components/Register";
-import Login from "./components/Login";
 import DrawerMenFashionStore from "./components/DrawerMenFashionStore";
 import CheckOut from "./components/CheckOut";
 import AsGuest from "./components/AsGuest";
@@ -14,6 +10,8 @@ import SearchV2 from "./components/SearchV2";
 import ModalAddress from "./pages/address/ModalAddress";
 import ModalChange from "./pages/account_info/ModalChange";
 import UpdateModalAddress from "./pages/address/UpdateModalAddress";
+import Header from "./components/Header1";
+import Footer from "./components/Footer1";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -35,15 +33,15 @@ function App() {
       <ScrollToTop />
       <div className="container max-w-full">
         <Header />
-        <main className="lg:pt-[62px] pt-[20px] bg-gray-50">
+        <main className="lg:pt-[62px] pt-[20px] bg-[#202020]">
           <Outlet />
         </main>
         <Footer />
       </div>
       <DrawerShoppingCart />
       <CheckOut />
-      <Login />
-      <Register />
+      {/* <Login /> */}
+      {/* <Register /> */}
       <AsGuest />
       <DrawerMenFashionStore />
       <SearchV2 />
@@ -54,6 +52,7 @@ function App() {
       <ToastContainer
         autoClose={3000}
         pauseOnHover={false}
+
         // position="top-center"
         // width="200px"
         // icon={false}

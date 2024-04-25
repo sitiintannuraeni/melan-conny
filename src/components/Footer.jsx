@@ -6,7 +6,8 @@ import WhatsApp from "../assets/whatsApp.png";
 function Footer() {
   return (
     <>
-      <div className="bg-black w-full h-[426px] lg:h-[615px] md:h-[475px] text-white">
+      <div></div>
+      {/* <div className="bg-black w-full h-[426px] lg:h-[615px] md:h-[475px] text-white">
         <div className="text-center py-2">
           <Typography className="lg:text-lg md:text-lg text-sm mt-4">
             MEN'S FASHION STORE
@@ -113,7 +114,7 @@ function Footer() {
         <Typography className="flex justify-center items-center lg:mt-0 mt-[-34px] text-[13px]">
           Basic Club
         </Typography>
-      </div>
+      </div> */}
     </>
   );
 }

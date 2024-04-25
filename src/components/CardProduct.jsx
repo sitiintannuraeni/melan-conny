@@ -47,7 +47,7 @@ function CardProduct({ id, img, name, price, items, is_wishlist }) {
 
   return (
     <Card
-      className="flex flex-col mt-4 bg-transparent bg-white border border-gray-300 w-full relative h-[290px] lg:h-[450px] md:h-[490px] select-none"
+      className="flex flex-col mt-4 bg-transparent bg-white border border-gray-300 w-full relative h-[290px] lg:h-[450px] md:h-[500px] select-none"
       shadow={false}
     >
       <CardHeader
@@ -59,7 +59,7 @@ function CardProduct({ id, img, name, price, items, is_wishlist }) {
         <img
           src={img}
           alt="product-img"
-          className="rounded-t-xl cursor-pointer relative z-20 w-full h-[170px] lg:h-[300px] md:h-[320px] object-cover"
+          className="rounded-t-xl cursor-pointer relative z-20 w-full h-[170px] lg:h-[300px] md:h-[360px] object-cover"
           onClick={() => detailProduct(id)}
         />
         {isClickLove ? (
@@ -132,7 +132,7 @@ function CardProduct({ id, img, name, price, items, is_wishlist }) {
           </Button>
         </div>
       </CardHeader>
-      <CardBody className="p-3 lg:p-6 h-[17%] mt-2 lg:mt-0">
+      <CardBody className="p-3 lg:p-6 md:p-0 md:h-[100px] h-[100px] lg:h-[70px] mt-2 lg:mt-0 md:mt-3 md:px-4 lg:px-4 px-3">
         <div className="">
           <div className="flex flex-col justify-start items-start text-start lg:flex-row">
             <Typography className="font-['Helvetica'] lg:font-bold font-normal lg:text-[13px] text-[13px] md:text-[20px]">
@@ -150,7 +150,7 @@ function CardProduct({ id, img, name, price, items, is_wishlist }) {
           </Typography>
         </div>
       </CardBody>
-      <CardFooter>
+      <CardFooter className="lg:p-6 md:p-0 p-0 mt-0">
         <Typography
           as="div"
           className="font-['Helvetica'] font-normal text-center text-black"

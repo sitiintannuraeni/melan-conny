@@ -1,4 +1,10 @@
-import { Card, List, ListItem, ListItemPrefix } from "@material-tailwind/react";
+import {
+  Card,
+  List,
+  ListItem,
+  ListItemPrefix,
+  Typography,
+} from "@material-tailwind/react";
 import {
   ArrowRightStartOnRectangleIcon,
   HeartIcon,
@@ -8,7 +14,6 @@ import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { logout } from "../slice/apiSlice";
 
@@ -32,7 +37,7 @@ function Sidebar() {
 
   return (
     <Card
-      className="h-[350px] w-full lg:max-w-[20rem] max-w-[25rem] bg-gray-50"
+      className="h-[350px] w-full lg:max-w-[20rem] max-w-[25rem] bg-[#202020]"
       shadow={false}
     >
       <List>
@@ -42,9 +47,9 @@ function Sidebar() {
           onClick={() => navigate("/account-info")}
         >
           <ListItemPrefix>
-            <UserIcon className="h-6 w-6" />
+            <UserIcon className="h-6 w-6 text-white" />
           </ListItemPrefix>
-          Account info
+          <Typography className="text-white">Account info</Typography>
         </ListItem>
         <ListItem
           selected={activeMenu === "my-order"}
@@ -52,9 +57,9 @@ function Sidebar() {
           onClick={() => navigate("/my-order")}
         >
           <ListItemPrefix>
-            <ShoppingBagIcon className="h-6 w-6" />
+            <ShoppingBagIcon className="h-6 w-6 text-white" />
           </ListItemPrefix>
-          My-Order
+          <Typography className="text-white">My order</Typography>
         </ListItem>
         <ListItem
           selected={activeMenu === "wishlist"}
@@ -62,9 +67,9 @@ function Sidebar() {
           onClick={() => navigate("/wishlist")}
         >
           <ListItemPrefix>
-            <HeartIcon className="h-6 w-6" />
+            <HeartIcon className="h-6 w-6 text-white" />
           </ListItemPrefix>
-          WishList
+          <Typography className="text-white">Wishlist</Typography>
         </ListItem>
         <ListItem
           selected={activeMenu === "address"}
@@ -78,7 +83,7 @@ function Sidebar() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-7"
+              className="w-6 h-7 text-white"
             >
               <path
                 strokeLinecap="round"
@@ -92,7 +97,7 @@ function Sidebar() {
               />
             </svg>
           </ListItemPrefix>
-          Address
+          <Typography className="text-white">Address</Typography>
         </ListItem>
         <ListItem
           selected={activeMenu === "logout"}
@@ -100,9 +105,9 @@ function Sidebar() {
           onClick={handleDialogLogout}
         >
           <ListItemPrefix>
-            <ArrowRightStartOnRectangleIcon className="h-6 w-6" />
+            <ArrowRightStartOnRectangleIcon className="h-6 w-6 text-white" />
           </ListItemPrefix>
-          Logout
+          <Typography className="text-white">Logout</Typography>
         </ListItem>
       </List>
     </Card>

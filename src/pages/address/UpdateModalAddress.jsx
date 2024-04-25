@@ -17,10 +17,7 @@ import {
   closeDialogUpdateAddress,
 } from "../../slice/menuSlice";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  useAddToAddressMutation,
-  useUpdateToAddressMutation,
-} from "../../services/apiShippingAddress";
+import { useUpdateToAddressMutation } from "../../services/apiShippingAddress";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
@@ -113,7 +110,7 @@ function UpdateModalAddress() {
           </a>
         </DialogHeader>
         <DialogBody className="px-3 ">
-          <div className="border border-current h-[380px] px-5 rounded-md overflow-auto scrollbar-y">
+          <div className="border border-current h-[343px] px-5 rounded-md overflow-auto scrollbar-y">
             <div className="mt-2">
               <div className="text-black w-full mt-8 ">
                 <Input

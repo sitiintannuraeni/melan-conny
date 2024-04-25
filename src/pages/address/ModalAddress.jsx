@@ -96,7 +96,7 @@ function ModalAddress() {
           </a>
         </DialogHeader>
         <DialogBody className="px-3 ">
-          <div className="border border-current h-[380px] px-5 rounded-md overflow-auto scrollbar-y">
+          <div className="border border-current h-[343px] px-5 rounded-md overflow-auto scrollbar-y">
             <div className="mt-2">
               <div className="text-black w-full mt-8 ">
                 <Input

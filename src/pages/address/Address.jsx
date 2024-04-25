@@ -134,6 +134,8 @@ function Address() {
               </CardFooter>
             </Card>
           ))}
+        </div>
+        <div className="lg:px-0 px-4">
           <div className="lg:pl-[75px] pl-16 mt-10">
             <div className="rounded-none">
               <div className="pl-[86px]">

@@ -1,8 +1,4 @@
-import {
-  ArrowDownOnSquareIcon,
-  ArrowLeftIcon,
-  ShoppingBagIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { IconButton, Typography } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import Image from "../../assets/product-4.png";

@@ -15,7 +15,6 @@ import {
   ArrowRightStartOnRectangleIcon,
   Bars3Icon,
   ChevronLeftIcon,
-  ShoppingCartIcon,
   UserCircleIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
@@ -26,6 +25,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { openDialogSearch, openDrawerShoppingCart } from "../slice/menuSlice";
 import { logout } from "../slice/apiSlice";
 import { toast } from "react-toastify";
+import instagram from "../assets/instagram-1.png";
+import tiktok from "../assets/tiktok.png";
+import twiter from "../assets/twitter.png";
+import youtobe from "../assets/youtobe.png";
 
 function HeaderLogo() {
   const location = useLocation();
@@ -50,9 +53,7 @@ function HeaderLogo() {
               <img
                 src={logo}
                 alt="logo"
-                height="103"
-                width="103"
-                className="object-cover"
+                className="object-contain h-[90px] w-[90px]"
               />
             </Link>
           </>
@@ -87,21 +88,44 @@ function HeaderMenu() {
             HOME
           </Link>
         </Typography>
-        <Typography
-          as="li"
-          variant="small"
-          color="white"
-          className="p-1 font-medium"
-        >
-          <a
-            href="#"
-            className="flex items-center hover:text-blue-500 transition-colors"
-            onClick={(e) => e.preventDefault(navigate("/store"))}
-          >
-            STORE
-          </a>
-        </Typography>
-        <Typography
+        <div>
+          <Menu shadow={false}>
+            <MenuHandler className="bg-transparent">
+              <Typography
+                as="li"
+                variant="small"
+                color="white"
+                className="p-1 font-medium"
+              >
+                <a
+                  href="#"
+                  className="flex items-center hover:text-blue-500 transition-colors"
+                >
+                  CATEGORIES
+                </a>
+              </Typography>
+            </MenuHandler>
+            <MenuList className="bg-[#000000]">
+              <MenuItem
+                className="flex flex-col-2 gap-3 items-center"
+                onClick={() => navigate("/t-shirt")}
+              >
+                <Typography className="text-sm underline text-white">
+                  T-SHIRT
+                </Typography>
+              </MenuItem>
+              <MenuItem
+                className="flex flex-col-2 gap-3 items-center "
+                onClick={() => navigate("/accessories")}
+              >
+                <Typography className="text-sm underline text-white">
+                  ACCESSORIES
+                </Typography>
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </div>
+        {/* <Typography
           as="li"
           variant="small"
           color="white"
@@ -114,7 +138,7 @@ function HeaderMenu() {
           >
             ACCESSORIES
           </a>
-        </Typography>
+        </Typography> */}
         <Typography
           as="li"
           variant="small"
@@ -129,26 +153,68 @@ function HeaderMenu() {
             TRACKING ORDER
           </a>
         </Typography>
-        <div className="flex justify-between">
-          <Typography
-            as="li"
-            variant="small"
-            color="white"
-            className="p-1 font-medium"
+        <Typography
+          as="li"
+          variant="small"
+          color="white"
+          className="p-1 font-medium"
+        >
+          <a
+            href="#"
+            className="flex items-center transition-colors hover:text-blue-500"
+            onClick={(e) => {
+              e.preventDefault();
+              dispatch(openDialogSearch());
+            }}
           >
-            <a
-              href="#"
-              className="flex items-center transition-colors hover:text-blue-500"
-              onClick={(e) => {
-                e.preventDefault();
-                dispatch(openDialogSearch());
-              }}
-            >
-              <MagnifyingGlassIcon className="w-4 h-4 mr-2" />
-              SEARCH
-              <div className="border-b-[0px] border-[#000] border w-[120px] mt-5 ml-4" />
-            </a>
-          </Typography>
+            <MagnifyingGlassIcon className="w-4 h-4 mr-2 text-white" />
+            SEARCH
+          </a>
+        </Typography>
+        <div>
+          <Menu shadow={false}>
+            <MenuHandler className="bg-transparent">
+              <Typography
+                as="li"
+                variant="small"
+                color="white"
+                className="p-1 font-medium"
+              >
+                <a
+                  href="#"
+                  className="flex items-center hover:text-blue-500 transition-colors underline"
+                >
+                  MEDIA SOSIAL
+                </a>
+              </Typography>
+            </MenuHandler>
+            <MenuList className="bg-[#000000]">
+              <MenuItem className="flex flex-col-2 gap-3 items-center">
+                <img src={instagram} alt="instagram" className="h-4 w-4" />
+                <Typography className="text-sm underline text-white">
+                  @Melanconny_store
+                </Typography>
+              </MenuItem>
+              <MenuItem className="flex flex-col-2 gap-3 items-center">
+                <img src={tiktok} alt="tiktok" className="h-4 w-4" />
+                <Typography className="text-sm underline text-white">
+                  Melanconnywel
+                </Typography>
+              </MenuItem>
+              <MenuItem className="flex flex-col-2 gap-3 items-center">
+                <img src={twiter} alt="twiter" className="h-4 w-4" />
+                <Typography className="text-sm underline text-white">
+                  Melanconny_store
+                </Typography>
+              </MenuItem>
+              <MenuItem className="flex flex-col-2 gap-3 items-center">
+                <img src={youtobe} alt="youtobe" className="h-4 w-4" />
+                <Typography className="text-sm underline text-white">
+                  Melanconnywel
+                </Typography>
+              </MenuItem>
+            </MenuList>
+          </Menu>
         </div>
       </ul>
     </>
@@ -177,7 +243,7 @@ function HeaderProfileMenu() {
             dispatch(openDialogSearch());
           }}
         >
-          <MagnifyingGlassIcon className="h-6 w-6" />
+          <MagnifyingGlassIcon className="h-6 w-6 text-white" />
         </IconButton>
         <IconButton
           variant="text"
@@ -196,13 +262,13 @@ function HeaderProfileMenu() {
         </IconButton>
         <Badge
           content={isLoggedIn ? qtyTotal : 0}
-          className={`bg-black text-white p-0 min-w-[20px] min-h-[20px] ${qtyTotal <= 0 || !isLoggedIn ? "hidden" : ""}`}
+          className={`bg-[#F62C85] text-white p-0 min-w-[20px] min-h-[20px] ${qtyTotal <= 0 || !isLoggedIn ? "hidden" : ""}`}
         >
           <Button
             size="sm"
             variant="text"
             ripple={false}
-            className="px-0 py-0 flex gap-1 items-center rounded-full hover:bg-transparent active:bg-transparent"
+            className="px-0 py-0 flex gap-1 items-center rounded-full hover:bg-transparent active:bg-transparent text-white"
             onClick={() => dispatch(openDrawerShoppingCart())}
           >
             <svg

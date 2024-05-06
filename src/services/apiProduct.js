@@ -1,4 +1,5 @@
 import { apiCore } from "./apiCore.js";
+
 export const apiProduct = apiCore.injectEndpoints({
   reducerPath: "apiProducts",
   tagTypes: ["Products"],
@@ -7,10 +8,17 @@ export const apiProduct = apiCore.injectEndpoints({
       query: () => "/api/products/grouped-by-category",
       transformResponse: (response) => response.data,
     }),
+
+    invalidatesTags: (result, error, id) => [
+      { type: "Products", id },
+      { type: "Products", id: "PARTIAL-LIST" },
+    ],
+
     getProductById: builder.query({
       query: (id) => ({ url: `/api/product/${id}` }),
       transformResponse: (response) => response.data,
     }),
+
     searchProduct: builder.query({
       query: (inputSearch) => ({
         url: `/api/products/search?search=${inputSearch}`,
@@ -29,6 +37,13 @@ export const apiProduct = apiCore.injectEndpoints({
       }),
       transformResponse: (response) => response.data,
     }),
+
+    // getProductByStock: builder.query({
+    //   query: () => ({
+    //     url: `api/`
+
+    //   })
+    // })
   }),
   overrideExisting: true,
 });

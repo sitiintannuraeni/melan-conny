@@ -47,7 +47,7 @@ function CardProduct({ id, img, name, price, items, is_wishlist }) {
 
   return (
     <Card
-      className="flex flex-col mt-4 bg-transparent bg-white border border-gray-300 w-full relative h-[290px] lg:h-[450px] md:h-[500px] select-none"
+      className="p-0 flex flex-col bg-transparent bg-white border border-gray-300 w-full relative h-[290px] lg:h-[450px] md:h-[500px] select-none"
       shadow={false}
     >
       <CardHeader

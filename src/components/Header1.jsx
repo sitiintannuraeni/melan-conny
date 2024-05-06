@@ -311,7 +311,7 @@ function HeaderProfileMenu() {
           </div>
         ) : (
           <div className="flex items-center gap-2">
-            <Menu>
+            <Menu className="p-0 m-2">
               <MenuHandler>
                 <div className="rounded-full h-6 w-6 flex items-center justify-center bg-gray-900 cursor-pointer">
                   <Typography
@@ -325,13 +325,16 @@ function HeaderProfileMenu() {
                   </Typography>
                 </div>
               </MenuHandler>
-              <MenuList>
+              <MenuList className="bg-[#000000] border-none">
                 <MenuItem
                   className="flex items-center gap-2"
                   onClick={() => navigate("/account-info")}
                 >
-                  <UserCircleIcon className="h-5 w-5" />
-                  <Typography variant="small" className="font-medium">
+                  <UserCircleIcon className="h-5 w-5 text-white" />
+                  <Typography
+                    variant="small"
+                    className="font-medium text-white"
+                  >
                     {data.name.split(" ")[0]}
                   </Typography>
                 </MenuItem>
@@ -340,8 +343,11 @@ function HeaderProfileMenu() {
                   className="flex items-center gap-2"
                   onClick={handleDialogLogout}
                 >
-                  <ArrowRightStartOnRectangleIcon className="h-5 w-5" />
-                  <Typography variant="small" className="font-medium">
+                  <ArrowRightStartOnRectangleIcon className="h-5 w-5 text-white" />
+                  <Typography
+                    variant="small"
+                    className="font-medium text-white"
+                  >
                     Logout
                   </Typography>
                 </MenuItem>

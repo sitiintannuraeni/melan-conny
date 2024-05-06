@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "../../styles/swiper.css";
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
+import Logo from "../../assets/melanconny-logo.png";
 
 function DetailImages({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -37,25 +38,11 @@ function DetailImages({ images }) {
         >
           {images.map((image, index) => {
             return (
-              <SwiperSlide key={index}>
+              <SwiperSlide key={index} className="relative">
                 <img src={image.url} className="object-contain" />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-        <Swiper
-          onSwiper={setThumbsSwiper}
-          spaceBetween={10}
-          slidesPerView={4}
-          freeMode={true}
-          watchSlidesProgress={true}
-          modules={[FreeMode, Navigation, Thumbs]}
-          className="swiper-small-product-img rounded-lg mt-5 select-none"
-        >
-          {images.map((image, swiper) => {
-            return (
-              <SwiperSlide key={swiper}>
-                <img src={image.url} />
+                <div className="absolute z-20 top-3 left-[10px] h-20 w-20 object-contain">
+                  <img src={Logo} alt="logo" />
+                </div>
               </SwiperSlide>
             );
           })}

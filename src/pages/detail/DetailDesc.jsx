@@ -1,9 +1,11 @@
 import {
   HeartIcon,
+  MinusIcon,
+  PlusIcon,
   ShareIcon,
   ShoppingBagIcon,
 } from "@heroicons/react/24/outline";
-import { Button, Typography } from "@material-tailwind/react";
+import { Button, IconButton, Typography } from "@material-tailwind/react";
 import { openDialogLogin, openDialogShareLink } from "../../slice/menuSlice";
 import { useDispatch, useSelector } from "react-redux";
 import NumberFormatCurrency from "../../utils";
@@ -128,7 +130,6 @@ function DetailDesc({
         }
       }
     }
-
     // toast.success("Success add to cart");
   };
 
@@ -165,16 +166,16 @@ function DetailDesc({
   return (
     <>
       <div className="px-3 lg:mt-0 mt-5 md:px-20 lg:px-6 select-none">
-        <Typography className="font-medium tracking-wide lg:text-lg text-lg md:text-xl">
+        <Typography className="font-medium tracking-wide lg:text-lg text-lg md:text-xl text-white">
           {product_name}
         </Typography>
-        <Typography className="font-medium tracking-wide lg:text-base md:text-lg text-base mt-2">
+        <Typography className="font-medium tracking-wide lg:text-base md:text-lg text-base mt-2 text-white">
           <NumberFormatCurrency value={price} />
         </Typography>
-        <Typography className="text-[#989898] mt-1 lg:text-xs text-[12px] md:text-sm">
-          {total_sold} items sold
-        </Typography>
-        <Typography className="text-[#000000] lg:mt-5 mt-2 text-md">
+        <div className="border border-white mt-4" />
+        <Typography className="mt-3 text-white text-sm">{desc}</Typography>
+        <div className="border border-white mt-3" />
+        <Typography className="lg:mt-5 mt-2 text-md text-white">
           Select Size
         </Typography>
         <div className="grid lg:grid-cols-10 grid-cols-7 lg:gap-[61px] gap-[54px] md:gap-[10px] mt-3 lg:w-full w-full md:w-[750 px]">
@@ -182,9 +183,9 @@ function DetailDesc({
             return (
               <Button
                 key={index}
-                variant={activeSize === ukuran.id ? "filled" : "outlined"}
+                variant={activeSize === ukuran.id ? "outlined" : "filled"}
                 onClick={() => handleSelectSize(ukuran)}
-                className="text-sm hover:text-white h-[40px] w-full flex justify-center items-center hover:bg-black/100"
+                className="text-sm text-white h-[40px] w-full flex justify-center items-center hover:bg-[#F62C85] border border-white"
               >
                 {ukuran.size_name}
                 {/* :{ukuran.pivot.stock} */}
@@ -197,126 +198,20 @@ function DetailDesc({
             Size must be selected!
           </Typography>
         )}
-        <div className="grid lg:grid-cols-4 grid-cols-3 md:grid-cols-3 gap-2 mt-5">
-          <div className="bg-gray-200 lg:h-[60px] h-[50px] md:h-[75px] flex flex-col-2 gap-2 px-3">
-            <div className="w-[120px] h-[50px] mt-[5.4px]">
-              <img
-                src={Image2}
-                alt="image2"
-                className="object-cover lg:w-full lg:h-full w-[40px] h-[40px] md:w-[60px] md:h-[64px]"
-              />
-            </div>
-            <div className="w-[140px] mt-4">
-              <div className="flex items-center ">
-                <Typography className="lg:text-xs text-[8px] md:text-[15px] text-black">
-                  Maroon
-                </Typography>
-              </div>
-              <Typography className="lg:text-[10.7px] text-[8px] md:text-[13px] text-black/60">
-                stok 12374
-              </Typography>
-            </div>
-          </div>
-          <div className="bg-gray-200 lg:h-[60px] h-[50px] md:h-[75px] flex flex-col-2 gap-2 px-3">
-            <div className="w-[120px] h-[50px] mt-[5.4px]">
-              <img
-                src={Image2}
-                alt="image2"
-                className="object-cover lg:w-full lg:h-full w-[40px] h-[40px] md:w-[60px] md:h-[64px]"
-              />
-            </div>
-            <div className="w-[140px] mt-4 ">
-              <div className="flex items-center ">
-                <Typography className="lg:text-xs text-[8px] md:text-[15px] text-black">
-                  Blue
-                </Typography>
-              </div>
-              <Typography className="lg:text-[10.7px] text-[8px] md:text-[13px] text-black/60">
-                stok 1234
-              </Typography>
-            </div>
-          </div>
-          <div className="bg-gray-200 lg:h-[60px] h-[50px] md:h-[75px] flex flex-col-2 gap-2 px-3">
-            <div className="w-[120px] h-[50px] mt-[5.4px]">
-              <img
-                src={Image2}
-                alt="image2"
-                className="object-cover lg:w-full lg:h-full w-[40px] h-[40px] md:w-[60px] md:h-[64px]"
-              />
-            </div>
-            <div className="w-[140px] mt-4 ">
-              <div className="flex items-center ">
-                <Typography className="lg:text-xs text-[8px] md:text-[15px] text-black">
-                  Green
-                </Typography>
-              </div>
-              <Typography className="lg:text-[10.7px] text-[8px] md:text-[13px] text-black/60">
-                stok 1222
-              </Typography>
-            </div>
-          </div>
-          <div className="bg-gray-200 lg:h-[60px] h-[50px] md:h-[75px] flex flex-col-2 gap-2 px-3">
-            <div className="w-[120px] h-[50px] mt-[5.4px]">
-              <img
-                src={Image2}
-                alt="image2"
-                className="object-cover lg:w-full lg:h-full w-[40px] h-[40px] md:w-[60px] md:h-[64px]"
-              />
-            </div>
-            <div className="w-[140px] mt-4 ">
-              <div className="flex items-center ">
-                <Typography className="lg:text-xs text-[8px] md:text-[15px] text-black">
-                  Black
-                </Typography>
-              </div>
-              <Typography className="lg:text-[10.7px] text-[8px] md:text-[13px] text-black/60">
-                stok 1123
-              </Typography>
-            </div>
-          </div>
-          <div className="bg-gray-200 lg:h-[60px] h-[50px] md:h-[75px] flex flex-col-2 gap-2 px-3">
-            <div className="w-[120px] h-[50px] mt-[5.4px]">
-              <img
-                src={Image2}
-                alt="image2"
-                className="object-cover lg:w-full lg:h-full w-[40px] h-[40px] md:w-[60px] md:h-[64px]"
-              />
-            </div>
-            <div className="w-[140px] mt-4 ">
-              <div className="flex items-center ">
-                <Typography className="lg:text-xs text-[8px] md:text-[15px] text-black">
-                  Brown
-                </Typography>
-              </div>
-              <Typography className="lg:text-[10.7px] text-[8px] md:text-[13px] text-black/60">
-                stok 1555
-              </Typography>
-            </div>
-          </div>
-          <div className="bg-gray-200 lg:h-[60px] h-[50px] md:h-[75px] flex flex-col-2 gap-2 px-3">
-            <div className="w-[120px] h-[50px] mt-[5.4px]">
-              <img
-                src={Image2}
-                alt="image2"
-                className="object-cover lg:w-full lg:h-full w-[40px] h-[40px] md:w-[60px] md:h-[64px]"
-              />
-            </div>
-            <div className="w-[140px] mt-4 ">
-              <div className="flex items-center ">
-                <Typography className="lg:text-xs text-[8px] md:text-[15px] text-black">
-                  Pink
-                </Typography>
-              </div>
-              <Typography className="lg:text-[10.7px] text-[8px] md:text-[13px] text-black/60">
-                stok 1666
-              </Typography>
-            </div>
-          </div>
+        <div className="mt-5 flex flex-col-2 gap-3 items-center">
+          <IconButton variant="outlined" color="white">
+            <PlusIcon className="h-5 w-5 text-white" />
+          </IconButton>
+          <Typography className="text-white text-xl">1</Typography>
+          <IconButton variant="outlined" color="white">
+            <MinusIcon className="h-5 w-5 text-white" />
+          </IconButton>
+          <Typography className="text-white">Stock : 123</Typography>
         </div>
         <div className="flex flex-col-2 mt-5 gap-2">
           <div className="flex flex-col-2">
             <Button
-              className="lg:w-[174px] md:w-[269px] w-[172px] size-12 text-xs flex flex-col-2 gap-2"
+              className="lg:w-[174px] md:w-[269px] w-[172px] size-12 text-xs flex flex-col-2 gap-2 border border-white"
               loading={isLoading}
               disabled={isLoading}
               onClick={() => {
@@ -331,16 +226,25 @@ function DetailDesc({
                 });
               }}
             >
-              <a href="">
-                <ShoppingBagIcon className="h-4 w-4 mt-[1px]" />
-              </a>
-              <Typography className="text-xs font-bold mt-[2px]">
-                Add to Bag
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6 text-white"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <Typography className="text-sm mt-[1px] font-semibold">
+                ADD TO BAG
               </Typography>
             </Button>
           </div>
           <Button
-            className="lg:w-[174px] md:w-[269px] w-[172px] text-xs bg-black/40 text-black"
+            className="lg:w-[174px] md:w-[269px] w-[172px] text-sm bg-[#F62C85] text-white"
             variant="outlined"
             onClick={() => navigate("/checkout")}
           >
@@ -351,7 +255,7 @@ function DetailDesc({
           <div className="lg:col-span-3 col-span-3 md:col-span-2">
             <Button
               variant="outlined"
-              className="flex items-center gap-2 pl-12 lg:w-full md:w-[415px] w-full lg:h-[95%] h-[45px]"
+              className="flex items-center gap-2 pl-12 lg:w-full md:w-[415px] w-full lg:h-[95%] h-[45px] bg-white"
             >
               <HeartIcon className="h-5 w-5" />
               <Typography className="font-bold text-xs lg:text-base md:text-base">
@@ -362,91 +266,13 @@ function DetailDesc({
           <div>
             <Button
               variant="outlined"
-              className="lg:w-20 md:w-[90px] md:pl-8 lg:pl-7 pl-6"
+              className="lg:w-20 md:w-[90px] md:pl-8 lg:pl-7 pl-6 bg-white text-black"
               fullWidth
               size="md"
               onClick={() => dispatch(openDialogShareLink())}
             >
               <ShareIcon className="h-5 w-5 flex-auto" />
             </Button>
-          </div>
-        </div>
-        <div>
-          <div className="grid grid-cols-1">
-            <div className="lg:text-lg md:text-2xl text-base font-medium mt-7">
-              Details
-            </div>
-            <div className="lg:w-[70px] md:w-[90px] w-[60px] lg:border-b-[4px] border-b-[3px] md:border-b-[4px] border-black mt-2"></div>
-          </div>
-          <Typography className="mt-4 font-semibold lg:text-base text-sm md:text-lg text-[#857F7F]">
-            {product_name}
-          </Typography>
-          <div className="grid grid-cols-2 w-[200px] mt-[30px] text-base tracking-wider">
-            <div className="font-semibold text-[#857F7F] lg:text-base text-sm md:text-xl">
-              Material :
-            </div>
-            <div className="text-[#B0B0B0] lg:text-sm text-xs md:text-base mt-[3px]">
-              {material}
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:w-[200px] md:w-[400px] w-[200px] mt-[30px] text-base tracking-wider gap-1">
-            <div className="font-semibold text-[#857F7F] lg:text-base text-sm md:text-xl">
-              Features :
-            </div>
-            <div className="text-[#B0B0B0] lg:text-sm text-xs md:text-lg">
-              {features}
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:w-[450px] w-[335px] md:w-[550px] mt-[30px] text-base tracking-wider gap-1">
-            <div className="font-semibold text-[#857F7F] lg:text-base text-sm md:text-xl">
-              Overview :
-            </div>
-            <div>
-              <Typography className="text-[#B0B0B0] lg:text-sm text-xs md:text-lg">
-                {overview}
-              </Typography>
-            </div>
-          </div>
-          <div className="mt-9">
-            <Typography className="font-semibold text-[#857F7F]  lg:text-base text-sm md:text-xl">
-              Size Chart :
-            </Typography>
-            <Typography className="font-semibold text-[#857F7F]  lg:text-base text-sm md:text-xl">
-              Length x Chest x Shoulder
-            </Typography>
-          </div>
-          <div className="text-[#B0B0B0] mt-2 ">
-            {size.map((ukuran, index) => {
-              return (
-                <Typography
-                  key={index}
-                  className="lg:text-base md:text-lg text-sm"
-                >
-                  {ukuran.label}
-                </Typography>
-              );
-            })}
-          </div>
-          <div className="text-[#857F7F] mt-8">
-            <Typography className="font-semibold lg:text-base text-sm md:text-xl">
-              Talent
-            </Typography>
-          </div>
-          <div className="text-[#B0B0B0] grid grid-rows-3">
-            <Typography className="lg:text-base text-sm md:text-lg">
-              - Tinggi : 180 cm
-            </Typography>
-            <Typography className="lg:text-base text-sm md:text-lg">
-              - Berat : 70 kg
-            </Typography>
-            <Typography className="lg:text-base text-sm md:text-lg">
-              - Menggunakan size L
-            </Typography>
-          </div>
-          <div className="text-[#B0B0B0] mt-9 lg:w-full w-[340px] md:w-full">
-            <Typography className="lg:text-base text-sm md:text-lg">
-              {desc}
-            </Typography>
           </div>
         </div>
       </div>

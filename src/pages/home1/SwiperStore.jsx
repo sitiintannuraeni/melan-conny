@@ -1,6 +1,4 @@
 import { Card, Typography } from "@material-tailwind/react";
-import Banner from "../../assets/banner-utama.png";
-import Store from "../../assets/store.png";
 
 import React, { useRef, useState } from "react";
 // Import Swiper React components
@@ -10,53 +8,67 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import "../../styles/swiper-detail.css";
+import "../../styles/swiper-home1.css";
 import { Pagination } from "swiper/modules";
-import Image1 from "../../assets/product-9.png";
-import Image2 from "../../assets/product-10.png";
-import Image3 from "../../assets/product-11.png";
-import CardProduct from "../../components/CardProduct";
 import { CardProduct1 } from "../../components/CardProduct1";
+import { useGetProductsByGroupCategoryQuery } from "../../services/apiProduct.js";
+import { baseUrlApi } from "../../services/apiCore.js";
 
 function SwiperStore() {
-  return (
-    <>
-      <div className="py-20 -mt-[80px]">
-        <div className="px-32 mt-10">
-          <Typography className="text-white text-2xl font-bold">
-            STORE
-          </Typography>
-          <div className="mt-10 flex flex-col-3 gap-3">
-            <CardProduct1 img={Image1} name={"Melanconny Edition"} />
-            <CardProduct1 img={Image2} name={"Naha Bogor"} />
-            <CardProduct1 img={Image3} name={"Skull Edition"} />
-            <CardProduct1 img={Image1} name={"Melanconny Edition"} />
-            {/* <>
-              <Swiper
-                slidesPerView={4}
-                spaceBetween={30}
-                pagination={{
-                  clickable: true,
-                }}
-                modules={[Pagination]}
-                className="mySwiper"
-              >
-                <SwiperSlide>
-                  <CardProduct1 img={Image1} />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <CardProduct1 img={Image2} />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <CardProduct1 img={Image3} />
-                </SwiperSlide>
-              </Swiper>
-            </> */}
+  const {
+    data: productByCategory,
+    isLoading,
+    isFetching,
+    isSuccess,
+    isError,
+    error,
+  } = useGetProductsByGroupCategoryQuery();
+
+  console.log({ productByCategory });
+
+  if (isSuccess) {
+    return (
+      <>
+        {productByCategory.map((category, categoryIndex) => (
+          <div className="pb-14" key={categoryIndex}>
+            <div className="lg:px-32 px-8 lg:mt-10 mt-[-70px]">
+              <Typography className="text-white text-2xl font-bold">
+                {category.category_name}
+              </Typography>
+              <div className="mt-10">
+                <>
+                  <Swiper
+                    slidesPerView={4}
+                    spaceBetween={30}
+                    pagination={{
+                      clickable: true,
+                    }}
+                    modules={[Pagination]}
+                    className="mySwiper"
+                  >
+                    {category.products.map((product, index) => {
+                      return (
+                        <SwiperSlide key={index}>
+                          <CardProduct1
+                            id={product.id}
+                            img={`${baseUrlApi}/${product.images[0].path}`}
+                            name={product.product_name}
+                            price={product.price}
+                            items={`${product.total_sold} items sold`}
+                            is_wishlist={product.is_wishlist}
+                          />
+                        </SwiperSlide>
+                      );
+                    })}
+                  </Swiper>
+                </>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </>
-  );
+        ))}
+      </>
+    );
+  }
 }
 
 export default SwiperStore;

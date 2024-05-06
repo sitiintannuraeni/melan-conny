@@ -17,7 +17,7 @@ function DrawerSCLayout(props) {
         placement="right"
         open={drawerShoppingCart}
         onClose={() => dispatch(closeDrawerShoppingCart())}
-        className="p-3"
+        className="p-3 bg-[#000000]"
       >
         <div className="flex items-center gap-2 mt-1">
           <div className="mb-6 flex items-center gap-2">
@@ -29,11 +29,11 @@ function DrawerSCLayout(props) {
                 dispatch(closeDrawerShoppingCart());
               }}
             >
-              <XMarkIcon className="w-6 h-6" />
+              <XMarkIcon className="w-6 h-6 text-white" />
             </a>
             <div className="hidden items-center gap-3 lg:flex md:flex">
               <img src={LogoDrawer} alt="logoDrawer" width="50" />
-              <Typography variant="h5" color="blue-gray">
+              <Typography variant="h5" color="white">
                 SHOPPING BAG
               </Typography>
             </div>

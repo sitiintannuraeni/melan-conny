@@ -6,6 +6,7 @@ const initialState = {
   data: {},
   user: {},
   redirectTo: "",
+  shippingAddres: {},
 };
 
 const authSlice = createSlice({
@@ -29,10 +30,18 @@ const authSlice = createSlice({
       state.data = {};
       state.user = {};
     },
+    setShippingAddress: (state, action) => {
+      state.shippingAddres = action.payload;
+    },
   },
 });
 
-export const { setAuthToken, setAuthLoginRedirect, logout, setAuthUser } =
-  authSlice.actions;
+export const {
+  setAuthToken,
+  setAuthLoginRedirect,
+  logout,
+  setAuthUser,
+  setShippingAddress,
+} = authSlice.actions;
 
 export default authSlice.reducer;

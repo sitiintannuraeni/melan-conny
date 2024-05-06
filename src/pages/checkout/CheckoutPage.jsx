@@ -10,12 +10,14 @@ function CheckoutPage() {
       <div className="h-full lg:px-20 px-3 mt-10">
         <div className="flex justify-between">
           <Typography
-            className="text-xs underline cursor-pointer"
+            className="text-xs underline cursor-pointer text-white"
             onClick={() => navigate("/")}
           >
             Back to Shop
           </Typography>
-          <Typography className="text-base lg:pr-[557px]">Checkout</Typography>
+          <Typography className="text-base lg:pr-[557px] text-white">
+            Checkout
+          </Typography>
         </div>
         <div className="lg:grid lg:grid-cols-2 flex flex-col">
           <div className="rounded-lg">

@@ -12,7 +12,7 @@ function Empty() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-10 h-10 text-[#989898]"
+              className="w-10 h-10 text-white"
             >
               <path
                 fillRule="evenodd"
@@ -22,14 +22,19 @@ function Empty() {
             </svg>
           </IconButton>
         </div>
-        <Typography className="flex justify-center items-center text-base mt-4 text-[#989898]">
+        <Typography className="flex justify-center items-center text-base mt-4 text-white">
           Your bag is empty.
         </Typography>
-        <Typography className="flex justify-center items-center text-base text-[#989898]">
+        <Typography className="flex justify-center items-center text-base text-white">
           Let's add one, shall we
         </Typography>
         <div className="flex justify-center items-center -mt-[140px] py-[180px]">
-          <Button className="w-[170px]" size="lg" onClick={() => navigate("/")}>
+          <Button
+            className="w-[170px]"
+            size="lg"
+            onClick={() => navigate("/")}
+            color="white"
+          >
             SHOP NOW
           </Button>
         </div>

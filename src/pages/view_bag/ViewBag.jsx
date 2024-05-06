@@ -1,6 +1,5 @@
 import { Button, IconButton, Typography } from "@material-tailwind/react";
-import Logo from "../../assets/logo1.png";
-import TotalItems from "./TotalItems";
+import Logo from "../../assets/logo-auth.png";
 import Summary from "./Summary";
 import image from "../../assets/product-1.png";
 import { ShoppingBagIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -14,17 +13,20 @@ import BNI from "../../assets/bni.png";
 import PermataBank from "../../assets/permata-bank.png";
 import ShopeePay from "../../assets/shopee-pay.png";
 import Empty from "./Empty";
+import TotalItems from "./TotalItems";
 
 function ViewBag() {
   const [isDelete, setIsDelete] = useState(false);
   return (
     <>
-      <div className="mt-12 select-none">
-        <div className="mb-6 flex items-center lg:px-7 px-0 mt-3">
+      <div className="mt-5 select-none">
+        <div className="mb-6 flex items-center lg:px-10 px-0 mt-3">
           <div>
             <img src={Logo} alt="logo" className=" object-cover w-[125px]" />
           </div>
-          <Typography variant="h5">SHOPPING BAG</Typography>
+          <Typography variant="h5" className="text-white">
+            SHOPPING BAG
+          </Typography>
         </div>
         <BrowserView>
           <div className="lg:px-14 px-7 lg:py-24 lg:-mt-20 -mt-7 py-14">
@@ -36,13 +38,7 @@ function ViewBag() {
               <div className="flex flex-col lg:grid lg:grid-cols-2 -mt-3 gap-5 lg:space-x-32">
                 <div>
                   <TotalItems />
-                  <div
-                    className="w-full flex justify-end -mt-[127px]"
-                    onClick={() => setIsDelete(true)}
-                  >
-                    <XMarkIcon className="h-5 w-5 cursor-pointer" />
-                  </div>
-                  <div className="border border-black/10 mt-[123px]" />
+                  <div className="border border-white mt-10" />
                 </div>
                 <div className="">
                   <div>
@@ -67,11 +63,11 @@ function ViewBag() {
                   className="w-full flex justify-end -mt-[127px]"
                   onClick={() => setIsDelete(true)}
                 >
-                  <XMarkIcon className="h-5 w-5 cursor-pointer" />
+                  <XMarkIcon className="h-5 w-5 cursor-pointer text-white" />
                 </div>
                 <div className="mt-32">
                   <div className="flex justify-between">
-                    <Typography>Shipping Fee</Typography>
+                    <Typography className="text-white">Shipping Fee</Typography>
                     <Typography className="text-[#989898]">
                       Calculated after checkout
                     </Typography>
@@ -80,7 +76,7 @@ function ViewBag() {
                   <div className="flex justify-between mt-3">
                     <Typography>TOTAL</Typography>
                     <Typography className="text-[#989898]">
-                      Rp 185.000{" "}
+                      Rp 185.000
                     </Typography>
                   </div>
                   <div className="mt-3">

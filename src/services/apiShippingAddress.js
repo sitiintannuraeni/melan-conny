@@ -7,11 +7,11 @@ export const apiAddress = apiCore.injectEndpoints({
   endpoints: (builder) => ({
     getAddress: builder.query({
       query: () => "api/shipping_address",
-      // transformResponse: (response) => response.data,
+      transformResponse: (response) => response.data,
       providesTags: (result, error, arg) =>
         result
           ? [
-              ...result.data.map(({ id }) => ({
+              ...result.map(({ id }) => ({
                 type: "ShippingAddress",
                 id,
               })),
@@ -75,12 +75,12 @@ export const apiAddress = apiCore.injectEndpoints({
           console.log("update gagal", error);
         }
       },
-      // invalidatesTags: [
-      //   {
-      //     type: "ShippingAddress",
-      //     id: "LIST",
-      //   },
-      // ],
+      invalidatesTags: [
+        {
+          type: "ShippingAddress",
+          id: "LIST",
+        },
+      ],
     }),
 
     deleteFromAddress: builder.mutation({

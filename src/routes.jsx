@@ -19,8 +19,8 @@ import HomePage from "./pages/home1/HomePage";
 import Login from "./components/Login1";
 import ForgotPassword from "./components/ForgotPassword";
 import Register from "./components/Register1";
-import AccessoriesPage from "./pages/accessories/AccessoriesPage";
-import StorePage from "./pages/store/StorePage";
+import T_Shirt from "./pages/store/T-Shirt";
+import Accessories from "./pages/store/Accessories";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,8 +29,8 @@ export const router = createBrowserRouter(
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/store" element={<StorePage />}></Route>
-        <Route path="/accessories" element={<AccessoriesPage />}></Route>
+        <Route path="/t-shirt" element={<T_Shirt />}></Route>
+        <Route path="/accessories" element={<Accessories />}></Route>
         <Route path="/forgot-password" element={<ForgotPassword />}></Route>
         <Route path="/detail/:id" element={<DetailPage />}></Route>
         <Route path="/trucking-order" element={<TruckingPage />}></Route>

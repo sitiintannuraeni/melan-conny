@@ -28,7 +28,7 @@ function BrowserLayout() {
               You can manage your account and track your order here
             </Typography>
           </div>
-          <div className=" border-b-[1px] border-white mt-12 w-full" />
+          <div className="border-b-[1px] border-white mt-12 w-full" />
         </div>
         <div className="flex lg:flex-col-2 flex-col-1 lg:gap-20 w-full">
           <div>

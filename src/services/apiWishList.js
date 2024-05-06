@@ -1,4 +1,5 @@
 import { apiCore } from "./apiCore";
+
 export const apiWishList = apiCore.injectEndpoints({
   reducerPath: "apiWishlist",
   tagTypes: ["Wishlist"],
@@ -9,9 +10,9 @@ export const apiWishList = apiCore.injectEndpoints({
       providesTags: (result, error, arg) =>
         result
           ? [
-              ...result.data.map(({ wishList_id }) => ({
+              ...result.data.map(({ id }) => ({
                 type: "Wishlist",
-                wishList_id,
+                id,
               })),
               {
                 type: "Wishlist",
@@ -60,10 +61,10 @@ export const apiWishList = apiCore.injectEndpoints({
     }),
 
     deleteFromWishlist: builder.mutation({
-      query: ( {id} ) => ({
+      query: ({ id }) => ({
         url: `api/whislist`,
         method: "POST",
-        body: {product_id: id},
+        body: { product_id: id },
       }),
       transformResponse: (response, meta, arg) => response.data,
       invalidatesTags: [

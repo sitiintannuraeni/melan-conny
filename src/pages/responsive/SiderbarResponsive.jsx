@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
-import Logo from "../../assets/logo1.png";
+import Logo from "../../assets/logo-auth.png";
 import AccountInfo from "../account_info/AccountInfo";
 import MyOrder from "../my_order/MyOrder";
 import WishList from "../wishlist/WishListPage";
@@ -44,7 +44,7 @@ function SidebarResponsive() {
             <img
               src={Logo}
               alt="logo"
-              className="h-[122px] w-[150px] object-cover"
+              className="h-[122px] w-[150px] object-contain"
             />
           </div>
           <div className="grid grid-rows-2 justify-center ">

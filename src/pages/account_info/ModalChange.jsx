@@ -42,6 +42,7 @@ function FormModalChange() {
       new_password: data.newPassword,
       confirm_password: data.confirmPassword,
     });
+    toast.success("successfully");
     console.log(data);
   };
 
@@ -172,8 +173,13 @@ function FormModalChange() {
           {errors.confirmPassword && <span>Confirm Password required</span>}
         </span>
       </div>
-      <div className="flex justify-center mt-4">
-        <Button disabled={isLoading} loading={isLoading} type="submit">
+      <div className="flex justify-center mt-4 ">
+        <Button
+          disabled={isLoading}
+          loading={isLoading}
+          type="submit"
+          className="bg-[#F62C85]"
+        >
           CONFIRM NEW PASSWORD
         </Button>
       </div>
@@ -196,7 +202,7 @@ function ModalChange() {
         className=" select-none"
       >
         <DialogHeader className="flex justify-between">
-          <Typography className="cursor-default text-lg font-semibold">
+          <Typography className="cursor-default text-lg font-semibold ">
             Change Password
           </Typography>
           <a

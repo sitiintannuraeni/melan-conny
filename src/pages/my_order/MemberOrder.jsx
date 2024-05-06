@@ -1,5 +1,5 @@
 import { Button } from "@material-tailwind/react";
-import Logo from "../../assets/logo1.png";
+import Logo from "../../assets/logo-auth.png";
 import BCA from "../../assets/bca-1.png";
 import Timer from "../../assets/timer-icon.png";
 import { GifIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
@@ -46,19 +46,19 @@ function MemberOrder() {
   return (
     <>
       <div className="mt-5 lg:px-0 px-3">
-        <div className="flex justify-center pr-[6.5px]">
+        <div className="flex justify-center pr-[6.5px] -mt-5">
           <img
             src={Logo}
             alt="logo"
-            className="h-[110px] w-[120px] object-cover"
+            className="h-[150px] w-[150px] object-contain"
           />
         </div>
-        <Typography className="flex justify-center pr-[6.5px] text-base text-black/90 font-medium">
+        <Typography className="flex justify-center pr-[6.5px] text-base text-white font-medium -mt-4">
           Waiting for payment confirmation
         </Typography>
         <div className="flex justify-center mt-4">
-          <div className="border border-l-8 border-[#D9D9D9] h-[76px]" />
-          <div className="bg-black/5 p-3 mb-4 w-[391px] h-[76px] px-2 ">
+          <div className="border border-l-8 border-[#F62C85] h-[76px]" />
+          <div className="bg-white p-3 mb-4 w-[391px] h-[76px] px-2 ">
             <div className="flex flex-col-2 space-x-4 px-3">
               <div>
                 <Typography className="text-[#989898] text-sm">
@@ -79,24 +79,24 @@ function MemberOrder() {
           </div>
         </div>
         <div className="flex justify-center">
-          <div className="border border-black/20 lg:w-[400px] w-[369px] md:w-[400px] px-3 py-6 rounded-md">
-            <Typography className="-mt-2 text-sm text-black/40">
+          <div className="border border-white lg:w-[400px] w-[369px] md:w-[400px] px-3 py-6 rounded-md">
+            <Typography className="-mt-2 text-sm text-white">
               Order ID
             </Typography>
             <div className="mt-3">
-              <Typography className="font-medium text-sm">
+              <Typography className="font-medium text-sm text-white">
                 MAL24031513556483272075308950
               </Typography>
-              <div className="border border-x-2 border-black/10 mt-2" />
+              <div className="border border-x-2 border-white mt-2" />
             </div>
-            <Typography className="mt-2  text-sm text-black/40">
+            <Typography className="mt-2  text-sm text-white">
               Total Amount
             </Typography>
             <div className="mt-2">
-              <Typography className="text-sm">Rp 130.500</Typography>
-              <div className="border border-x-2 border-black/10 mt-2" />
+              <Typography className="text-sm text-white">Rp 130.500</Typography>
+              <div className="border border-x-2 border-white mt-2" />
             </div>
-            <Typography className="mt-3 text-sm text-black/40">
+            <Typography className="mt-3 text-sm text-white">
               Virtual Account
             </Typography>
             <div className="flex justify-between">
@@ -107,10 +107,12 @@ function MemberOrder() {
                 <div className="lg:w-[330px] w-[300px] md:w-[320px]">
                   <div className="flex items-center lg:gap-x-24 gap-x-16 md:gap-x-44">
                     <div className="w-[200px]">
-                      <Typography className="text-[12px] text-[#989898]">
+                      <Typography className="text-[12px] text-white">
                         BCA Virtual Account
                       </Typography>
-                      <Typography className="text-base">3331209324</Typography>
+                      <Typography className="text-base text-white">
+                        3331209324
+                      </Typography>
                     </div>
                     <IconButton
                       onMouseLeave={() => setCopied(false)}
@@ -121,137 +123,143 @@ function MemberOrder() {
                       variant="text"
                     >
                       {copied ? (
-                        <CheckIcon className="h-5 w-5" />
+                        <CheckIcon className="h-5 w-5 text-white" />
                       ) : (
-                        <DocumentDuplicateIcon className="h-6 w-7" />
+                        <DocumentDuplicateIcon className="h-6 w-7 text-white" />
                       )}
                     </IconButton>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="border border-x-2 border-black/10 mt-5" />
-            <Typography className="mt-2  text-sm text-black/40">
+            <div className="border border-x-2 border-white mt-5" />
+            <Typography className="mt-2  text-sm text-white">
               How to pay:
             </Typography>
             <div>
-              <div className="mt-2 border border-black/15 px-3 rounded-md text-black">
+              <div className="mt-2 border border-white px-3 rounded-md text-black">
                 <Accordion open={open === 1} icon={<Icon id={1} open={open} />}>
                   <AccordionHeader
                     onClick={() => handleOpen(1)}
-                    className="text-sm text-black/80 font-medium"
+                    className="text-sm text-white font-medium hover:text-blue-300"
                   >
                     Mobile Banking / m-BCA
                   </AccordionHeader>
-                  <AccordionBody className="text-black/90 font-medium">
-                    <Typography className="text-xs ">
+                  <AccordionBody className="text-white font-medium">
+                    <Typography className="text-xs text-white">
                       Untuk Mobile Buka aplikasi M-BCA.
                     </Typography>
-                    <Typography className="text-xs ">
+                    <Typography className="text-xs text-white ">
                       Pilih m-Transfer
                     </Typography>
-                    <Typography className="text-xs">Pilih Transfer</Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
+                      Pilih Transfer
+                    </Typography>
+                    <Typography className="text-xs text-white">
                       Pilih BCA Virtual Account
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Pilih nomor rekening yang akan digunakan untuk pembayaran
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Masuka nomor BCA Virtual Account yang ada di invoice, lalu
                     </Typography>
-                    <Typography className="text-xs">Pilih OK</Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
+                      Pilih OK
+                    </Typography>
+                    <Typography className="text-xs text-white">
                       Nomor BCA Virtual Account dan nomor Rekening anda akan
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Terlihat di halaman konfimasi rekening
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Pilih OK pada halaman konfirmasi pembayaran
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Masukan PIN BCA untuk mengotorisasi pembayaran
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Transaksi Anda selesai
                     </Typography>
                   </AccordionBody>
                 </Accordion>
               </div>
-              <div className="border border-black/15 px-3 rounded-md text-black">
+              <div className="border border-white px-3 rounded-md text-black">
                 <Accordion
                   open={open === 2}
                   icon={<Icon id={2} open={open} c />}
                 >
                   <AccordionHeader
                     onClick={() => handleOpen(2)}
-                    className="text-sm font-medium"
+                    className="text-sm font-medium text-white hover:text-blue-300"
                   >
                     Klik BCA/Internet Banking BCA
                   </AccordionHeader>
                   <AccordionBody className="text-black/90 font-medium">
-                    <Typography className="text-xs ">
+                    <Typography className="text-xs text-white ">
                       Pilih Menu Transfer Dana.
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Pilih Transfer ke BCA Virtual Account.
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Masukan nomor BCA Virtual Account.
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Pilih Virtual Account.
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Jumlah yang akan ditransfer, nomor rekening dan nama
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       merchant akan muncul di halaman konfirmasi pembayaran,
                       jika
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       informasi benar klik Lanjutkan.
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Masukkan respon KEYBCA APPLI 1 yang muncul pada Token
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       BCA Anda, lalu klik tombol Kirim.
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Transaksi Anda selesai.
                     </Typography>
                   </AccordionBody>
                 </Accordion>
               </div>
-              <div className="border border-black/15 px-3 rounded-md">
+              <div className="border border-white px-3 rounded-md">
                 <Accordion
                   open={open === 3}
                   icon={<Icon id={3} open={open} c />}
                 >
                   <AccordionHeader
                     onClick={() => handleOpen(3)}
-                    className="text-sm font-medium"
+                    className="text-sm font-medium text-white hover:text-blue-300"
                   >
                     ATM BCA
                   </AccordionHeader>
                   <AccordionBody className="text-black/90 font-medium">
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Pada menu utama, pilih Transaksi Lainnya.
                     </Typography>
-                    <Typography className="text-xs">Pilih Transfer.</Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
+                      Pilih Transfer.
+                    </Typography>
+                    <Typography className="text-xs text-white">
                       Pilih ke Rek BCA Virtual Account.
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Masukan nomor Virtual Account lalu tekan Benar.
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       Pada halaman konfirmasi transfer akan muncul detail
                       pembayaran Anda.
                     </Typography>
-                    <Typography className="text-xs">
+                    <Typography className="text-xs text-white">
                       jika infromasi telah sesuai tekan Ya.
                     </Typography>
                   </AccordionBody>
@@ -264,14 +272,14 @@ function MemberOrder() {
           <div className="w-[400px]">
             <div className="flex flex-col-2 gap-2">
               <a href="">
-                <InformationCircleIcon className="h-6 w-6" />
+                <InformationCircleIcon className="h-6 w-6 text-white" />
               </a>
-              <Typography className="text-sm mt-[1px] text-[#989898]">
+              <Typography className="text-sm mt-[1px] text-white">
                 Your order will be proceed after the payment is verified.
               </Typography>
             </div>
             <div className="-mt-7 py-10" onClick={() => navigate("/my-order")}>
-              <Button className="w-full rounded-md font-medium">
+              <Button className="w-full rounded-md font-medium bg-[#F62C85]">
                 SEE DETAIL
               </Button>
             </div>

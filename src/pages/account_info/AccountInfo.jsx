@@ -23,7 +23,7 @@ function ViewAccountInfo() {
           <div className="h-full w-full px-3 mt-10">
             <div className="h-[0.5px] w-full bg-white mt-3" />
             <div className="pb-3">
-              <Typography className="text-[14px] text-white mt-3">
+              <Typography className="text-[14px] text-[#C4C4C4] mt-3">
                 Name
               </Typography>
               <Typography className="text-sm mt-2 text-white">
@@ -31,13 +31,15 @@ function ViewAccountInfo() {
               </Typography>
             </div>
             <div className="pb-5">
-              <Typography className="text-[14px] text-white">Email</Typography>
+              <Typography className="text-[14px] text-[#C4C4C4]">
+                Email
+              </Typography>
               <Typography className="text-sm mt-2 text-white">
                 {user.email}
               </Typography>
             </div>
             <div className="pb-3">
-              <Typography className="text-[14px] text-white">
+              <Typography className="text-[14px] text-[#C4C4C4]">
                 Birthday
               </Typography>
               <Typography className="text-sm mt-2 text-white">
@@ -45,7 +47,7 @@ function ViewAccountInfo() {
               </Typography>
             </div>
             <div className="pb-3">
-              <Typography className="text-[14px] text-white">
+              <Typography className="text-[14px] text-[#C4C4C4]">
                 Phone number
               </Typography>
               <Typography className="text-sm mt-2 text-white">
@@ -53,17 +55,19 @@ function ViewAccountInfo() {
               </Typography>
             </div>
             <div className="pb-3">
-              <Typography className="text-[14px] text-white">Gender</Typography>
+              <Typography className="text-[14px] text-[#C4C4C4]">
+                Gender
+              </Typography>
               <Typography>{user.gender}</Typography>
             </div>
             <div className="pb-3">
-              <Typography className="text-[14px] text-white">
+              <Typography className="text-[14px] text-[#C4C4C4]">
                 Profession
               </Typography>
               <Typography>{user.profession}</Typography>
             </div>
             <div className="pb-3">
-              <Typography className="text-[14px] text-white">
+              <Typography className="text-[14px] text-[#C4C4C4]">
                 Instagram
               </Typography>
               <Link
@@ -84,7 +88,7 @@ function ViewAccountInfo() {
             className="underline text-white cursor-pointer"
             onClick={() => dispatch(openDialogChangePasswod())}
           >
-            <Typography className="text-normal text-white">
+            <Typography className="text-normal text-white ">
               Change Password
             </Typography>
           </div>
@@ -204,7 +208,8 @@ function EditAccountInfo() {
               label="Gender"
               value={inputGender}
               onChange={(value) => setInputGender(value)}
-              color="white"
+              color="green"
+              className="text-white"
             >
               <Option value={"Male"}>Male</Option>
               <Option value={"Female"}>Female</Option>
@@ -216,7 +221,8 @@ function EditAccountInfo() {
               label="Profesion"
               value={inputProfession}
               onChange={(value) => setInputProfession(value)}
-              color="white"
+              color="green"
+              className="text-white"
             >
               <Option value={"Karyawan"}>Karyawan</Option>
               <Option value={"Pelajar/Mahasiswa"}>Pelajar/Mahasiswa</Option>
@@ -239,7 +245,7 @@ function EditAccountInfo() {
       </div>
       <div className="mt-3">
         <Button
-          className="w-full bg-[#a3a3a3]"
+          className="w-full bg-[#F62C85]"
           onClick={() => handleClickSaveAccountInfo()}
           loading={isLoading}
           disabled={isLoading}

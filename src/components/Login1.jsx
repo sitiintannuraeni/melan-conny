@@ -1,5 +1,5 @@
 import { Button, Input, Typography } from "@material-tailwind/react";
-import Banner from "../assets/auth.png";
+import Banner from "../assets/banner-utama.png";
 import Logo from "../assets/logo-auth.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -11,12 +11,16 @@ import {
   InformationCircleIcon,
 } from "@heroicons/react/24/outline";
 import { useAuthMutation } from "../services/apiAuth";
-import { toast } from "react-toastify";
 
 function FormLogin() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [passwordType, setPasswordType] = useState("password");
   const [login, { isLoading, isError, isSuccess, error }] = useAuthMutation();
+
+  const homePage = () => {
+    navigate(`/`);
+  };
 
   const {
     register,
@@ -39,24 +43,25 @@ function FormLogin() {
       email: data.email,
       password: data.password,
     });
+    homePage();
   };
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="absolute bottom-[340px] left-[370px] w-[500px]">
-          {/* <div className="mt-3">
-            {isError && (
+          <div className="mt-3">
+            {/* {isError && (
               <div className="border border-current border-red-200 px-3 rounded-md py-3 flex flex-col-2 space-x-2">
                 <InformationCircleIcon className=" w-6 h-6 text-red-300" />
                 <Typography className="text-sm text-red-300">
                   Your account and/or password is incorrect, please try again
                 </Typography>
               </div>
-            )}
-          </div> */}
+            )} */}
+          </div>
         </div>
-        <div className="absolute bottom-[340px] left-[370px] w-[500px]">
+        <div className="absolute bottom-[395px] left-[370px] w-[500px]">
           <Input
             label="Email Or Phone Number"
             color="white"
@@ -66,7 +71,7 @@ function FormLogin() {
             {errors.email && <span>Email required</span>}
           </span>
         </div>
-        <div className="absolute bottom-[270px] left-[370px] w-[500px] mt-7">
+        <div className="absolute bottom-[325px] left-[370px] w-[500px] mt-7">
           <Input
             label="Password"
             color="white"
@@ -90,7 +95,7 @@ function FormLogin() {
             {errors.password && <span>Password required</span>}
           </span>
         </div>
-        <div className="absolute bottom-[205px] left-[370px] w-[500px]">
+        <div className="absolute bottom-[260px] left-[370px] w-[500px]">
           <div className="bg-white h-[38px] rounded-md cursor-pointer">
             <Button
               type="submit"
@@ -120,28 +125,28 @@ function Login() {
             alt="banner"
             className="w-full object-cover h-[570px]"
           />
-          <div className="absolute bottom-[350px] left-[505px]">
+          {/* <div className="absolute bottom-[350px] left-[505px]">
             <img
               src={Logo}
               alt="logo"
               className="h-[235px] w-[235px] object-contain"
             />
-          </div>
+          </div> */}
           <FormLogin />
           <div
-            className="absolute bottom-[175px] left-[370px] w-[500px] cursor-pointer"
+            className="absolute bottom-[220px] left-[370px] w-[500px] cursor-pointer"
             onClick={() => navigate("/forgot-password")}
           >
             <Typography className="text-white font-semibold">
               Lupa kata sandi?
             </Typography>
           </div>
-          <div className="absolute bottom-[138px] left-[370px] w-[500px] cursor-text">
+          <div className="absolute bottom-[185px] left-[370px] w-[500px] cursor-text">
             <Typography className="text-white font-semibold">
               Belum punya akun?
             </Typography>
           </div>
-          <div className="absolute bottom-[90px] left-[370px] w-[500px]">
+          <div className="absolute bottom-[130px] left-[370px] w-[500px]">
             <div
               className="bg-white h-[38px] flex justify-center items-center rounded-md cursor-pointer"
               onClick={() => navigate("/register")}

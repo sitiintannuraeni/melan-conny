@@ -19,7 +19,7 @@ function EmptyState() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="w-10 h-10"
+              className="w-10 h-10 text-white"
             >
               <path
                 fillRule="evenodd"
@@ -29,14 +29,18 @@ function EmptyState() {
             </svg>
           </IconButton>
         </div>
-        <Typography className="flex justify-center items-center text-lg">
+        <Typography className="flex justify-center items-center text-lg text-white">
           Your bag is empty.
         </Typography>
-        <Typography className="flex justify-center items-center text-lg">
+        <Typography className="flex justify-center items-center text-lg text-white">
           Let's add one, shall we
         </Typography>
-        <div className="flex justify-center items-center lg:mt-[220px] mt-[225px]">
-          <Button className="w-full" size="lg" onClick={handleCloseDrawer}>
+        <div className="flex justify-center items-center lg:mt-[220px] mt-[200px]">
+          <Button
+            size="lg"
+            onClick={handleCloseDrawer}
+            className="bg-[#F62C85] w-full"
+          >
             SHOP NOW
           </Button>
         </div>

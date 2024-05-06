@@ -105,58 +105,61 @@ function AllItems() {
 
   return (
     <>
-      <div className="w-full border-b-[1px] border-black mt-1">
-        <Typography>Total {qtyTotal} items</Typography>
-      </div>
-      <div className="mt-4 flex justify-start space-x-2">
-        <Checkbox />
-        <Typography className="mt-2">ALL ITEMS</Typography>
-      </div>
-      <div className="lg:h-[250px] md:h-[540px] h-[250px] scrollbar-y overflow-y-auto">
-        <div>
-          <ListCardProduct />
+      <div className="">
+        <div className="w-full border-b-[1px] border-black mt-1">
+          <Typography className="text-white">Total {qtyTotal} items</Typography>
         </div>
-      </div>
-      <div>
-        <div className="px-3">
-          <div className="border-b-[1px] border-black mt-5" />
-          <div className="flex flex-col text-[#000000]">
-            <div className="flex justify-between">
-              <Typography className="mt-3">TOTAL</Typography>
-              <Typography className="mt-3">
-                <NumberFormatCurrency value={priceTotal} />
-              </Typography>
-            </div>
-            <div className="flex justify-between">
-              <Typography className="mt-3">SHOPPING</Typography>
-              <div>
-                <Typography className="mt-3 text-[11px] md:text-[13px]">
-                  Takes and shopping fe will be cal culated
-                </Typography>
-                <Typography className="flex justify-end text-[11px] md:text-[13px]">
-                  at checkout
+        <div className="mt-4 flex justify-start space-x-2">
+          <Checkbox color="pink" />
+          <Typography className="mt-2 text-white">ALL ITEMS</Typography>
+        </div>
+        <div className="lg:h-[250px] md:h-[540px] h-[250px] scrollbar-y overflow-y-auto">
+          <div>
+            <ListCardProduct />
+          </div>
+        </div>
+        <div>
+          <div className="px-3">
+            <div className="border-b-[1px] border-white mt-5" />
+            <div className="flex flex-col text-[#000000]">
+              <div className="flex justify-between">
+                <Typography className="mt-3 text-white">TOTAL</Typography>
+                <Typography className="mt-3 text-[#F62C85]">
+                  <NumberFormatCurrency value={priceTotal} />
                 </Typography>
               </div>
-            </div>
-            <div className="border-b-[1px] border-black mt-7" />
-            <div className="flex justify-between mt-5 w-full">
-              <Typography
-                className="mt-2 text-lg font-bold underline cursor-pointer"
-                onClick={() => {
-                  navigate("/view-bag");
-                  dispatch(closeDrawerShoppingCart());
-                }}
-              >
-                View Bag
-              </Typography>
-              <Button
-                onClick={() => {
-                  navigate("/checkout");
-                  dispatch(closeDrawerShoppingCart());
-                }}
-              >
-                CHECK OUT
-              </Button>
+              <div className="flex justify-between">
+                <Typography className="mt-3 text-white">SHOPPING</Typography>
+                <div>
+                  <Typography className="mt-3 text-[11px] md:text-[13px] text-white">
+                    Takes and shopping fe will be cal culated
+                  </Typography>
+                  <Typography className="flex justify-end text-[11px] md:text-[13px] text-white">
+                    at checkout
+                  </Typography>
+                </div>
+              </div>
+              <div className="border-b-[1px] border-white mt-7" />
+              <div className="flex justify-between mt-5 w-full">
+                <Typography
+                  className="mt-2 text-lg font-bold underline cursor-pointer text-white"
+                  onClick={() => {
+                    navigate("/view-bag");
+                    dispatch(closeDrawerShoppingCart());
+                  }}
+                >
+                  View Bag
+                </Typography>
+                <Button
+                  onClick={() => {
+                    navigate("/checkout");
+                    dispatch(closeDrawerShoppingCart());
+                  }}
+                  className="bg-[#F62C85]"
+                >
+                  CHECK OUT
+                </Button>
+              </div>
             </div>
           </div>
         </div>

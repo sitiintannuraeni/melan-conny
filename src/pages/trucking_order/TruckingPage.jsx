@@ -94,10 +94,10 @@ function TruckingPage() {
 
             <div className="flex justify-center items-center mt-6">
               <Button
-                className="bg-[#FFFFFF] lg:w-64 w-56"
+                className="bg-[#F62C85] lg:w-64 w-56"
                 onClick={() => setIsSubmit(true)}
               >
-                <Typography className="text-black text-base font-bold">
+                <Typography className="text-white text-base font-bold ">
                   SUBMIT
                 </Typography>
               </Button>

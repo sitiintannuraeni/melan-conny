@@ -18,7 +18,6 @@ import { useState } from "react";
 import EmptyState from "./DrawerShopEmpty";
 import { baseUrlApi } from "../services/apiCore";
 
-
 function UpdateIncrementQty({ id, bagId, quantity, productId, sizeId }) {
   const [updateItem, { isLoading, isError, isSuccess, error }] =
     useUpdateToBagItemsMutation();
@@ -50,8 +49,9 @@ function UpdateIncrementQty({ id, bagId, quantity, productId, sizeId }) {
       variant="outlined"
       className=" rounded-md h-[25px] w-[25px]"
       onClick={() => handleIncrementQty()}
+      color="white"
     >
-      <PlusIcon className="text-black h-4 w-5" />
+      <PlusIcon className="h-4 w-5 text-white" />
     </IconButton>
   );
 }
@@ -80,7 +80,7 @@ function UpdateDecrementQty({ id, bagId, quantity, productId, sizeId }) {
         className=" rounded-md h-[25px] w-[25px]"
         disabled
       >
-        <Spinner className="h-4 w-4" />
+        <Spinner className="h-4 w-4 text-white" />
       </IconButton>
     );
   }
@@ -90,13 +90,14 @@ function UpdateDecrementQty({ id, bagId, quantity, productId, sizeId }) {
       variant="outlined"
       className=" rounded-md h-[25px] w-[25px]"
       onClick={() => handleDecrementQty()}
+      color="white"
     >
-      <MinusIcon className="text-black h-4 w-5" />
+      <MinusIcon className="X h-4 w-5 text-white" />
     </IconButton>
   );
 }
 
-function QuantityItem({ id, bagId, quantity, productId, sizeId }) {
+export function QuantityItem({ id, bagId, quantity, productId, sizeId }) {
   const [currentQty, setCurrentQty] = useState(0);
 
   useEffect(() => {
@@ -113,7 +114,7 @@ function QuantityItem({ id, bagId, quantity, productId, sizeId }) {
           productId={productId}
           sizeId={sizeId}
         />
-        <Typography className="text-lg">{currentQty}</Typography>
+        <Typography className="text-lg text-white">{currentQty}</Typography>
         <UpdateIncrementQty
           id={id}
           bagId={bagId}
@@ -152,7 +153,7 @@ function RemoveBagItems({ id }) {
           className="w-[20px] flex justify-center items-start"
           onClick={() => handleRemoveFromCart(id)}
         >
-          <XMarkIcon className="h-4 w-4 cursor-pointer" />
+          <XMarkIcon className="h-4 w-4 cursor-pointer text-white" />
         </div>
       )}
     </>
@@ -160,6 +161,8 @@ function RemoveBagItems({ id }) {
 }
 
 function ListCardProduct() {
+  const [isChecked, setIsChecked] = useState(false);
+
   const {
     data: cartProduct,
     isLoading,
@@ -185,50 +188,57 @@ function ListCardProduct() {
     );
   }
 
+  const handleOnChange = () => {};
+
   if (isSuccess) {
     return (
       <>
-        <div className="">
-          {cartProduct.data.map((product, idx) => {
-            return (
-              <div key={idx} className="flex flex-col-3 mt-4 gap-2">
-                <div className="w-[120px] flex justify-between">
-                  <div className="flex justify-start items-start select-none">
-                    <Checkbox className="h-5 w-5" />
-                  </div>
-                  <div className="flex justify-start items-start select-none">
-                    <img
-                      src={`${baseUrlApi}/${product.product.images[0].path}`}
-                      alt="drawer1"
-                      className="h-[100px] w-[65px] object-cover rounded-md"
-                    />
-                  </div>
+        {cartProduct.data.map((product, idx) => {
+          return (
+            <div key={idx} className="flex flex-col-3 mt-4 gap-2">
+              <div className="w-[120px] flex justify-between">
+                <div className="flex justify-start items-start select-none">
+                  <Checkbox className="h-5 w-5" color="pink" />
                 </div>
-                <div className="gap-1 w-[210px] select-none">
-                  <Typography className="text-sm">
-                    {product.product.product_name}
-                  </Typography>
-                  <Typography className="text-sm">
-                    <NumberFormatCurrency
-                      value={product.quantity * product.product.price}
-                    />
-                  </Typography>
-                  <Typography className="mt-3 text-sm">
-                    {product.size_name}
-                  </Typography>
-                  <QuantityItem
-                    id={product.id}
-                    bagId={product.bag_id}
-                    quantity={product.quantity}
-                    productId={product.product_id}
-                    sizeId={product.size_id}
+                <div className="flex justify-start items-start select-none">
+                  <img
+                    src={`${baseUrlApi}/${product.product.images[0].path}`}
+                    alt="drawer1"
+                    className="h-[100px] w-[65px] object-cover rounded-md"
                   />
                 </div>
-                <RemoveBagItems id={product.id} />
               </div>
-            );
-          })}
-        </div>
+              <div className="gap-1 w-[210px] select-none">
+                <Typography className="text-sm text-white">
+                  {product.product.product_name}
+                </Typography>
+                <Typography className="mt-1 text-sm text-white">
+                  {product.size.size_name}
+                </Typography>
+                <div className="flex flex-col-3 gap-2 items-center">
+                  <Typography className="text-white text-sm">
+                    Qty {product.quantity}
+                  </Typography>
+                  <Typography className="text-white text-xs">X</Typography>
+                  <Typography className="text-white text-sm">
+                    <NumberFormatCurrency value={product.product.price} />
+                  </Typography>
+                  {/* <NumberFormatCurrency
+                      value={product.quantity * product.product.price}
+                    /> */}
+                </div>
+                <QuantityItem
+                  id={product.id}
+                  bagId={product.bag_id}
+                  quantity={product.quantity}
+                  productId={product.product_id}
+                  sizeId={product.size_id}
+                />
+              </div>
+              <RemoveBagItems id={product.id} />
+            </div>
+          );
+        })}
       </>
     );
   }

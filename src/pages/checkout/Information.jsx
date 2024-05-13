@@ -404,7 +404,7 @@ function Infomation() {
           <Card
             floated={false}
             shadow={false}
-            className="border lg:border-black/100 border-black/20 mt-5 rounded-lg bg-transparent"
+            className="border border-white mt-5 rounded-lg bg-transparent"
           >
             <CardBody shadow={false}>
               <div className="flex justify-between -mt-2">

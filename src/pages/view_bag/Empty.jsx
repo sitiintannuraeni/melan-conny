@@ -1,12 +1,20 @@
 import { Button, IconButton, Typography } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
+import Logo from "../../assets/logoDrawer.png";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
-function Empty() {
+function EmptyViewBag() {
   const navigate = useNavigate();
   return (
     <>
       <div className="lg:mt-[50px] mt-[100px]">
-        <div className="flex justify-center items-center">
+        <div className="flex flex-col-2 px-10 items-center gap-2">
+          <img src={Logo} alt="logo" className="h-12 w-12 object-contain" />
+          <Typography className="text-white text-xl font-medium">
+            SHOPPING BAG
+          </Typography>
+        </div>
+        <div className="flex justify-center items-center mt-20">
           <IconButton variant="text">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -28,14 +36,16 @@ function Empty() {
         <Typography className="flex justify-center items-center text-base text-white">
           Let's add one, shall we
         </Typography>
-        <div className="flex justify-center items-center -mt-[140px] py-[180px]">
+        <div className="flex justify-center items-center -mt-[160px] py-[180px]">
           <Button
-            className="w-[170px]"
+            className="w-[180px] bg-[#F62C85]"
             size="lg"
             onClick={() => navigate("/")}
             color="white"
           >
-            SHOP NOW
+            <Typography className="text-white font-semibold text-sm">
+              SHOP NOW
+            </Typography>
           </Button>
         </div>
       </div>
@@ -43,4 +53,4 @@ function Empty() {
   );
 }
 
-export default Empty;
+export default EmptyViewBag;

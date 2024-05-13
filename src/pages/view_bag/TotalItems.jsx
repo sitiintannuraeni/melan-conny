@@ -1,7 +1,6 @@
 import { MinusIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Checkbox, Spinner, Typography } from "@material-tailwind/react";
 import DrawerOne from "../../assets/drawer-1.png";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import {
   useDeleteFromBagItemsMutation,
@@ -9,11 +8,11 @@ import {
 } from "../../services/apiBagsItems";
 import { baseUrlApi } from "../../services/apiCore";
 import NumberFormatCurrency from "../../utils";
-import { useEffect } from "react";
 import { QuantityItem } from "../../components/ListCartProduct";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import EmptyViewBag from "./Empty";
 
-function RemoveBagItems({ id }) {
+function RemoveViewBag({ id }) {
   const [deleteFromBagItems, { isLoading, isError, isSuccess, error }] =
     useDeleteFromBagItemsMutation();
 
@@ -46,7 +45,7 @@ function RemoveBagItems({ id }) {
   );
 }
 
-function Product() {
+export function ProductViewBag() {
   const {
     data: cartProduct,
     isLoading,
@@ -55,12 +54,6 @@ function Product() {
     isError,
     error,
   } = useGetBagItemsQuery();
-
-  // if (isLoading) {
-  //   <div className="w-[20px] flex justify-center items-start mt-4">
-  //     <Spinner className="h-[13px] w-[13px]" />
-  //   </div>;
-  // }
 
   if (isSuccess) {
     console.log({ cartProduct });
@@ -100,7 +93,7 @@ function Product() {
                 </div>
               </div>
               <div className="flex justify-end">
-                <RemoveBagItems />
+                <RemoveViewBag id={product.id} />
               </div>
             </div>
           );
@@ -109,28 +102,3 @@ function Product() {
     );
   }
 }
-
-function TotalItems() {
-  const { qtyTotal } = useSelector((state) => state.cart);
-
-  return (
-    <>
-      <div className="-mt-10">
-        <Typography className="text-xs text-white">
-          Total {qtyTotal} item(s)
-        </Typography>
-        <div className="border border-white mt-2" />
-        <div className="mt-1 flex justify-start space-x-2">
-          <Checkbox defaultChecked color="pink" />
-          <Typography className="lg:mt-[9.5px] mt-3 lg:text-base text-xs text-white ">
-            ALL ITEMS
-          </Typography>
-        </div>
-        <div className="">
-          <Product />
-        </div>
-      </div>
-    </>
-  );
-}
-export default TotalItems;

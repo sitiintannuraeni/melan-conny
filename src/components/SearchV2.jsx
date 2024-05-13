@@ -68,7 +68,7 @@ function SearchV2() {
   }, [dialogSearch, setInputSearch, inputRef]);
 
   if (isLoading || isFetching) {
-    console.log("is Loading Search");
+    console.log("is Loading Search?");
     resultView = (
       <>
         <div className="flex justify-center items-center p-4">
@@ -79,10 +79,10 @@ function SearchV2() {
   }
 
   if (isError) {
-    console.log("is Loading Search");
+    console.log("data tidak ditemukan");
     resultView = (
       <>
-        <Typography className="text-center p-4 text-gray-700">
+        <Typography className="text-center p-4 text-black">
           Data tidak ditemukan
         </Typography>
       </>
@@ -90,7 +90,6 @@ function SearchV2() {
   }
 
   if (isSuccess) {
-    console.log(results, "results");
     resultView = (
       <>
         <List>

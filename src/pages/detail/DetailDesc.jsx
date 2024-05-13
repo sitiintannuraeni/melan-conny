@@ -183,9 +183,10 @@ function DetailDesc({
             return (
               <Button
                 key={index}
-                variant={activeSize === ukuran.id ? "outlined" : "filled"}
+                variant={activeSize === ukuran.id ? "filled" : "outlined"}
                 onClick={() => handleSelectSize(ukuran)}
-                className="text-sm text-white h-[40px] w-full flex justify-center items-center hover:bg-[#F62C85] border border-white"
+                className="text-sm text-white h-[40px] w-full flex justify-center items-center"
+                color="pink"
               >
                 {ukuran.size_name}
                 {/* :{ukuran.pivot.stock} */}
@@ -211,7 +212,7 @@ function DetailDesc({
         <div className="flex flex-col-2 mt-5 gap-2">
           <div className="flex flex-col-2">
             <Button
-              className="lg:w-[174px] md:w-[269px] w-[172px] size-12 text-xs flex flex-col-2 gap-2 border border-white"
+              className="lg:w-[174px] md:w-[269px] w-[172px] size-12 text-xs flex flex-col-3 gap-2 border border-white"
               loading={isLoading}
               disabled={isLoading}
               onClick={() => {

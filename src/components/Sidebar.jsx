@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../slice/apiSlice";
+import { toast } from "react-toastify";
 
 function Sidebar() {
   const location = useLocation();
@@ -30,7 +31,7 @@ function Sidebar() {
 
   const handleDialogLogout = () => {
     dispatch(logout());
-    // toast.success("Logout Success!");
+    toast.success("Logout Success!");
   };
 
   const listItemActive = "active:bg:black active:text-white";

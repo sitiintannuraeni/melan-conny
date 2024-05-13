@@ -1,22 +1,17 @@
-import { Input, Option, Select, Typography } from "@material-tailwind/react";
-import Banner from "../assets/auth.png";
-import Logo from "../assets/logo-auth.png";
-import { useNavigate } from "react-router-dom";
+import { Option, Select, Typography } from "@material-tailwind/react";
+import Banner from "../assets/banner-utama.png";
 
 function Register() {
   return (
     <>
-      <div>
+      <div className="select-none">
         <figure className="relative">
-          <img src={Banner} alt="banner" className="w-full h-[750px]" />
-          <div className="absolute bottom-[520px] left-[505px]">
-            <img
-              src={Logo}
-              alt="logo"
-              className="h-[235px] w-[235px] object-contain"
-            />
-          </div>
-          <div className="absolute bottom-[550px] left-[556px]">
+          <img
+            src={Banner}
+            alt="banner"
+            className="w-full object-cover h-[573px]"
+          />
+          <div className="absolute bottom-[500px] left-[556px]">
             <Typography className="text-white text-2xl font-semibold">
               Registration
             </Typography>
@@ -71,8 +66,8 @@ function Register() {
           <div className="absolute bottom-[145px] left-[300px] w-[680px] h-[40px] bg-white">
             <input type="text" className="w-full h-full px-2" />
           </div>
-          <div className="absolute bottom-[105px] left-[300px] w-[500px] rounded-sm">
-            <Typography className="text-white font-semibold text-sm underline">
+          <div className="absolute bottom-[105px] left-[300px] rounded-sm">
+            <Typography className="text-white font-bold underline text-base">
               By clicking register,you agree To Our Terms of Service and privacy
               policy
             </Typography>

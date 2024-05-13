@@ -33,7 +33,7 @@ function App() {
       <ScrollToTop />
       <div className="container max-w-full">
         <Header />
-        <main className="lg:pt-[62px] pt-[20px] bg-[#202020]">
+        <main className="lg:pt-[58px] pt-[20px] bg-[#202020]">
           <Outlet />
         </main>
         <Footer />

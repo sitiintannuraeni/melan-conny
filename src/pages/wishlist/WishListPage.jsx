@@ -18,8 +18,15 @@ function WishListIsEmpty() {
           up here
         </Typography>
         <div className="mt-4">
-          <Button onClick={() => navigate("/")} color="white">
-            SHOP NOW
+          <Button
+            onClick={() => navigate("/")}
+            color="white"
+            className="bg-[#F62C85]"
+            size="sm"
+          >
+            <Typography className="text-white font-semibold">
+              SHOP NOW
+            </Typography>
           </Button>
         </div>
       </div>

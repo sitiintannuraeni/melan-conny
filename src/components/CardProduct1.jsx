@@ -46,7 +46,7 @@ export function CardProduct1({ id, img, name, price, is_wishlist }) {
   return (
     <div>
       <Card
-        className="p-0 flex flex-col bg-[#202020] border w-full relative rounded-none h-[290px] lg:h-[280px] md:h-[500px] select-none"
+        className="p-0 flex flex-col bg-[#202020] border-none w-full relative rounded-none h-[290px] lg:h-[280px] md:h-[500px] select-none"
         shadow={false}
       >
         <CardHeader
@@ -58,11 +58,11 @@ export function CardProduct1({ id, img, name, price, is_wishlist }) {
           <img
             src={img}
             alt="product-image"
-            className="rounded-none cursor-pointer relative z-20 w-full h-[190px] lg:h-[225px] md:h-[360px] object-cover"
+            className=" rounded-md cursor-pointer relative z-20 w-full h-[190px] lg:h-[225px] md:h-[360px] object-cover"
             onClick={() => detailProduct(id)}
           />
           <div className="flex justify-between ">
-            <div className="absolute z-20 top-1 left-[10px] h-14 w-14">
+            <div className="absolute z-20 -top-3 left-[10px] h-14 w-14">
               <img src={Logo} alt="logo" className="h-full w-full" />
             </div>
             {isClickLove ? (
@@ -104,7 +104,7 @@ export function CardProduct1({ id, img, name, price, is_wishlist }) {
           </div>
         </CardHeader>
         <CardBody className="p-0">
-          <Typography className="mt-3 bg-[#202020] text-white font-semibold rounded-b-md flex justify-center items-center">
+          <Typography className="mt-3 bg-[#202020] text-white font-semibold rounded-b-md flex justify-start items-start">
             {name}
           </Typography>
         </CardBody>

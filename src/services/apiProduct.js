@@ -21,7 +21,8 @@ export const apiProduct = apiCore.injectEndpoints({
 
     searchProduct: builder.query({
       query: (inputSearch) => ({
-        url: `/api/products/search?search=${inputSearch}`,
+        url: `/api/products/search`,
+        // url: `/api/products/search?search=${inputSearch}`,
       }),
       transformResponse: (response) => response.data,
     }),

@@ -123,7 +123,7 @@ function Login() {
           <img
             src={Banner}
             alt="banner"
-            className="w-full object-cover h-[570px]"
+            className="w-full object-cover h-[573px]"
           />
           {/* <div className="absolute bottom-[350px] left-[505px]">
             <img

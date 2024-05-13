@@ -63,13 +63,13 @@ function Order() {
       </div> */}
       <div className="mt-3">
         <div className="flex flex-col-2 items-center gap-2">
-          <Checkbox color="white" />
+          <Checkbox color="pink" />
           <Typography className="text-white">ALL ITEMS</Typography>
         </div>
         <div className="flex flex-col-2 gap-3">
           <div className="flex flex-col-3 gap-2 mt-3 w-[550px]">
             <div className="flex justify-start items-start">
-              <Checkbox color="white" />
+              <Checkbox color="pink" />
             </div>
             <img
               src={Image1}

@@ -1,5 +1,4 @@
 import {
-  Button,
   Checkbox,
   IconButton,
   Spinner,
@@ -12,7 +11,6 @@ import {
   useGetBagItemsQuery,
   useUpdateToBagItemsMutation,
 } from "../services/apiBagsItems";
-import { useMemo } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import EmptyState from "./DrawerShopEmpty";
@@ -106,7 +104,7 @@ export function QuantityItem({ id, bagId, quantity, productId, sizeId }) {
 
   return (
     <>
-      <div className="flex justify-start mt-2 space-x-3 w-[140px]">
+      <div className="flex justify-start mt-3 space-x-3 w-[140px]">
         <UpdateDecrementQty
           id={id}
           bagId={bagId}
@@ -188,8 +186,6 @@ function ListCardProduct() {
     );
   }
 
-  const handleOnChange = () => {};
-
   if (isSuccess) {
     return (
       <>
@@ -209,13 +205,13 @@ function ListCardProduct() {
                 </div>
               </div>
               <div className="gap-1 w-[210px] select-none">
-                <Typography className="text-sm text-white">
+                <Typography className="text-base text-white -mt-1">
                   {product.product.product_name}
                 </Typography>
-                <Typography className="mt-1 text-sm text-white">
+                <Typography className="text-base text-white">
                   {product.size.size_name}
                 </Typography>
-                <div className="flex flex-col-3 gap-2 items-center">
+                <div className="flex flex-col-3 gap-2 items-center mt-1">
                   <Typography className="text-white text-sm">
                     Qty {product.quantity}
                   </Typography>
@@ -223,9 +219,11 @@ function ListCardProduct() {
                   <Typography className="text-white text-sm">
                     <NumberFormatCurrency value={product.product.price} />
                   </Typography>
-                  {/* <NumberFormatCurrency
+                  {/* <Typography className="text-white">
+                    <NumberFormatCurrency
                       value={product.quantity * product.product.price}
-                    /> */}
+                    />
+                  </Typography> */}
                 </div>
                 <QuantityItem
                   id={product.id}

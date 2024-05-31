@@ -1,3 +1,5 @@
+import Product from "../../assets/product-14.png";
+
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -6,15 +8,15 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import "../../styles/swiper.css";
+import "../../styles/swiper-modal-home.css";
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 
-function DetailImages({ images }) {
+function ModalImgHome({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
     <>
-      <div className="lg:px-0 px-2">
+      <div className="lg:px-0 px-2 lg:p-8 p-0">
         <Swiper
           style={{
             "--swiper-navigation-color": "#fff",
@@ -33,18 +35,32 @@ function DetailImages({ images }) {
               thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
           }}
           modules={[FreeMode, Navigation, Thumbs, Autoplay]}
-          className="swiper-big-product-img rounded-xl select-none"
+          className="swiper-big-product-img-home rounded-xl select-none"
         >
-          {images.map((image, index) => {
-            return (
-              <SwiperSlide key={index}>
-                <img src={image.url} className="object-contain" />
-              </SwiperSlide>
-            );
-          })}
+          <SwiperSlide>
+            <img
+              src={Product}
+              alt="product"
+              className="object-contain h-full w-full"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src={Product}
+              alt="product"
+              className="object-contain h-full w-full"
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src={Product}
+              alt="product"
+              className="object-contain h-full w-full"
+            />
+          </SwiperSlide>
         </Swiper>
       </div>
     </>
   );
 }
-export default DetailImages;
+export default ModalImgHome;

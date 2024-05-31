@@ -10,7 +10,6 @@ import { openDialogLogin, openDialogShareLink } from "../../slice/menuSlice";
 import { useDispatch, useSelector } from "react-redux";
 import NumberFormatCurrency from "../../utils";
 import { useState } from "react";
-import Image2 from "../../assets/product-2.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { setAuthLoginRedirect } from "../../slice/apiSlice";
@@ -21,6 +20,7 @@ import {
 } from "../../services/apiBagsItems";
 import { useCallback } from "react";
 import { toast } from "react-toastify";
+import { useGetByStockQuery } from "../../services/apiProduct";
 
 function DetailDesc({
   id,
@@ -34,7 +34,9 @@ function DetailDesc({
   overview,
   desc,
 }) {
+  const location = useLocation();
   const { isLoggedIn } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [sizeId, setSizeId] = useState(0);
@@ -46,8 +48,7 @@ function DetailDesc({
     bagId,
     products: cartProducts,
   } = useSelector((state) => state.cart);
-  const location = useLocation();
-  const { user } = useSelector((state) => state.auth);
+
   const [
     addToBags,
     { data: responseApiBag, isLoading, isError, isSuccess, error },
@@ -72,6 +73,17 @@ function DetailDesc({
       isSuccess: isUpdateSuccess,
     },
   ] = useUpdateToBagItemsMutation();
+
+  const {
+    data: getByStock,
+    isLoading: isLoadingStock,
+    isFetching,
+    isSuccess: isFetchingStock,
+    isError: isErrorStock,
+    error: errorStock,
+  } = useGetByStockQuery();
+
+  console.log({ getByStock });
 
   const handleAddToBagItems = useCallback(() => {
     if (isSuccess) {
@@ -130,7 +142,6 @@ function DetailDesc({
         }
       }
     }
-    // toast.success("Success add to cart");
   };
 
   const handleSelectSize = (size) => {
@@ -181,16 +192,16 @@ function DetailDesc({
         <div className="grid lg:grid-cols-10 grid-cols-7 lg:gap-[61px] gap-[54px] md:gap-[10px] mt-3 lg:w-full w-full md:w-[750 px]">
           {size.map((ukuran, index) => {
             return (
-              <Button
-                key={index}
-                variant={activeSize === ukuran.id ? "filled" : "outlined"}
-                onClick={() => handleSelectSize(ukuran)}
-                className="text-sm text-white h-[40px] w-full flex justify-center items-center"
-                color="pink"
-              >
-                {ukuran.size_name}
-                {/* :{ukuran.pivot.stock} */}
-              </Button>
+              <div>
+                <Button
+                  key={index}
+                  variant={activeSize === ukuran.id ? "filled" : "outlined"}
+                  onClick={() => handleSelectSize(ukuran)}
+                  className="border-white border text-sm text-white h-[40px] w-full flex justify-center items-center focus:bg-[#FF0386]"
+                >
+                  {ukuran.size_name}
+                </Button>
+              </div>
             );
           })}
         </div>
@@ -201,18 +212,18 @@ function DetailDesc({
         )}
         <div className="mt-5 flex flex-col-2 gap-3 items-center">
           <IconButton variant="outlined" color="white">
-            <PlusIcon className="h-5 w-5 text-white" />
+            <MinusIcon className="h-5 w-5 text-white" />
           </IconButton>
           <Typography className="text-white text-xl">1</Typography>
           <IconButton variant="outlined" color="white">
-            <MinusIcon className="h-5 w-5 text-white" />
+            <PlusIcon className="h-5 w-5 text-white" />
           </IconButton>
-          <Typography className="text-white">Stock : 123</Typography>
+          <Typography className="text-white">Stock: 8746</Typography>
         </div>
         <div className="flex flex-col-2 mt-5 gap-2">
           <div className="flex flex-col-2">
             <Button
-              className="lg:w-[174px] md:w-[269px] w-[172px] size-12 text-xs flex flex-col-3 gap-2 border border-white"
+              className="lg:w-[174px] md:w-[269px] w-[172px] size-12 text-xs flex flex-col-3 gap-2 border border-white items-center"
               loading={isLoading}
               disabled={isLoading}
               onClick={() => {
@@ -231,7 +242,7 @@ function DetailDesc({
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="w-6 h-6 text-white"
+                className="w-5 h-5 text-white"
               >
                 <path
                   fillRule="evenodd"
@@ -239,8 +250,8 @@ function DetailDesc({
                   clipRule="evenodd"
                 />
               </svg>
-              <Typography className="text-sm mt-[1px] font-semibold">
-                ADD TO BAG
+              <Typography className="text-[13px] font-semibold">
+                ADD TO CART
               </Typography>
             </Button>
           </div>

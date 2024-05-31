@@ -32,19 +32,12 @@ export const apiProduct = apiCore.injectEndpoints({
       transformResponse: (response) => response.data,
     }),
 
-    getProductBySales: builder.query({
+    getByStock: builder.query({
       query: () => ({
-        url: `api/products/sort-by-sales`,
+        url: `api/stock`,
       }),
       transformResponse: (response) => response.data,
     }),
-
-    // getProductByStock: builder.query({
-    //   query: () => ({
-    //     url: `api/`
-
-    //   })
-    // })
   }),
   overrideExisting: true,
 });
@@ -54,5 +47,5 @@ export const {
   useGetProductByIdQuery,
   useSearchProductQuery,
   useGetProductByCategoryQuery,
-  useGetProductBySalesQuery,
+  useGetByStockQuery,
 } = apiProduct;

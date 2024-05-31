@@ -5,7 +5,10 @@ import { useState } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSearchProductQuery } from "../services/apiProduct";
+import {
+  useGetProductsByGroupCategoryQuery,
+  useSearchProductQuery,
+} from "../services/apiProduct";
 import {
   Avatar,
   List,
@@ -72,7 +75,7 @@ function SearchV2() {
     resultView = (
       <>
         <div className="flex justify-center items-center p-4">
-          <Spinner />
+          <Spinner className="text-white" />
         </div>
       </>
     );
@@ -82,7 +85,7 @@ function SearchV2() {
     console.log("data tidak ditemukan");
     resultView = (
       <>
-        <Typography className="text-center p-4 text-black">
+        <Typography className="text-center p-4 text-white">
           Data tidak ditemukan
         </Typography>
       </>
@@ -101,24 +104,32 @@ function SearchV2() {
                   alt="candice"
                   src={result.images[0].url}
                   size="xl"
+                  className="bg-transparent"
                 />
               </ListItemPrefix>
-              <div className="grid grid-rows-3 lg:gap-0 gap-2">
-                <Typography
-                  color="blue-gray"
-                  className="lg:text-sm text-[13px] font-bold "
-                >
-                  {result.product_name}
-                </Typography>
-                <Typography
-                  color="gray"
-                  className="font-normal lg:text-base text-sm lg:mt-0 -mt-[2px]"
-                >
-                  <NumberFormatCurrency value={result.price} />
-                </Typography>
-                <Typography className="text-[#989898] lg:text-sm text-xs">
-                  {result.total_sold} items sold
-                </Typography>
+              <div className="grid grid-rows-2 lg:gap-0 gap-2 -mt-2">
+                <div className="bg-[#1E1E1E] w-[75px] h-5 flex justify-center items-center rounded-full mt-2">
+                  <Typography
+                    color="blue-gray"
+                    className="lg:text-[11px] text-[13px] font-bold text-gray-400"
+                  >
+                    category
+                  </Typography>
+                </div>
+                <div className="-mt-[6px]">
+                  <Typography
+                    color="blue-gray"
+                    className="lg:text-sm text-[13px] font-bold text-white"
+                  >
+                    {result.product_name}
+                  </Typography>
+                  <Typography
+                    color="gray"
+                    className="font-normal lg:text-base text-sm lg:mt-0 -mt-[2px] text-white"
+                  >
+                    <NumberFormatCurrency value={result.price} />
+                  </Typography>
+                </div>
               </div>
             </ListItem>
           ))}
@@ -133,22 +144,22 @@ function SearchV2() {
         className={`w-full h-[100vh] bg-black/50 z-[999] ${dialogSearch ? "fixed" : "hidden"} top-0`}
       >
         <div className="w-full max-w-xl mx-auto px-4 top-16 " ref={myRef}>
-          <div className="w-full mx-auto bg-white lg:top-16 top-4 shadow-xl rounded-lg relative z-[999] ">
+          <div className="w-full mx-auto bg-black lg:top-16 top-4 shadow-xl rounded-lg relative z-[999] ">
             <div className="">
               <input
                 value={inputSearch}
                 onChange={(e) => handleInputSearch(e)}
                 type="text"
                 ref={inputRef}
-                className="h-full w-full text-base outline-none rounded-xl block py-4 pl-3 pr-10 border-0 focus:right-0 text-gray-800 placeholder:text-gray-400"
-                placeholder="Search Product..."
+                className="h-full w-full text-base outline-none rounded-xl block py-4 pl-3 pr-10 border-0 focus:right-0 text-white placeholder:text-gray-400 bg-black"
+                placeholder="Search Product"
               />
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3 hover:text-blue-500 text-black transition-colors">
-                <MagnifyingGlassIcon className="h-5 w-5" />
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3 text-white transition-colors">
+                <MagnifyingGlassIcon className="h-5 w-5 text-white" />
               </div>
             </div>
           </div>
-          <div className="w-full max-h-[400px] sw-10 overflow-y-auto mt-1 bg-white lg:top-16 top-4 shadow-xl rounded-lg relative z-[999] ">
+          <div className="w-full max-h-[400px] sw-10 overflow-y-auto mt-1 bg-black lg:top-16 top-4 shadow-xl rounded-lg relative z-[999] ">
             {resultView}
           </div>
         </div>

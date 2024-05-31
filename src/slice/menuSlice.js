@@ -16,6 +16,9 @@ const initialState = {
   dialogChangePassword: false,
   dialogDescDetail: false,
   updateDialogAddres: false,
+  dialogForgotPassword: false,
+  dialogKodeVerifikasi: false,
+  dialogNewPassword: false,
 };
 
 export const menuSlice = createSlice({
@@ -108,6 +111,24 @@ export const menuSlice = createSlice({
     closeDialogUpdateAddress: (state) => {
       state.updateDialogAddres = false;
     },
+    openDialogForgotPassword: (state) => {
+      state.dialogForgotPassword = true;
+    },
+    closeDialogForgotPassword: (state) => {
+      state.dialogForgotPassword = false;
+    },
+    openDialogKodeVerifikasi: (state) => {
+      state.dialogKodeVerifikasi = true;
+    },
+    closeDialogKodeVerifikasi: (state) => {
+      state.dialogKodeVerifikasi = false;
+    },
+    openDialogNewPassword: (state) => {
+      state.dialogNewPassword = true;
+    },
+    closeDialogNewPassword: (state) => {
+      state.dialogNewPassword = false;
+    },
   },
 });
 
@@ -140,6 +161,12 @@ export const {
   closeDialogDetail,
   openDialogUpdateAddress,
   closeDialogUpdateAddress,
+  openDialogForgotPassword,
+  closeDialogForgotPassword,
+  openDialogKodeVerifikasi,
+  closeDialogKodeVerifikasi,
+  openDialogNewPassword,
+  closeDialogNewPassword,
 } = menuSlice.actions;
 
 export default menuSlice.reducer;

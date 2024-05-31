@@ -1,6 +1,5 @@
 import { Card, CardBody, CardHeader } from "@material-tailwind/react";
 import { useState } from "react";
-import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -8,7 +7,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import "../../styles/swiper-home.css";
+import "../../styles/swiper-modal-home.css";
 import { FreeMode, Navigation, Thumbs, Autoplay } from "swiper/modules";
 
 function DetailImageHome({ images }) {

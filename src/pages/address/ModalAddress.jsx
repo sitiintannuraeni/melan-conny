@@ -82,7 +82,7 @@ function FormModalAddress() {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="border border-current h-[343px] px-5 rounded-md overflow-auto scrollbar-y">
+        <div className="border-[1.4px] border-current border-white h-[343px] px-5 rounded-md overflow-auto scrollbar-y">
           <div className="mt-2">
             <div className="text-black w-full mt-8 ">
               <Input
@@ -92,6 +92,7 @@ function FormModalAddress() {
                 label="Address Name*"
                 placeholder="Address Name"
                 className="text-[16px]"
+                color="white"
                 {...register("addressName", { required: true })}
               />
               <span className="text-red-500 text-xs">
@@ -106,6 +107,7 @@ function FormModalAddress() {
                 label="Recipient’s Name*"
                 placeholder="Enter recipient’s name "
                 className="text-[16px]"
+                color="white"
                 {...register("name", { required: true })}
               />
               <span className="text-red-500 text-xs">
@@ -115,13 +117,12 @@ function FormModalAddress() {
             <div className="text-black w-full mt-8">
               <Textarea
                 variant="static"
-                // value={inputAddress}
-                // onChange={(e) => setInputAddress(e.target.value)}
                 label="Address*"
                 placeholder="Enter your address"
                 className="text-[16px]"
                 {...register("address", { required: true })}
               />
+
               <span className="text-red-500 text-xs">
                 {errors.address && <span>Address required</span>}
               </span>
@@ -273,10 +274,12 @@ function ModalAddress() {
         open={dialogAddress}
         size="xs"
         handler={() => dispatch(closeDialogAddress())}
-        className="lg:h-[85%] h-[65%] overflow-auto select-none"
+        className="lg:h-[85%] h-[65%] overflow-auto select-none bg-black p-3"
       >
-        <DialogHeader className="text-lg flex justify-between sticky top-0 p-4 bg-white z-[1]">
-          <div>ADD NEW ADDRESS</div>
+        <DialogHeader className="text-lg flex justify-between sticky top-0 p-4 z-10">
+          <Typography className="text-white text-lg">
+            ADD NEW ADDRESS
+          </Typography>
           <a
             href="#"
             className="flex items-center hover:text-blue-500 text-black transition-colors"
@@ -285,7 +288,7 @@ function ModalAddress() {
               dispatch(closeDialogAddress());
             }}
           >
-            <XMarkIcon className="w-6 h-6" />
+            <XMarkIcon className="w-6 h-6 text-white" />
           </a>
         </DialogHeader>
         <DialogBody className="px-3 ">

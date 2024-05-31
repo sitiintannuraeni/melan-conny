@@ -4,107 +4,143 @@ import {
   PlusIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { Checkbox, IconButton, Typography } from "@material-tailwind/react";
+import {
+  Button,
+  Checkbox,
+  IconButton,
+  Typography,
+} from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import Image from "../../assets/product-4.png";
 import { useState } from "react";
-import Image1 from "../../assets/product-2.png";
-import Image2 from "../../assets/product-3.png";
+import NumberFormatCurrency from "../../utils";
 function Order() {
   const navigate = useNavigate();
   return (
     <>
       <div className="fond-semibold">
-        <Typography className="font-semibold text-white">My Order</Typography>
+        <Typography className="font-semibold text-white text-xl">
+          My Order
+        </Typography>
       </div>
-      {/* <div className="border border-white mt-7 px-4 rounded-md">
-        <div className="mt-3">
-          <div className="flex flex-col-3 space-x-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-7 h-7 text-white"
-            >
-              <path
-                fillRule="evenodd"
-                d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <Typography className="mt-[1px] text-white">
-              15 Maret 2024
+      <div className="flex flex-col-5 mt-5 gap-4">
+        <Button
+          variant="outlined"
+          className="rounded-full focus:bg-white focus:text-black focus:font-semibold"
+          color="white"
+          size="sm"
+        >
+          <Typography className=" text-xs">Semua</Typography>
+        </Button>
+        <Button
+          variant="outlined"
+          className="rounded-full focus:bg-white focus:text-black focus:font-semibold"
+          color="white"
+          size="sm"
+        >
+          <Typography className=" text-xs">Diproses</Typography>
+        </Button>
+        <Button
+          variant="outlined"
+          className="rounded-full focus:bg-white focus:text-black focus:font-semibold"
+          color="white"
+          size="sm"
+        >
+          <Typography className=" text-xs">Dikirim</Typography>
+        </Button>
+        <Button
+          variant="outlined"
+          className="rounded-full focus:bg-white focus:text-black focus:font-semibold"
+          color="white"
+          size="sm"
+        >
+          <Typography className=" text-xs">Berhasil</Typography>
+        </Button>
+        <Button
+          variant="outlined"
+          className="rounded-full focus:bg-white focus:text-black focus:font-semibold"
+          color="white"
+          size="sm"
+        >
+          <Typography className=" text-xs">Tidak berhasil</Typography>
+        </Button>
+      </div>
+      <div className="grid grid-cols-2 gap-10 mt-9">
+        <div className="items-center p-3 border-2 border-white rounded-xl">
+          <div className="flex flex-col-2 gap-5 items-center">
+            <Typography className="text-gray-400 text-sm">
+              30 April 2024
             </Typography>
-            <div class="px-2 mt-[2px] text-xs rounded-md h-[25px] bg-[#F62C85]">
-              <Typography className="text-[10px] mt-[4px] text-white">
-                Menunggu Pembayaran
+            <Button className="rounded-full" color="white" size="sm">
+              <Typography className=" text-[10px] font-bold">
+                Diproses
+              </Typography>
+            </Button>
+          </div>
+          <div className="flex flex-col-2 gap-10  mt-6">
+            <div>
+              <Typography className="text-gray-400 text-sm">
+                30 April 2024
+              </Typography>
+              <Typography className="text-white text-base">
+                BCA Virtual Account
+              </Typography>
+            </div>
+            <div>
+              <Typography className="text-gray-400 text-sm">
+                Total Pembayaran
+              </Typography>
+              <Typography className="text-white text-base">
+                <NumberFormatCurrency value={"43200000"} />
               </Typography>
             </div>
           </div>
-          <Typography className="lg:mt-2 mt-5 lg:text-sm text-xs text-white">
-            MAL24031513556483272075308950
-          </Typography>
-          <div className="flex justify-end">
-            <div className="lg:-mt-6 -mt-[16.8px]">
-              <Typography className="lg:text-base text-xs font-medium text-white flex justify-end">
-                Total Amount
+          <div className="flex justify-between mt-5">
+            <div className="border-2 p-1 rounded-3xl w-[130px] flex justify-center ">
+              <Typography className="text-white text-sm ">
+                Pembayaran
               </Typography>
-              <Typography className="flex justify-end lg:text-base text-xs text-white">
-                Rp 130.500
+            </div>
+            <div className="bg-[#FF0386] p-1 rounded-3xl w-[130px] flex justify-center ">
+              <Typography className="text-white text-sm ">
+                Lihat Detail
               </Typography>
-              <div onClick={() => navigate("/member-order")}>
-                <Typography className="flex justify-end mt-2 py-3 underline cursor-pointer lg:text-base text-sm text-white">
-                  View Details
-                </Typography>
-              </div>
             </div>
           </div>
         </div>
-      </div> */}
-      <div className="mt-3">
-        <div className="flex flex-col-2 items-center gap-2">
-          <Checkbox color="pink" />
-          <Typography className="text-white">ALL ITEMS</Typography>
-        </div>
-        <div className="flex flex-col-2 gap-3">
-          <div className="flex flex-col-3 gap-2 mt-3 w-[550px]">
-            <div className="flex justify-start items-start">
-              <Checkbox color="pink" />
+        <div className="items-center p-3 border-2 border-white rounded-xl">
+          <div className="flex flex-col-2 gap-5 items-center">
+            <Typography className="text-gray-400 text-sm">
+              23 April 2024{" "}
+            </Typography>
+            <Button className="rounded-full" color="white" size="sm">
+              <Typography className=" text-[10px] font-bold">
+                Berhasil{" "}
+              </Typography>
+            </Button>
+          </div>
+          <div className="flex flex-col-2 gap-10  mt-6">
+            <div>
+              <Typography className="text-gray-400 text-sm">
+                Payment Method{" "}
+              </Typography>
+              <Typography className="text-white text-base">Gopay </Typography>
             </div>
-            <img
-              src={Image1}
-              alt="product-image"
-              className="h-32 w-26 object-cover"
-            />
-            <div className="-mt-1">
-              <Typography className="text-white text-base">
-                Melanconny Edition
+            <div>
+              <Typography className="text-gray-400 text-sm">
+                Total Pembayaran
               </Typography>
-              <Typography className="text-white text-base">L</Typography>
               <Typography className="text-white text-base">
-                Qty 1 x Rp 119.000
+                <NumberFormatCurrency value={"43200000"} />
               </Typography>
-              <div className="flex flex-col-2 mt-3 gap-4">
-                <IconButton
-                  variant="outlined"
-                  className="h-7 w-7"
-                  color="white"
-                >
-                  <MinusIcon className="h-4 w-4" color="white" />
-                </IconButton>
-                <Typography className="text-white">1</Typography>
-                <IconButton
-                  variant="outlined"
-                  className="h-7 w-7"
-                  color="white"
-                >
-                  <PlusIcon className="h-4 w-4" color="white" />
-                </IconButton>
-              </div>
             </div>
           </div>
-          <div className="mt-[7px]">
-            <XMarkIcon className="h-6 w-6 text-white cursor-pointer font-semibold" />
+          <div className="flex justify-between mt-5">
+            <div className="p-1 rounded-3xl w-full flex justify-center bg-[#FF0386]">
+              <Typography className="text-white text-sm ">
+                Lihat Detail
+              </Typography>
+            </div>
           </div>
         </div>
       </div>

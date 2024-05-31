@@ -38,7 +38,6 @@ export const apiAuth = apiCore.injectEndpoints({
               })
             );
           }
-
           dispatch(
             setAuthToken({
               token: data.data.token,
@@ -48,7 +47,6 @@ export const apiAuth = apiCore.injectEndpoints({
               isLoggedIn: true,
             })
           );
-
           dispatch(closeDialogRegister());
           toast.success("Register Success!", {
             toastId: "RegisterSuccess",

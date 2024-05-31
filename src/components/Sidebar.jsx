@@ -1,4 +1,6 @@
 import {
+  Breadcrumbs,
+  Button,
   Card,
   List,
   ListItem,
@@ -10,12 +12,12 @@ import {
   HeartIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
-import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../slice/apiSlice";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
 
 function Sidebar() {
@@ -37,78 +39,53 @@ function Sidebar() {
   const listItemActive = "active:bg:black active:text-white";
 
   return (
-    <Card
-      className="h-[350px] w-full lg:max-w-[20rem] max-w-[25rem] bg-[#202020]"
-      shadow={false}
-    >
-      <List>
+    <Card className="w-full bg-black p-0" shadow={false}>
+      <List className="hover:none">
         <ListItem
           selected={activeMenu === "account-info"}
-          className={`text-[#989898]`}
-          onClick={() => navigate("/account-info")}
+          className={`bg-transparent flex justify-center`}
+          onClick={() => {
+            navigate("/account-info");
+          }}
         >
-          <ListItemPrefix>
-            <UserIcon className="h-6 w-6 text-white" />
-          </ListItemPrefix>
-          <Typography className="text-white">Account info</Typography>
+          <Button className="text-white w-full" color="white">
+            <Typography className="text-xs text-black font-semibold">
+              Account info
+            </Typography>
+          </Button>
         </ListItem>
         <ListItem
           selected={activeMenu === "my-order"}
-          className={`text-[#989898]`}
+          className={`bg-transparent flex justify-center`}
           onClick={() => navigate("/my-order")}
         >
-          <ListItemPrefix>
-            <ShoppingBagIcon className="h-6 w-6 text-white" />
-          </ListItemPrefix>
-          <Typography className="text-white">My order</Typography>
+          <Button className="text-white w-full" color="white">
+            <Typography className="text-xs text-black font-semibold">
+              My order
+            </Typography>
+          </Button>
         </ListItem>
         <ListItem
           selected={activeMenu === "wishlist"}
-          className={`text-[#989898]`}
+          className={`bg-transparent flex justify-center `}
           onClick={() => navigate("/wishlist")}
         >
-          <ListItemPrefix>
-            <HeartIcon className="h-6 w-6 text-white" />
-          </ListItemPrefix>
-          <Typography className="text-white">Wishlist</Typography>
+          <Button className="text-white w-full" color="white">
+            <Typography className="text-xs text-black font-semibold">
+              Wishlist
+            </Typography>
+          </Button>
         </ListItem>
         <ListItem
           selected={activeMenu === "address"}
-          className={`text-[#989898]`}
+          className={`bg-transparent flex justify-center`}
           onClick={() => navigate("/address")}
         >
-          <ListItemPrefix>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-7 text-white"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
-              />
-            </svg>
-          </ListItemPrefix>
-          <Typography className="text-white">Address</Typography>
-        </ListItem>
-        <ListItem
-          selected={activeMenu === "logout"}
-          className={`text-[#989898]`}
-          onClick={handleDialogLogout}
-        >
-          <ListItemPrefix>
-            <ArrowRightStartOnRectangleIcon className="h-6 w-6 text-white" />
-          </ListItemPrefix>
-          <Typography className="text-white">Logout</Typography>
+          <Button className="text-white w-full" color="white">
+            <Typography className="text-xs text-black font-semibold">
+              Address
+            </Typography>
+          </Button>
         </ListItem>
       </List>
     </Card>

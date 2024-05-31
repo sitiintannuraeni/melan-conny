@@ -1,42 +1,109 @@
-import { Button, Input, Typography } from "@material-tailwind/react";
-import Banner from "../assets/auth.png";
-import Logo from "../assets/logo-auth.png";
+import {
+  Button,
+  Card,
+  CardBody,
+  Dialog,
+  IconButton,
+  Input,
+  Typography,
+} from "@material-tailwind/react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  closeDialogForgotPassword,
+  openDialogKodeVerifikasi,
+  openDialogLogin,
+} from "../slice/menuSlice";
 
-function ForgotPassword() {
+function Form() {
+  const dispatch = useDispatch();
+
   return (
     <>
-      <div>
-        <figure className="relative">
-          <img
-            src={Banner}
-            alt="banner"
-            className="w-full object-cover h-[570px]"
-          />
-          <figcaption className="absolute bottom-[350px] left-[505px]">
-            <div className="">
-              <img
-                src={Logo}
-                alt="logo"
-                className="h-[235px] w-[235px] object-contain"
-              />
-            </div>
-          </figcaption>
-          <div className="absolute bottom-[360px] left-[370px] w-[500px]">
-            <Input label="Email Or Phone Number" color="white" />
-          </div>
-          <div className="absolute bottom-[290px] left-[370px] w-[500px]">
-            <Typography className="text-white">
-              We will send you an email with instructions on how to reset your
-              password.
-            </Typography>
-          </div>
-          <div className="absolute bottom-[228px] left-[370px]">
-            <Button className="w-[500px] bg-white ">
-              <Typography className="text-sm text-black">SUBMIT</Typography>
-            </Button>
-          </div>
-        </figure>
+      <div className="flex flex-col-2 items-center gap-3 p-2">
+        <div
+          onClick={() => {
+            dispatch(openDialogLogin());
+            dispatch(closeDialogForgotPassword());
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-5 h-5 text-white cursor-pointer"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+            />
+          </svg>
+        </div>
+        <div className="grid">
+          <Typography className="text-white text-xl font-semibold">
+            Atur Ulang Kata Sandi
+          </Typography>
+        </div>
       </div>
+      <div className="p-2 mt-3">
+        <Typography className="text-xs text-white">
+          Masukkan e-mail dan nomor HP yang terdaftar. Kami akan mengirimkan
+          kode verifikasi untuk atur ulang kata sandi.
+        </Typography>
+        <div className="mt-5">
+          <Input
+            variant="outlined"
+            label="Email*"
+            placeholder="Enter Your Email..."
+            color="white"
+            className="rounded-xl"
+          />
+        </div>
+        <div className="mt-5">
+          <Input
+            variant="outlined"
+            label="Phone*"
+            placeholder="Enter Your Email Number Phone"
+            color="white"
+            className="rounded-xl"
+          />
+        </div>
+        <div className="mt-5">
+          <Button
+            className="rounded-xl w-full bg-[#FF0386]"
+            size="sm"
+            onClick={() => {
+              dispatch(openDialogKodeVerifikasi());
+              dispatch(closeDialogForgotPassword());
+            }}
+          >
+            <Typography className="text-white text-sm">Kirim</Typography>
+          </Button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function ForgotPassword() {
+  const { dialogForgotPassword } = useSelector((state) => state.menu);
+  const dispatch = useDispatch();
+  return (
+    <>
+      <Dialog
+        size="xs"
+        open={dialogForgotPassword}
+        handler={() => dispatch(closeDialogForgotPassword())}
+        className="bg-transparent shadow-none select-none"
+      >
+        <Card className="mx-auto w-full max-w-sm bg-black">
+          <CardBody className="flex flex-col p-8 pb-14">
+            <Form />
+          </CardBody>
+        </Card>
+      </Dialog>
     </>
   );
 }

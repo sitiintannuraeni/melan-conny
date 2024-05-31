@@ -1,47 +1,67 @@
 import Banner from "../../assets/banner-utama.png";
 import Logo from "../../assets/logo-auth.png";
-import { IconButton } from "@material-tailwind/react";
-import Product1 from "../../assets/product-2.png";
-import Product2 from "../../assets/product-2.png";
-import Product3 from "../../assets/product-3.png";
-import Product4 from "../../assets/product-4.png";
-
-export function CardAccessories() {
-  return (
-    <>
-      <div className="mt-10 grid lg:grid-cols-4 grid-cols-2 gap-3">
-        <div>
-          <img src={Product1} alt="product-1" />
-        </div>
-        <div>
-          <img src={Product2} alt="product-1" />
-        </div>
-        <div>
-          <img src={Product3} alt="product-1" />
-        </div>
-        <div>
-          <img src={Product4} alt="product-1" />
-        </div>
-      </div>
-    </>
-  );
-}
+import { Button, IconButton, Typography } from "@material-tailwind/react";
+import Product1 from "../../assets/product-14.png";
+import Product2 from "../../assets/product-12.png";
+import Product3 from "../../assets/product-13.png";
+import CardProduct from "../../components/CardProduct";
+import { useState } from "react";
 
 function Accessories() {
   return (
     <>
-      <img
-        src={Banner}
-        alt="banner"
-        className="w-full h-[570px] object-cover"
-      />
-      <div className="flex items-center justify-center">
-        <div className="bg-[#EA017E] h-[16px] w-[80px] lg:mt-6 mt-[-265px] rounded-full" />
-      </div>
-      <div className="py-[90px] -mt-[30px] px-32 relative">
-        <CardAccessories className="mt-10" />
-        <div className="absolute z-20 top-44 right-[2px] ">
-          <IconButton>{/* <HeartIcon className="h-4 w-4" /> */}</IconButton>
+      <div className="px-16 mt-10 ">
+        <div className="flex flex-col-3 mt-6 gap-5">
+          <Button
+            variant="outlined"
+            size="sm"
+            color="white"
+            className="border-2 focus:bg-[#FF0386] "
+          >
+            <Typography className="text-white text-sm">Semua</Typography>
+          </Button>
+          <Button
+            variant="outlined"
+            size="sm"
+            color="white"
+            className="border-2 focus:bg-[#FF0386]"
+          >
+            <Typography className="text-white text-sm">T - Shirt</Typography>
+          </Button>
+          <Button
+            variant="outlined"
+            size="sm"
+            color="white"
+            className="border-2 focus:bg-[#FF0386]"
+          >
+            <Typography className="text-white text-sm">Accessories</Typography>
+          </Button>
+        </div>
+        <div className="pb-28 grid grid-cols-4 mt-8 gap-20">
+          <CardProduct
+            img={Product1}
+            name={"T Shirt Oversize - Skull Edition"}
+            price={" 18500000"}
+            items={"123 items sold"}
+          />
+          <CardProduct
+            img={Product2}
+            name={"Lanyard - Melanconny Edition"}
+            price={" 18500000"}
+            items={"123 items sold"}
+          />
+          <CardProduct
+            img={Product3}
+            name={"GasLighter - Melanconny Edition"}
+            price={" 18500000"}
+            items={"123 items sold"}
+          />
+          <CardProduct
+            img={Product2}
+            name={"Lanyard - Melanconny Edition"}
+            price={" 18500000"}
+            items={"123 items sold"}
+          />
         </div>
       </div>
     </>

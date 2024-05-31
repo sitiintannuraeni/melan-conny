@@ -10,9 +10,10 @@ import "swiper/css/pagination";
 
 import "../../styles/swiper-home1.css";
 import { Pagination } from "swiper/modules";
-import { CardProduct1 } from "../../components/CardProduct1";
 import { useGetProductsByGroupCategoryQuery } from "../../services/apiProduct.js";
 import { baseUrlApi } from "../../services/apiCore.js";
+import CardProduct from "../../components/CardProduct.jsx";
+import SkeletonHomePage from "./SkeletonHomePage.jsx";
 
 function SwiperStore() {
   const {
@@ -24,7 +25,13 @@ function SwiperStore() {
     error,
   } = useGetProductsByGroupCategoryQuery();
 
-  console.log({ productByCategory });
+  if (isLoading || isFetching) {
+    return (
+      <>
+        <SkeletonHomePage />;
+      </>
+    );
+  }
 
   if (isSuccess) {
     return (
@@ -49,7 +56,7 @@ function SwiperStore() {
                     {category.products.map((product, index) => {
                       return (
                         <SwiperSlide key={index}>
-                          <CardProduct1
+                          <CardProduct
                             id={product.id}
                             img={`${baseUrlApi}/${product.images[0].path}`}
                             name={product.product_name}

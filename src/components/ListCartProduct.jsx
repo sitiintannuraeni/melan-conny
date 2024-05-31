@@ -34,10 +34,10 @@ function UpdateIncrementQty({ id, bagId, quantity, productId, sizeId }) {
     return (
       <IconButton
         variant="outlined"
-        className=" rounded-md h-[25px] w-[25px]"
+        className="rounded-md h-[25px] w-[25px]"
         disabled
       >
-        <Spinner className="h-4 w-4" />
+        <Spinner className="h-4 w-4 focus:text-[#F62C85]" />
       </IconButton>
     );
   }
@@ -45,11 +45,11 @@ function UpdateIncrementQty({ id, bagId, quantity, productId, sizeId }) {
   return (
     <IconButton
       variant="outlined"
-      className=" rounded-md h-[25px] w-[25px]"
+      className=" rounded-md h-[25px] w-[25px] focus:bg-[#F62C85]"
       onClick={() => handleIncrementQty()}
       color="white"
     >
-      <PlusIcon className="h-4 w-5 text-white" />
+      <PlusIcon className="h-4 w-5 text-white focus:text-[#F62C85]" />
     </IconButton>
   );
 }
@@ -75,10 +75,10 @@ function UpdateDecrementQty({ id, bagId, quantity, productId, sizeId }) {
     return (
       <IconButton
         variant="outlined"
-        className=" rounded-md h-[25px] w-[25px]"
+        className=" rounded-md h-[25px] w-[25px] "
         disabled
       >
-        <Spinner className="h-4 w-4 text-white" />
+        <Spinner className="h-4 w-4 focus:text-[#F62C85]" />
       </IconButton>
     );
   }
@@ -86,11 +86,11 @@ function UpdateDecrementQty({ id, bagId, quantity, productId, sizeId }) {
   return (
     <IconButton
       variant="outlined"
-      className=" rounded-md h-[25px] w-[25px]"
+      className=" rounded-md h-[25px] w-[25px] focus:bg-[#F62C85]"
       onClick={() => handleDecrementQty()}
       color="white"
     >
-      <MinusIcon className="X h-4 w-5 text-white" />
+      <MinusIcon className="h-4 w-5 text-white focus:text-[#F62C85]" />
     </IconButton>
   );
 }
@@ -191,49 +191,51 @@ function ListCardProduct() {
       <>
         {cartProduct.data.map((product, idx) => {
           return (
-            <div key={idx} className="flex flex-col-3 mt-4 gap-2">
-              <div className="w-[120px] flex justify-between">
-                <div className="flex justify-start items-start select-none">
-                  <Checkbox className="h-5 w-5" color="pink" />
+            <div key={idx}>
+              <div className="flex flex-col-3 mt-4 gap-2">
+                <div className="w-[120px] flex justify-between">
+                  <div className="flex justify-start items-start select-none">
+                    <Checkbox className="h-5 w-5" color="pink" />
+                  </div>
+                  <div className="flex justify-start items-start select-none">
+                    <img
+                      src={`${baseUrlApi}/${product.product.images[0].path}`}
+                      alt="drawer1"
+                      className="h-[100px] w-[65px] object-cover rounded-md"
+                    />
+                  </div>
                 </div>
-                <div className="flex justify-start items-start select-none">
-                  <img
-                    src={`${baseUrlApi}/${product.product.images[0].path}`}
-                    alt="drawer1"
-                    className="h-[100px] w-[65px] object-cover rounded-md"
-                  />
-                </div>
-              </div>
-              <div className="gap-1 w-[210px] select-none">
-                <Typography className="text-base text-white -mt-1">
-                  {product.product.product_name}
-                </Typography>
-                <Typography className="text-base text-white">
-                  {product.size.size_name}
-                </Typography>
-                <div className="flex flex-col-3 gap-2 items-center mt-1">
-                  <Typography className="text-white text-sm">
-                    Qty {product.quantity}
+                <div className="gap-1 w-[210px] select-none">
+                  <Typography className="text-base text-white -mt-1">
+                    {product.product.product_name}
                   </Typography>
-                  <Typography className="text-white text-xs">X</Typography>
-                  <Typography className="text-white text-sm">
-                    <NumberFormatCurrency value={product.product.price} />
+                  <Typography className="text-base text-white">
+                    {product.size.size_name}
                   </Typography>
-                  {/* <Typography className="text-white">
+                  <div className="flex flex-col-3 gap-2 items-center mt-1">
+                    <Typography className="text-white text-sm">
+                      Qty {product.quantity}
+                    </Typography>
+                    <Typography className="text-white text-xs">X</Typography>
+                    <Typography className="text-white text-sm">
+                      <NumberFormatCurrency value={product.product.price} />
+                    </Typography>
+                    {/* <Typography className="text-white">
                     <NumberFormatCurrency
                       value={product.quantity * product.product.price}
                     />
                   </Typography> */}
+                  </div>
+                  <QuantityItem
+                    id={product.id}
+                    bagId={product.bag_id}
+                    quantity={product.quantity}
+                    productId={product.product_id}
+                    sizeId={product.size_id}
+                  />
                 </div>
-                <QuantityItem
-                  id={product.id}
-                  bagId={product.bag_id}
-                  quantity={product.quantity}
-                  productId={product.product_id}
-                  sizeId={product.size_id}
-                />
+                <RemoveBagItems id={product.id} />
               </div>
-              <RemoveBagItems id={product.id} />
             </div>
           );
         })}

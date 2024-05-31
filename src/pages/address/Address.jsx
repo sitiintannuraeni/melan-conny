@@ -5,8 +5,6 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
-  IconButton,
-  Tooltip,
   Typography,
 } from "@material-tailwind/react";
 import { MapPinIcon } from "@heroicons/react/24/outline";
@@ -139,9 +137,84 @@ function FormAddress() {
 
 function Address() {
   const dispatch = useDispatch();
+  const {
+    data: shippingAddress,
+    isLoading,
+    isFetching,
+    isSuccess,
+    isError,
+    error,
+  } = useGetAddressQuery();
+
+  console.log({ shippingAddress });
+
   return (
     <>
-      <div className="lg:px-0 px-4">
+      <div>
+        <div className="flex justify-between">
+          <Typography className="text-white text-2xl font-semibold">
+            Address
+          </Typography>
+          <Button
+            variant="filled"
+            className="w-56 bg-[#F62C85] text-white rounded-full"
+            onClick={() => {
+              dispatch(openDialogAddress());
+            }}
+          >
+            Tambah Alamat
+          </Button>
+        </div>
+        <div className="mt-10">
+          <div className="bg-white h-[195px] rounded-3xl p-4 px-10">
+            <div className="bg-[#1E1E1E] w-[80px] flex justify-center rounded-full">
+              <Typography className="text-white">Utama</Typography>
+            </div>
+            <div className="mt-3">
+              <Typography className="text-gray-700 text-sm font-medium">
+                Rumah
+              </Typography>
+              <Typography className="text-black font-semibold">
+                Kyanka Wisnu Wardhana
+              </Typography>
+              <Typography className="text-gray-700 text-sm font-medium mt-1">
+                +6289682282304
+              </Typography>
+              <Typography className="text-black font-semibold mt-1">
+                Mutiara Bogor Raya blok e4 no 22b
+              </Typography>
+              <Typography className="text-[#FF0386] font-bold mt-1">
+                Ubah Alamat
+              </Typography>
+            </div>
+          </div>
+          <div className="border-2 h-[185px] rounded-3xl p-4 px-10 mt-5">
+            <div className="mt-3">
+              <Typography className="text-gray-400 text-sm font-medium">
+                Rumah
+              </Typography>
+              <Typography className="text-white font-semibold">
+                Kyanka Wisnu Wardhana
+              </Typography>
+              <Typography className="text-gray-400 text-sm font-medium mt-1">
+                +6289682282304
+              </Typography>
+              <Typography className="text-white font-semibold mt-1">
+                Mutiara Bogor Raya blok e4 no 22b
+              </Typography>
+            </div>
+            <div className="mt-1 flex justify-between">
+              <Typography className="text-[#FF0386] font-bold">
+                Ubah Alamat
+              </Typography>
+              <div className="bg-[#FF0386] w-[80px] flex justify-center rounded-full">
+                <Typography className="text-white">Pilih</Typography>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <div className="lg:px-0 px-4">
         <div className="fond-semibold pb-14">
           <Typography className="font-medium text-white">
             Saved Address
@@ -163,17 +236,9 @@ function Address() {
               You have no saved address
             </Typography>
           </div>
-          <Button
-            variant="filled"
-            className="w-56 bg-[#F62C85] text-white"
-            onClick={() => {
-              dispatch(openDialogAddress());
-            }}
-          >
-            Add New Address
-          </Button>
+         
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

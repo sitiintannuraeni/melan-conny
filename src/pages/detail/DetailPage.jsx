@@ -1,6 +1,5 @@
 import DetailImages from "./Detailimg";
 import DetailDesc from "./DetailDesc";
-import DetailCard from "./DetailCard";
 import DetailLink from "./DetailLink";
 import { useGetProductByIdQuery } from "../../services/apiProduct";
 import { useParams } from "react-router-dom";
@@ -16,6 +15,8 @@ function DetailPage() {
     isError,
     error,
   } = useGetProductByIdQuery(productId);
+
+  console.log({ product });
 
   if (isLoading || isFetching) {
     return (
@@ -38,7 +39,7 @@ function DetailPage() {
             <div className="w-full lg:max-w-md md:max-w-2xl mx-auto">
               <DetailImages images={product.images} />
             </div>
-            <div className=" ">
+            <div className="">
               <DetailDesc
                 id={product.id}
                 product_name={product.product_name}
@@ -54,9 +55,6 @@ function DetailPage() {
             </div>
           </div>
           <DetailLink />
-          <div className="flex flex-col max-w-full ">
-            <DetailCard />
-          </div>
         </div>
       </>
     );

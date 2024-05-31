@@ -16,24 +16,19 @@ import TruckingPage from "./pages/trucking_order/TruckingPage";
 import Layouts from "./layouts/Layouts";
 import MemberOrder from "./pages/my_order/MemberOrder";
 import HomePage from "./pages/home1/HomePage";
-import Login from "./components/Login1";
 import ForgotPassword from "./components/ForgotPassword";
-import Register from "./components/Register1";
-import T_Shirt from "./pages/store/T-Shirt";
-import Accessories from "./pages/store/Accessories";
+import CheckoutPage1 from "./pages/checkout/CheckoutPage1";
+import TruckingOrder from "./pages/trucking_order/TruckingOrder";
+import Store from "./pages/store/StorePage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route element={<App />}>
         <Route path="/" element={<HomePage />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/t-shirt" element={<T_Shirt />}></Route>
-        <Route path="/accessories" element={<Accessories />}></Route>
+        <Route path="/store" element={<Store />}></Route>
         <Route path="/forgot-password" element={<ForgotPassword />}></Route>
         <Route path="/detail/:id" element={<DetailPage />}></Route>
-        <Route path="/trucking-order" element={<TruckingPage />}></Route>
         <Route element={<ProtectedLayouts />}>
           <Route path="/account-info" element={<AccountInfo />}></Route>
           <Route path="/wishlist" element={<WishList />}></Route>
@@ -42,8 +37,11 @@ export const router = createBrowserRouter(
         </Route>
         <Route element={<Layouts />}>
           <Route path="/checkout" element={<CheckoutPage />}></Route>
+          <Route path="/checkout1" element={<CheckoutPage1 />}></Route>
           <Route path="/view-bag" element={<ViewBag />}></Route>
-          <Route path="/member-order" element={<MemberOrder />}></Route>
+          <Route path="/payment/:token" element={<MemberOrder />}></Route>
+          <Route path="/trucking-order" element={<TruckingPage />}></Route>
+          <Route path="/trucking-order1" element={<TruckingOrder />}></Route>
         </Route>
       </Route>
     </>

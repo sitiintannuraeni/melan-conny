@@ -42,7 +42,7 @@ function TruckingOrder() {
           />
         </div>
         <div className="mt-1">
-          <Typography className="flex justify-center items-center">
+          <Typography className="flex justify-center items-center text-white">
             MEN'S FASHION STORE
           </Typography>
           <div className="border-b-[1px] border-black/20 mt-6 w-full" />

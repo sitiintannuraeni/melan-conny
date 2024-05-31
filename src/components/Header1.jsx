@@ -14,22 +14,24 @@ import {
 import {
   ArrowRightStartOnRectangleIcon,
   Bars3Icon,
-  ChevronLeftIcon,
   UserCircleIcon,
+  UserIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline/index.js";
 import logo from "../assets/logo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { openDialogSearch, openDrawerShoppingCart } from "../slice/menuSlice";
+import {
+  openDialogLogin,
+  openDialogRegister,
+  openDialogSearch,
+  openDrawerShoppingCart,
+} from "../slice/menuSlice";
 import { logout } from "../slice/apiSlice";
 import { toast } from "react-toastify";
-import instagram from "../assets/instagram-1.png";
-import tiktok from "../assets/tiktok.png";
-import twiter from "../assets/twitter.png";
-import youtobe from "../assets/youtobe.png";
-
+import BagIcon from "../assets/bag.png";
+import LoveIcon from "../assets/love.png";
 function HeaderLogo() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -38,17 +40,24 @@ function HeaderLogo() {
 
   return (
     <>
-      <div className="flex justify-start items-center h-full space-x-8 px-3 select-none">
-        {pathName === "" ? (
+      <div className="flex justify-start items-center h-full px-3 select-none">
+        <Link to={"/"}>
+          <img
+            src={logo}
+            alt="logo"
+            className="object-contain h-[125px] w-[125px]"
+          />
+        </Link>
+        {/* {pathName === "" ? (
           <>
-            {/* <IconButton
+            <IconButton
               variant="text"
               className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent"
               ripple={false}
               onClick={() => dispatch(openDrawerMenFashionStore())}
             >
               <Bars3Icon className="h-6 w-7" />
-            </IconButton> */}
+            </IconButton>
             <Link to={"/"}>
               <img
                 src={logo}
@@ -66,7 +75,7 @@ function HeaderLogo() {
           >
             <ChevronLeftIcon className="h-7 w-7 text-white" />
           </IconButton>
-        )}
+        )} */}
       </div>
     </>
   );
@@ -74,90 +83,52 @@ function HeaderLogo() {
 function HeaderMenu() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [activeBtn, setActiveBtn] = useState("");
 
   return (
     <>
-      <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-3 select-none">
-        <Typography
-          as="li"
-          variant="small"
-          color="white"
-          className="p-1 font-medium"
-        >
-          <Link to={"/"} className="flex items-center transition-colors">
-            HOME
-          </Link>
-        </Typography>
-        <div>
-          <Menu shadow={false}>
-            <MenuHandler className="bg-transparent">
-              <Typography
-                as="li"
-                variant="small"
-                color="white"
-                className="p-1 font-medium"
-              >
-                <a
-                  href="#"
-                  className="flex items-center hover:text-blue-500 transition-colors"
-                >
-                  CATEGORIES
-                </a>
-              </Typography>
-            </MenuHandler>
-            <MenuList className="bg-[#000000]">
-              <MenuItem
-                className="flex flex-col-2 gap-3 items-center"
-                onClick={() => navigate("/t-shirt")}
-              >
-                <Typography className="text-sm underline text-white">
-                  T-SHIRT
-                </Typography>
-              </MenuItem>
-              <MenuItem
-                className="flex flex-col-2 gap-3 items-center "
-                onClick={() => navigate("/accessories")}
-              >
-                <Typography className="text-sm underline text-white">
-                  ACCESSORIES
-                </Typography>
-              </MenuItem>
-            </MenuList>
-          </Menu>
-        </div>
-        {/* <Typography
-          as="li"
-          variant="small"
-          color="white"
-          className="p-1 font-medium"
-        >
+      <ul className="my-2 pl-10 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-24 select-none">
+        <Typography variant="small" color="white" className="p-1 font-medium">
           <a
             href="#"
-            className="flex items-center hover:text-blue-500 transition-colors"
-            onClick={(e) => e.preventDefault(navigate("/accessories"))}
-          >
-            ACCESSORIES
-          </a>
-        </Typography> */}
-        <Typography
-          as="li"
-          variant="small"
-          color="white"
-          className="p-1 font-medium"
-        >
-          <a
-            href="#"
-            className="flex items-center hover:text-blue-500 transition-colors"
+            className="flex items-center hover:text-blue-500 transition-colors text"
             onClick={(e) => e.preventDefault(navigate("/trucking-order"))}
+            selected={activeBtn === "btn"}
           >
-            TRACKING ORDER
+            <Typography
+              variant="small"
+              color="white"
+              className="p-1 font-medium btn"
+            >
+              <a
+                href="#"
+                className="flex items-center hover:text-blue-500 transition-colors text-base"
+              >
+                Tracking Order
+              </a>
+            </Typography>
           </a>
         </Typography>
+        <div onClick={() => navigate("/store")}>
+          <Typography
+            variant="small"
+            color="white"
+            className="p-1 font-medium btn"
+            selected={activeBtn === "btn"}
+          >
+            <a
+              href="#"
+              className="flex items-center hover:text-blue-500 transition-colors text-base"
+            >
+              Categories
+            </a>
+          </Typography>
+        </div>
         <Typography
-          as="li"
           variant="small"
           color="white"
-          className="p-1 font-medium"
+          className="p-1 font-medium btn text-base"
+          selected={activeBtn === "btn"}
         >
           <a
             href="#"
@@ -168,54 +139,9 @@ function HeaderMenu() {
             }}
           >
             <MagnifyingGlassIcon className="w-4 h-4 mr-2 text-white" />
-            SEARCH
+            Search
           </a>
         </Typography>
-        <div>
-          <Menu shadow={false}>
-            <MenuHandler className="bg-transparent">
-              <Typography
-                as="li"
-                variant="small"
-                color="white"
-                className="p-1 font-medium"
-              >
-                <a
-                  href="#"
-                  className="flex items-center hover:text-blue-500 transition-colors underline"
-                >
-                  MEDIA SOSIAL
-                </a>
-              </Typography>
-            </MenuHandler>
-            <MenuList className="bg-[#000000]">
-              <MenuItem className="flex flex-col-2 gap-3 items-center">
-                <img src={instagram} alt="instagram" className="h-4 w-4" />
-                <Typography className="text-sm underline text-white">
-                  @Melanconny_store
-                </Typography>
-              </MenuItem>
-              <MenuItem className="flex flex-col-2 gap-3 items-center">
-                <img src={tiktok} alt="tiktok" className="h-4 w-4" />
-                <Typography className="text-sm underline text-white">
-                  Melanconnywel
-                </Typography>
-              </MenuItem>
-              <MenuItem className="flex flex-col-2 gap-3 items-center">
-                <img src={twiter} alt="twiter" className="h-4 w-4" />
-                <Typography className="text-sm underline text-white">
-                  Melanconny_store
-                </Typography>
-              </MenuItem>
-              <MenuItem className="flex flex-col-2 gap-3 items-center">
-                <img src={youtobe} alt="youtobe" className="h-4 w-4" />
-                <Typography className="text-sm underline text-white">
-                  Melanconnywel
-                </Typography>
-              </MenuItem>
-            </MenuList>
-          </Menu>
-        </div>
       </ul>
     </>
   );
@@ -234,86 +160,65 @@ function HeaderProfileMenu() {
 
   return (
     <>
-      <div className="flex items-center gap-8 select-none">
-        <IconButton
-          variant="text"
-          className="h-6 w-6 lg:hidden rounded-full hover:bg-transparent active:bg-transparent"
-          ripple={false}
-          onClick={() => {
-            dispatch(openDialogSearch());
-          }}
-        >
-          <MagnifyingGlassIcon className="h-6 w-6 text-white" />
-        </IconButton>
-        <IconButton
-          variant="text"
-          className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent"
-          ripple={false}
-          onClick={() => navigate("/wishlist")}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="w-6 h-6 text-white"
-          >
-            <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
-          </svg>
-        </IconButton>
-        <Badge
-          content={isLoggedIn ? qtyTotal : 0}
-          className={`bg-[#F62C85] text-white p-0 min-w-[20px] min-h-[20px] ${qtyTotal <= 0 || !isLoggedIn ? "hidden" : ""}`}
-        >
-          <Button
-            size="sm"
-            variant="text"
-            ripple={false}
-            className="px-0 py-0 flex gap-1 items-center rounded-full hover:bg-transparent active:bg-transparent text-white"
-            onClick={() => dispatch(openDrawerShoppingCart())}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-6 h-6 text-white"
-            >
-              <path
-                fillRule="evenodd"
-                d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </Button>
-        </Badge>
-
+      <div className="flex items-center gap-10 select-none">
         {!isLoggedIn ? (
           <div className="flex flex-col-2 justify-center items-center gap-6 cursor-pointer">
-            {/* <IconButton
-              variant="text"
-              className="h-6 w-6 rounded-full hover:bg-transparent active:bg-transparent"
-              ripple={false}
-              onClick={() => dispatch(openDialogLogin())}
-            >
-              <UserIcon className="h-6 w-6 text-white" />
-            </IconButton>
-            <UserCircleIcon className="h-6 w-6 text-white" /> */}
-            <div onClick={() => navigate("/register")}>
+            <div onClick={() => dispatch(openDialogRegister())}>
               <Typography className="text-base text-white">SIGN UP</Typography>
             </div>
-            <div className="bg-[#F62C85] w-[95px] h-[35px] rounded-full flex items-center justify-center">
-              <Typography
-                className="text-white"
-                onClick={() => navigate("/login")}
-              >
-                SIGN IN
-              </Typography>
+            <div
+              className="bg-[#F62C85] w-[95px] h-[35px] rounded-full flex items-center justify-center"
+              onClick={() => dispatch(openDialogLogin())}
+            >
+              <Typography className="text-white">SIGN IN</Typography>
             </div>
           </div>
         ) : (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-10">
+            <IconButton
+              variant="text"
+              className="h-6 w-6 lg:hidden rounded-full hover:bg-transparent active:bg-transparent"
+              ripple={false}
+              onClick={() => {
+                dispatch(openDialogSearch());
+              }}
+            >
+              <MagnifyingGlassIcon className="h-6 w-6 text-white" />
+            </IconButton>
+            <Badge
+              content={isLoggedIn ? qtyTotal : 0}
+              className={`bg-[#F62C85] text-white p-0 min-w-[20px] min-h-[20px] ${qtyTotal <= 0 || !isLoggedIn ? "hidden" : ""}`}
+            >
+              <Button
+                size="sm"
+                variant="text"
+                ripple={false}
+                className="px-0 py-0 flex gap-1 items-center rounded-full hover:bg-transparent active:bg-transparent text-white"
+                onClick={() => dispatch(openDrawerShoppingCart())}
+              >
+                <img
+                  src={BagIcon}
+                  alt="logo"
+                  className="h-7 w-7 object-contain"
+                />
+              </Button>
+            </Badge>
+            <Button
+              size="sm"
+              variant="text"
+              ripple={false}
+              className="px-0 py-0 flex gap-1 items-center rounded-full hover:bg-transparent active:bg-transparent text-white"
+              onClick={() => navigate("/wishlist")}
+            >
+              <img
+                src={LoveIcon}
+                alt="logo"
+                className="h-7 w-7 object-contain"
+              />
+            </Button>
             <Menu className="p-0 m-2">
               <MenuHandler>
-                <div className="rounded-full h-6 w-6 flex items-center justify-center bg-gray-900 cursor-pointer">
+                {/* <div className="rounded-full h-6 w-6 flex items-center justify-center bg-gray-900 cursor-pointer">
                   <Typography
                     variant="small"
                     className="text-white text-[10px] font-semibold"
@@ -323,7 +228,8 @@ function HeaderProfileMenu() {
                       ? data.name.split(" ")[1].slice(0, 1)
                       : ""}
                   </Typography>
-                </div>
+                </div> */}
+                <UserIcon className="h-6 w-6 text-white cursor-pointer" />
               </MenuHandler>
               <MenuList className="bg-[#000000] border-none">
                 <MenuItem

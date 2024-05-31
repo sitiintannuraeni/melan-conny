@@ -14,7 +14,7 @@ function CardLink({ img, text }) {
   return (
     <>
       <Card
-        className="overflow-hidden w-[60px] h-[105px] rounded-none"
+        className="overflow-hidden w-[60px] h-[105px] rounded-none bg-black"
         shadow={false}
       >
         <CardHeader
@@ -23,10 +23,10 @@ function CardLink({ img, text }) {
           color="transparent"
           className="m-0 rounded-none h-[70px] flex justify-center items-center"
         >
-          <img src={img} alt="imageA" className="h-14 w-14 object-cover" />
+          <img src={img} alt="imageA" className="h-12 w-12 object-cover" />
         </CardHeader>
         <CardBody className="p-0 flex justify-center">
-          <Typography className="text-sm">{text}</Typography>
+          <Typography className="text-sm text-white">{text}</Typography>
         </CardBody>
       </Card>
     </>
@@ -42,10 +42,10 @@ function DetailLink() {
         size="xs"
         open={dialogShareLink}
         handler={() => dispatch(closeDialogShareLink())}
-        className="p-4 h-[300px]"
+        className="p-4 h-[300px] bg-black"
       >
         <div className="flex justify-between mb-4 px-4">
-          <Typography className="mt-2 font-medium text-black text-lg">
+          <Typography className="mt-2 font-medium text-white text-lg">
             Share to
           </Typography>
           <a
@@ -53,10 +53,10 @@ function DetailLink() {
             className="flex items-center hover:text-blue-500 text-black transition-colors"
             onClick={() => dispatch(closeDialogShareLink())}
           >
-            <XMarkIcon className="w-6 h-6" />
+            <XMarkIcon className="w-6 h-6 text-white" />
           </a>
         </div>
-        <div className="w-full h-[220px] lg:px-7 px-0">
+        <div className="w-full h-[220px] lg:px-4 px-0">
           <div className="grid grid-cols-4 gap-2">
             <CardLink img={ImageA} text={"Twitter"} />
             <CardLink img={ImageB} text={"Facebook"} />

@@ -1,36 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { openDialogLogin } from "../slice/menuSlice";
 import Sidebar from "../components/Sidebar";
-import Logo from "../assets/logo-auth.png";
-import { Typography } from "@material-tailwind/react";
+import { Breadcrumbs, IconButton, Typography } from "@material-tailwind/react";
 import { isMobile } from "react-device-detect";
 import SidebarResponsive from "../pages/responsive/SiderbarResponsive";
-import Text from "../assets/text-melanconny.png";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 function BrowserLayout() {
+  const navigate = useNavigate();
   return (
     <>
-      <div className="mt-7 lg:px-24 lg:pb-44 pb-16 cursor-default select-none">
-        <div className="pb-10">
-          <div className="flex justify-center items-center pb-3 -mt-6">
-            <img
-              src={Logo}
-              alt="logo"
-              className="h-[230px] w-[230px] object-contain"
-            />
-          </div>
-          <div className="grid grid-rows-2 justify-center items-center -mt-10">
-            <div className=" flex justify-center -mt-10">
-              <img src={Text} alt="text" className="h-[15px] w-[190px]" />
-            </div>
-            <Typography className="text-center -mt-[10px] text-white">
-              You can manage your account and track your order here
-            </Typography>
-          </div>
-          <div className="border-b-[1px] border-white mt-12 w-full" />
+      <div className="mt-7 lg:px-14 lg:pb-44 pb-16 cursor-default select-none">
+        <div className="flex items-center gap-8">
+          <a href="/" className="">
+            <ArrowLeftIcon className="h-6 w-6 text-white" />
+          </a>
+          <Breadcrumbs className=" bg-transparent">
+            <a href="/" className="text-[#FF0386]">
+              <Typography>Home</Typography>
+            </a>
+            <a href="#" className="text-[#FF0386]">
+              <Typography>Profile</Typography>
+            </a>
+          </Breadcrumbs>
         </div>
-        <div className="flex lg:flex-col-2 flex-col-1 lg:gap-20 w-full">
+        <Typography className="text-white text-2xl mt-5 font-semibold">
+          Profile
+        </Typography>
+        <div className="flex lg:flex-col-2 flex-col-1 lg:gap-10 w-full mt-7">
           <div>
             <Sidebar />
           </div>
